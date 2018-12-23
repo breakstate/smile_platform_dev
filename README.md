@@ -12,7 +12,7 @@ This will return all user information from user_info (including hashed passwords
 
 ###### login
 In postman, open a new tab. Set the HTTP request type to **POST** with the address **localhost:8080/api/login.**
-Currently logging in does not require the user to be verified as Postmark integration is underway. Logging in should demonstrate the system's ability to check that the user exists and that the password they enter matched the hashed password in the database. Fully fledged Token authentication will come later and also relies on Postmark. 
+Currently logging in does not require the user to be verified as Postmark integration is underway. Logging in should demonstrate the system's ability to check that the user exists and that the password they enter matched the hashed password in the database. Fully fledged Token authentication will come later and also relies on Postmark. (An incorrect password will result in a fail message but, for testing purposes, will still return data relating to the user if the email exits in the db).
 
 <hr>  
 
