@@ -76,7 +76,7 @@ const db			= config.db;
 	}
 
 // authenticateUser ===========================================================
-
+/*
 	function authenticateUser(req, res){
 		if (!req.body.email || !req.body.user_password) {
 			return res.status(400)
@@ -138,12 +138,12 @@ const db			= config.db;
 			.finally(db.end);
 		//console.log('POST user authentication: SUCCEEDED');
 	}
-
+*/
 // fetchToken =================================================================
 
 	function fetchToken(user_id){
 		var token;
-		db.one(queries.PQ_getUserToken)
+		db.one(queries.PQ_getUserToken, [user_id])
 			.then( data => {
 				token = data.token;
 			})
@@ -186,10 +186,7 @@ const db			= config.db;
 						.json({
 							status: 'success',
 							message: 'Authenticating',
-							token1: token,
 							data: data,
-							data2 : data.user_password,
-							data1: data.email,
 						})
 					} else {
 						res.status(200)
@@ -197,9 +194,6 @@ const db			= config.db;
 							status: 'fail',
 							message: 'incorrect password',
 							data: data,
-							data1: data.email,
-							data2: data.user_password,
-							data3: req.body.user_password
 						})
 					}
 				} else {
@@ -258,7 +252,7 @@ module.exports = {
 	getAllUsers: getAllUsers,
 	addNewUser: addNewUser,
 	login: login,
-	authenticateUser: authenticateUser,
+	//authenticateUser: authenticateUser,
 	updateUser: updateUser,
 	deleteUser: deleteUser
 };

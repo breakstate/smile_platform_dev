@@ -54,8 +54,8 @@ var router = express.Router();			// get instance of the express Router
 		.post(user.login)
 
 	// on routes that end in /authenticate
-	router.route('/authenticate')
-		.post(user.authenticateUser)
+	//router.route('/authenticate')
+	//	.post(user.authenticateUser)
 
 	// on routes that end in /users
 	router.route('/users')
