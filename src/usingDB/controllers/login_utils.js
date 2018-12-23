@@ -20,10 +20,12 @@ const config	= require('../../../config.js');
 			uid: id, // user identity
 			gpl: 0   // global permissions level
 		},
-			config.secret, {expiresIn: '7d'}
+			config.secret//, {expiresIn: '7d'}
 		);
 		return token;
 	}
+
+	//function verifyToken(req, res, next)
 
 
 module.exports = {

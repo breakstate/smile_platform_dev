@@ -1,4 +1,11 @@
-# express_test_api
+### SMILE API DOC
+## Usage
+Install postman from https://www.getpostman.com/ or install the Chrome app
+
+to add
+
+
+### LINKS
 
 https://scotch.io/tutorials/getting-started-with-node-express-and-postgres-using-sequelize - for when we implement sequalize
 https://websiteforstudents.com/install-the-latest-node-js-and-nmp-packages-on-ubuntu-16-04-18-04-lts/ - ubuntu installation
