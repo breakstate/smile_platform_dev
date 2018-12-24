@@ -1,6 +1,20 @@
 # SMILE API DOC
+## Setup
+###### Linux
+```sudo apt-get update```  
+```sudo apt install curl```  
+```curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -```  
+```sudo apt-get install nodejs```  
+```sudo apt-get install npm```  
+```npm install```
+
 ## Usage
-Install postman from https://www.getpostman.com/ or install the Chrome app
+Install postman from https://www.getpostman.com/ or install the Chrome app  
+  
+For requests requiring input:
+- key: value pairs go in the **Body** section
+- select x-www-form-urlencoded radio button
+- select JSON from the drop-down menu above the output
 
 ###### Add new user to system
 In postman, open a new tab. Set the HTTP request type to **POST** with the address **localhost:8080/api/users.**
