@@ -1,4 +1,7 @@
 # SMILE API DOC
+
+<hr>  
+
 ## Setup
 ###### Linux
 The following process will take you through installation of nodejs v 10.x (Latest release, not LTS)  
@@ -8,6 +11,8 @@ The following process will take you through installation of nodejs v 10.x (Lates
 ```sudo apt-get install nodejs```  
 ```sudo apt-get install npm```  
 ```npm install```
+
+<hr>  
 
 ## Usage
 Install postman from https://www.getpostman.com/ or install the Chrome app  
