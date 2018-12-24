@@ -1,6 +1,7 @@
 # SMILE API DOC
 ## Setup
 ###### Linux
+The following process will take you through installation of nodejs v 10.x (Latest release, not LTS)
 ```sudo apt-get update```  
 ```sudo apt install curl```  
 ```curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -```  
