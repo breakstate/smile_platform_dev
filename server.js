@@ -13,6 +13,7 @@ const jwt			= require('jsonwebtoken');
 const config		= require('./config');
 const user			= require('./src/usingDB/controllers/user');
 const morgan		= require('morgan');
+const cors			= require('cors');
 
 // configure database connection
 const db = config.db;
