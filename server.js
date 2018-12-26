@@ -22,6 +22,7 @@ const db = config.db;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
+app.use(cors());
 
 var port = process.env.PORT || 8080;	// set out port
 

@@ -62,13 +62,13 @@ const db			= config.db;
 
 		const token = jwt.sign({usr: req.body.email, grp: 1}, config.secret);
 		db.none(queries.PQ_addNewUserVerifyToken, [token, req.body.email])
-			.then( function () {
+			.then(/* function () {
 				//user_id = data.user_id
 				res.status(200)
 				.json({
 					tok: token
 				});
-			})
+			}*/)
 			.catch(error => {
 				console.log('ERROR:', error); // print the error
 			})
