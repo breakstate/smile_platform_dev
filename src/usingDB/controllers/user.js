@@ -43,7 +43,20 @@ const db			= config.db;
 				success: false,
 				message: 'email formatted incorrectly'
 			})
-		} // verify other fields as well
+		}
+		userExists(req.body.email)
+		.then(data => {
+			if (data){
+				console.log('user exists');
+				return res.status(400)
+				.json({
+					success: false,
+					message: 'user with that email already exists'
+				})
+			}
+			else {
+				console.log('user does not exist');
+		// verify other fields as well
 		const hashedPassword = login_utils.hashPassword(req.body.user_password);
 		
 		db.none(queries.PQ_addNewUser, [req.body.first_name, req.body.last_name, req.body.phone_number, req.body.email, hashedPassword, false, req.body.user_group_id, 0])
@@ -62,7 +75,7 @@ const db			= config.db;
 
 		const token = jwt.sign({usr: req.body.email, grp: 1}, config.secret);
 		db.none(queries.PQ_addNewUserVerifyToken, [token, req.body.email])
-			.then(/* function () {
+			.then(/*  function () {
 				//user_id = data.user_id
 				res.status(200)
 				.json({
@@ -73,8 +86,9 @@ const db			= config.db;
 				console.log('ERROR:', error); // print the error
 			})
 			.finally(db.end);
-	}
-
+		}
+	})
+}
 // authenticateUser ===========================================================
 /*
 	function authenticateUser(req, res){
@@ -139,6 +153,58 @@ const db			= config.db;
 		//console.log('POST user authentication: SUCCEEDED');
 	}
 */
+
+// userExists =================================================================
+
+	function userExists(email){
+		return new Promise((resolve, reject) => {
+			db.oneOrNone(queries.PQ_userExists, [email])
+			.then(data => {
+				resolve(data);
+			})
+			.catch(err => {
+				reject(err);
+			})
+		})
+	}
+		/*		if (data){
+					result = 1;
+					console.log('162 user exists ' + result);
+					return true;
+				} else {
+					result = 0;
+					console.log('165 user does not exist ' + result);
+					return false;
+				}
+			})
+				console.log('ERROR:', error); // print the error
+			})
+			.finally(db.end);
+		console.log('172 result = ' + result);
+		//return result;
+
+	function userExists(email){
+		var result = 0;
+		db.oneOrNone(queries.PQ_userExists, [email])
+			.then( data => {
+				if (data){
+					result = 1;
+					console.log('162 user exists ' + result);
+					return true;
+				} else {
+					result = 0;
+					console.log('165 user does not exist ' + result);
+					return false;
+				}
+			})
+			.catch(error => {
+				console.log('ERROR:', error); // print the error
+			})
+			.finally(db.end);
+		console.log('172 result = ' + result);
+		//return result;
+	}*/
+
 // fetchToken =================================================================
 
 	function fetchToken(user_id){
@@ -254,5 +320,6 @@ module.exports = {
 	login: login,
 	//authenticateUser: authenticateUser,
 	updateUser: updateUser,
-	deleteUser: deleteUser
+	deleteUser: deleteUser,
+	userExists: userExists
 };

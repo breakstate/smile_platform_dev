@@ -7,6 +7,7 @@ const PQ_addNewUser = new PQ('INSERT INTO user_info(first_name, last_name, phone
 const PQ_addNewUserVerifyToken = new PQ('UPDATE user_info SET v_token = $1 WHERE email = $2'); // add verify_token here once implemented
 const PQ_getUserToken = new PQ('SELECT v_token FROM user_info WHERE user_id = $1');
 const PQ_getUserId = new PQ('SELECT user_id FROM user_info WHERE email = $1');
+const PQ_userExists = new PQ('SELECT user_id FROM user_info WHERE email = $1');
 /*
 SELECT t1.completed_date, t2.goal_description, t3.first_name
 FROM completed_goals t1 INNER JOIN goal t2 ON t1.goal_id = t2.goal_id 
@@ -18,5 +19,6 @@ module.exports = {
 	PQ_getUserToken: PQ_getUserToken,
 	PQ_addNewUser: PQ_addNewUser,
 	PQ_addNewUserVerifyToken: PQ_addNewUserVerifyToken,
-	PQ_getUserId : PQ_getUserId
+	PQ_getUserId : PQ_getUserId,
+	PQ_userExists : PQ_userExists
 };
