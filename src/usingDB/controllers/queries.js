@@ -5,7 +5,7 @@ const PQ_getAllUsers = new PQ('SELECT * FROM user_info');//.token FROM user_info
 const PQ_userLogin = new PQ('SELECT email, user_password, user_id, v_token FROM user_info WHERE email = $1'); // v_token to be replace with u_token
 const PQ_addNewUser = new PQ('INSERT INTO user_info(first_name, last_name, phone_number, email, user_password, verified, user_group_id, v_token) VALUES($1, $2, $3, $4, $5, $6, $7, $8)');
 const PQ_addNewUserVerifyToken = new PQ('UPDATE user_info SET v_token = $1 WHERE email = $2'); // add verify_token here once implemented
-const PQ_getUserToken = new PQ('SELECT v_token FROM user_info WHERE user_id = $1');
+const PQ_getUserToken = new PQ('SELECT v_token FROM user_info WHERE email = $1');
 const PQ_getUserId = new PQ('SELECT user_id FROM user_info WHERE email = $1');
 const PQ_userExists = new PQ('SELECT user_id FROM user_info WHERE email = $1');
 

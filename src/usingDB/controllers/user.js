@@ -175,7 +175,7 @@ const db			= config.db;
 	}
 
 // fetchToken =================================================================
-
+/*
 	function fetchToken(user_id){
 		var token;
 		db.one(queries.PQ_getUserToken, [user_id])
@@ -187,6 +187,18 @@ const db			= config.db;
 			})
 			.finally(db.end);
 		return token;
+	}
+*/
+	function fetchToken(email, prev_data){
+		return new Promise((resolve, reject) => {
+			db.oneOrNone(queries.PQ_getUserToken, [email])
+			.then(data => {
+				resolve(data);
+			})
+			.catch(err => {
+				reject(err);
+			})
+		})
 	}
 
 // login ======================================================================
@@ -206,29 +218,51 @@ const db			= config.db;
 			})
 		}
 		db.oneOrNone(queries.PQ_userLogin, [req.body.email])
-			.then( data => {
-				if (data){
-					if (login_utils.comparePassword(data.user_password, req.body.user_password)){
+			.then( data1 => {
+				if (data1){
+					if (login_utils.comparePassword(data1.user_password, req.body.user_password)){
 
 						//var token = jwt.sign({foo: 'bar', user: data.email}, config.secret);
 						//var decoded = jwt.verify(token, config.secret);
 						//console.log(decoded.user)
 
-						const token = fetchToken(data.user_id);
+						//const token = fetchToken(data.user_id);
+						//var decoded = jwt.verify(token, config.secret);
+						//console.log(decoded.user)
 						// token to be stored locally by front end
 
-						res.status(200)
-						.json({
-							status: 'success',
-							message: 'Authenticating',
-							data: data,
+						var isAdmin = 'lol';
+
+						fetchToken(req.body.email, data1)
+						.then(data => {
+							if (data){
+								console.log(data.v_token);
+								var decoded = jwt.verify(data.v_token, config.secret);
+								console.log(decoded);
+								if (decoded.grp == 2){
+									isAdmin = true;
+								} else {
+									isAdmin = false;
+								}
+								console.log(data1.email);
+								data1['admin'] = isAdmin;
+
+								res.status(200)
+								.json({
+									status: 'success',
+									message: 'Authenticated user',
+									data: data1,
+								})
+							}
+							else {}})
+						.catch(err => {
+							console.log('ERROR:', error); // print the error
 						})
 					} else {
 						res.status(200)
 						.json({
 							status: 'fail',
 							message: 'incorrect password'
-							//data: data,
 						})
 					}
 				} else {
