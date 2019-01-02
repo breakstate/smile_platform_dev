@@ -73,7 +73,7 @@ const db			= config.db;
 			.finally(db.end);
 		//console.log('POST create user: SUCCEEDED');
 
-		const token = jwt.sign({usr: req.body.email, grp: 1}, config.secret);
+		const token = jwt.sign({usr: req.body.email, grp: req.body.user_group_id}, config.secret);
 		db.none(queries.PQ_addNewUserVerifyToken, [token, req.body.email])
 			.then(/*  function () {
 				//user_id = data.user_id
