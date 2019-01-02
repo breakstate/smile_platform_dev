@@ -167,43 +167,12 @@ const db			= config.db;
 			})
 		})
 	}
-		/*		if (data){
-					result = 1;
-					console.log('162 user exists ' + result);
-					return true;
-				} else {
-					result = 0;
-					console.log('165 user does not exist ' + result);
-					return false;
-				}
-			})
-				console.log('ERROR:', error); // print the error
-			})
-			.finally(db.end);
-		console.log('172 result = ' + result);
-		//return result;
 
-	function userExists(email){
-		var result = 0;
-		db.oneOrNone(queries.PQ_userExists, [email])
-			.then( data => {
-				if (data){
-					result = 1;
-					console.log('162 user exists ' + result);
-					return true;
-				} else {
-					result = 0;
-					console.log('165 user does not exist ' + result);
-					return false;
-				}
-			})
-			.catch(error => {
-				console.log('ERROR:', error); // print the error
-			})
-			.finally(db.end);
-		console.log('172 result = ' + result);
-		//return result;
-	}*/
+// getUserId ==================================================================
+
+	function getUserId(email){
+		
+	}
 
 // fetchToken =================================================================
 
@@ -223,7 +192,7 @@ const db			= config.db;
 // login ======================================================================
 
 	function login(req, res){
-		if (!req.body.email || !req.body.user_password) {
+		if (!req.body.email || !req.body.user_password || !req.body.email.length || !req.body.user_password.length) {
 			return res.status(400)
 			.json({
 				success: false,
