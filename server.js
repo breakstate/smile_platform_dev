@@ -10,11 +10,13 @@ const bodyParser	= require('body-parser');
 const pg			= require('pg');
 const pgp			= require('pg-promise')(/*options*/);
 const jwt			= require('jsonwebtoken');
-const config		= require('./config');
-const user			= require('./src/usingDB/controllers/user');
-const commitment	= require('./src/usingDB/controllers/commitments');
 const morgan		= require('morgan');
 const cors			= require('cors');
+
+const config		= require('./config');
+const user			= require('./src/usingDB/controllers/user');
+const commitments	= require('./src/usingDB/controllers/commitments');
+const notes			= require('./src/usingDB/controllers/notes');
 
 // configure database connection
 const db = config.db;
@@ -65,10 +67,20 @@ var router = express.Router();			// get instance of the express Router
 		.post(user.addNewUser)
 		.get(user.getAllUsers) // without passwords or ID
 		.put(user.updateUser) // put for each field needing updating
+	router.route('/users/:user_id')
+		.get(user.getSingleUser)
 		.delete(user.deleteUser)
 
 	router.route('/commitments')
-		.get(commitment.getCommitmentByUser)
+		.post(commitments.createCommitment)
+	router.route('/commitments/:user_id')
+		.get(commitments.getCommitmentsByUser)
+	router.route('/commitments/:id')// may need to change name of column
+		.delete(commitments.deleteCommitment)
+
+	router.route('/notes')
+		.get(notes.getNotesByUser)
+		.delete(notes.deleteNote)
 
 	// on routes that end in /bears/:bear_id
 	router.route('/bears/:bear_id')

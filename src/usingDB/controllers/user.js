@@ -6,6 +6,33 @@ const jwt			= require('jsonwebtoken');
 
 const db			= config.db;
 
+// getSingleUser ==============================================================
+
+	function getSingleUser(req, res){
+		db.oneOrNone(queries.PQ_getSingleUser, [req.params.user_id])
+		.then(data => {
+			if (data){
+				res.status(200)
+				.json({
+					status: 'success',
+					message: 'Retrieved single user',
+					data: data
+				});
+			}
+			else {
+				res.status(200)
+				.json({
+					status: 'fail',
+					message: 'No user with specified user_id',
+				});
+			}
+		})
+		.catch(error => {
+			console.log('ERROR:', error); // print the error
+		})
+		.finally(db.end);
+	}
+
 // getAllUsers ================================================================
 
 	function getAllUsers(req, res) {
@@ -231,7 +258,7 @@ const db			= config.db;
 						//console.log(decoded.user)
 						// token to be stored locally by front end
 
-						var isAdmin = 'lol';
+						var isAdmin;
 
 						fetchToken(req.body.email, data1)
 						.then(data => {
@@ -302,12 +329,12 @@ const db			= config.db;
 // deleteUser =================================================================
 
 	function deleteUser(req, res){
-		db.result('delete from user_info where user_id = $1', req.body.user_id)
+		db.result(queries.PQ_deleteUser, [req.params.user_id])
 		.then( result => {
 			res.status(200)
 				.json({
 				  status: 'success',
-				  message: `Removed ${result.rowCount} puppy`
+				  message: `Removed ${result.rowCount} user`
 			});
 		})
 		.catch(error => {
@@ -318,6 +345,7 @@ const db			= config.db;
 	}
 
 module.exports = {
+	getSingleUser: getSingleUser,
 	getAllUsers: getAllUsers,
 	addNewUser: addNewUser,
 	login: login,

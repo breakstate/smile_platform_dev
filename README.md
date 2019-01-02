@@ -22,17 +22,74 @@ For requests requiring input:
 - select x-www-form-urlencoded radio button
 - select JSON from the drop-down menu above the output
 
-###### Add new user to system
-In postman, open a new tab. Set the HTTP request type to **POST** with the address **localhost:8080/api/users.**
-in *Body* make sure the following fields are present: first_name, last_name, phone_number, email, user_password, user_group_id (refer to db spreadsheet for info on user_group_id). For ease of testing please make the password identical to the first name including any capitalization. 
+<hr>
 
-###### Get list of all users
-In postman, open a new tab. Set the HTTP request type to **GET** with the address **localhost:8080/api/users.**
-This will return all user information from user_info (including hashed passwords) mainly for debugging at this point.
+**HTTP request type:**
+**End point:**
+**Body:**
+**Note:**
 
-###### login
-In postman, open a new tab. Set the HTTP request type to **POST** with the address **localhost:8080/api/login.**
-Currently logging in does not require the user to be verified as Postmark integration is underway. Logging in should demonstrate the system's ability to check that the user exists and that the password they enter matched the hashed password in the database. Fully fledged Token authentication will come later and also relies on Postmark. (An incorrect password will result in a fail message but, for testing purposes, will still return data relating to the user if the email exits in the db).
+### Users
+#### Add new user to system
+**HTTP request type:** POST  
+**End point:** localhost:8080/api/users  
+**Body:** first_name, last_name, phone_number, email, user_password, user_group_id (refer to db spreadsheet for info on user_group_id  
+**Note:** For ease of testing please make the password identical to the first name including any capitalization.
+
+
+#### Get list of all users
+**HTTP request type:** GET  
+**End point:** localhost:8080/api/users  
+**Note:** This will return all user information from user_info (including hashed passwords) mainly for debugging at this point.  
+
+#### Get single user by usuer_id
+**HTTP request type:** GET  
+**End point:** localhost:8080/api/users/:user_id  
+**Note:** Simply add the user_id value to the url, eg. ```.../api/users/2```
+
+#### Login
+**HTTP request type:** POST  
+**End point:** localhost:8080/api/login  
+**Body:** email, user_password  
+**Note:**  Currently logging in does not require the user to be verified as Postmark integration is underway. Logging in should demonstrate the system's ability to check that the user exists and that the password they enter matched the hashed password in the database. Fully fledged Token authentication will come later and also relies on Postmark.
+
+#### Update user
+**HTTP request type:** PUT  
+**End point:**  
+**Body:**  
+**Note:**  Implementation in progress
+
+#### Delete user
+**HTTP request type:** DELETE  
+**End point:** localhost:8080/api/users/:user_id  
+**Note:** Simply add the user_id value to the url, eg. ```.../api/users/2```  
+**WARNING: this action cannot be undone.**  
+
+<hr>  
+
+### Commitments
+#### Add new commitment
+**HTTP request type:** POST  
+**End point:** localhost:8080/api/commitments  
+**Body:** goal_title, goal_description, start_date, end_date, start_time, end_time, is_full_day, is_recurring, user_id, created_by, created_date, parent_goal_id  
+**Note:**  eg of date format: ```Jan, 01, 2019```, eg of timestamp format: ```2018-12-12 17:00:00``` (May need to change these). Refer to db spreadsheet for more info.
+
+#### Get commitment by user
+**HTTP request type:** GET  
+**End point:** localhost:8080/api/commitments/:user_id  
+**Note:** This will return all commitments from specified user_id (May add get commitment by commitment ID)
+
+#### Update commitment
+**HTTP request type:** PUT  
+**End point:**  
+**Body:**  
+**Note:**  Implementation in progress
+
+#### Delete commitment
+**HTTP request type:** DELETE  
+**End point:** localhost:8080/api/commitments/:id  
+**Note:** Simply add the user_id value to the url, eg. ```.../api/commitments/2```  
+**WARNING: this action cannot be undone.**  
 
 <hr>  
 
