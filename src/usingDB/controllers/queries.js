@@ -13,15 +13,18 @@ const PQ_deleteUser = new PQ('DELETE FROM user_info WHERE user_id = $1');
 
 // commitments.js
 const PQ_createCommitment = new PQ('INSERT INTO goal(goal_title, goal_description, start_date, end_date, start_time, end_time, is_full_day, is_recurring, user_id, created_by, created_date, parent_goal_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)'); // duration instead of end time maybe
-const PQ_getCommitmentByUser = new PQ('SELECT * FROM goal WHERE user_id = $1');
+const PQ_getCommitmentsByUser = new PQ('SELECT * FROM goal WHERE user_id = $1');
+const PQ_getAllCommitments = new PQ('SELECT * FROM goal');
 const PQ_deleteCommitment = new PQ('DELETE FROM goal WHERE id = $1');// update table to show goal_id instead of id
 
 
 // notes.js
-const PQ_createNote = new PQ('INSERT INTO notes(user_id, note, date_created, edited, date_edited) VALUES($1, $2, $3, $4, $5)');
+const PQ_createNote = new PQ('INSERT INTO notes(user_id, note, date_created, is_edited, date_edited) VALUES($1, $2, $3, $4, $5)');
 const PQ_getNotesByUser = new PQ('SELECT * FROM notes WHERE user_id = $1');
-const PQ_updateNote = new PQ('UPDATE notes SET note=$1, date_edited=$2, edited=$3 WHERE note_id=$4')
+const PQ_getAllNotes = new PQ('SELECT * FROM notes');
+const PQ_updateNote = new PQ('UPDATE notes SET note=$1, date_edited=$2, is_edited=$3 WHERE note_id=$4')
 const PQ_deleteNote = new PQ('DELETE FROM notes WHERE note_id = $1');
+const PQ_noteExists = new PQ('SELECT note_id FROM notes WHERE note_id = $1')
 
 
 /*
@@ -43,12 +46,15 @@ module.exports = {
 
 	// commitments.js
 	PQ_createCommitment: PQ_createCommitment,
-	PQ_getCommitmentByUser: PQ_getCommitmentByUser,
+	PQ_getCommitmentsByUser: PQ_getCommitmentsByUser,
+	PQ_getAllCommitments: PQ_getAllCommitments,
 	PQ_deleteCommitment: PQ_deleteCommitment,
 
 	// notes.js
 	PQ_createNote: PQ_createNote,
 	PQ_getNotesByUser: PQ_getNotesByUser,
+	PQ_getAllNotes: PQ_getAllNotes,
 	PQ_updateNote: PQ_updateNote,
-	PQ_deleteNote: PQ_deleteNote
+	PQ_deleteNote: PQ_deleteNote,
+	PQ_noteExists: PQ_noteExists
 };

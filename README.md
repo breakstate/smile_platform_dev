@@ -79,6 +79,11 @@ For requests requiring input:
 **End point:** localhost:8080/api/commitments/:user_id  
 **Note:** This will return all commitments from specified user_id (May add get commitment by commitment ID)
 
+#### Get all commitments
+**HTTP request type:** GET  
+**End point:** localhost:8080/api/commitments  
+**Note:** This will return all commitments
+
 #### Update commitment
 **HTTP request type:** PUT  
 **End point:**  
@@ -89,6 +94,37 @@ For requests requiring input:
 **HTTP request type:** DELETE  
 **End point:** localhost:8080/api/commitments/:id  
 **Note:** Simply add the user_id value to the url, eg. ```.../api/commitments/2```  
+**WARNING: this action cannot be undone.**  
+
+<hr>  
+
+### Notes
+#### Add new note
+**HTTP request type:** POST  
+**End point:** localhost:8080/api/notes  
+**Body:** user_id, note, date_created  
+**Note:** eg of date format: ```Jan, 01, 2019```. "note" is the actual note text.  
+
+#### Get notes by user
+**HTTP request type:** GET  
+**End point:** localhost:8080/api/notes/:user_id  
+**Note:** This will return all notes from specified user_id
+
+#### Get all notes
+**HTTP request type:** GET  
+**End point:** localhost:8080/api/notes  
+**Note:** This will return all notes
+
+#### Update note
+**HTTP request type:** PUT  
+**End point:** localhost:8080/api/notes  
+**Body:** note, date_edited, note_id  
+**Note:** eg of date format: ```Jan, 01, 2019```. "status" in returned object will be "fail" if the the specified note_id does not exist.  
+
+#### Delete note
+**HTTP request type:** DELETE  
+**End point:** localhost:8080/api/notes/:note_id  
+**Note:** Simply add the note_id value to the url, eg. ```.../api/notes/2```. "status" in returned object will be "fail" if the the specified note_id does not exist.   
 **WARNING: this action cannot be undone.**  
 
 <hr>  

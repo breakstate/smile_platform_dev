@@ -73,11 +73,11 @@ const db			= config.db;
 		}
 		userExists(req.body.email)
 		.then(data => {
-			if (data){
+			if (data.length){
 				console.log('user exists');
-				return res.status(400)
+				return res.status(200)
 				.json({
-					success: false,
+					status: 'fail',
 					message: 'user with that email already exists'
 				})
 			}
@@ -90,7 +90,7 @@ const db			= config.db;
 			.then( function() {
 				res.status(200)
 				.json({
-					success: true,
+					status: 'fail',
 					message: 'created new user'
 				});
 			})

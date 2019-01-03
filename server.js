@@ -58,11 +58,7 @@ var router = express.Router();			// get instance of the express Router
 	router.route('/login')
 		.post(user.login)
 
-	// on routes that end in /authenticate
-	//router.route('/authenticate')
-	//	.post(user.authenticateUser)
-
-	// on routes that end in /users
+	// routes for /users
 	router.route('/users')
 		.post(user.addNewUser)
 		.get(user.getAllUsers) // without passwords or ID
@@ -71,33 +67,25 @@ var router = express.Router();			// get instance of the express Router
 		.get(user.getSingleUser)
 		.delete(user.deleteUser)
 
+	// routes for /commitments
 	router.route('/commitments')
 		.post(commitments.createCommitment)
+		.get(commitments.getAllCommitments)
 	router.route('/commitments/:user_id')
 		.get(commitments.getCommitmentsByUser)
 	router.route('/commitments/:id')// may need to change name of column
 		.delete(commitments.deleteCommitment)
 
+	// routes for /notes
 	router.route('/notes')
+		.put(notes.updateNote)
+		.post(notes.createNote)
+		.get(notes.getAllNotes)
+	router.route('/notes/:user_id')
 		.get(notes.getNotesByUser)
+	router.route('/notes/:note_id')
 		.delete(notes.deleteNote)
 
-	// on routes that end in /bears/:bear_id
-	router.route('/bears/:bear_id')
-		.get(function(req, res) { // get user using user ID
-			console.log('GET bear by specific ID');
-			res.json({ message: 'GET to /bears/:bear_id successful' });
-		})
-
-		.put(function(req, res) {
-			console.log('PUT to update bear');
-			res.json({ message: 'PUT to /bears/:bear_id successful'});
-		})
-
-		.delete(function(req, res) {
-			console.log('DELETE to remove bear');
-			res.json({ message: 'DELETE to /bears/:bear_id successful' });
-		});
 
 // REGISTER OUR ROUTES -----------------------------
 // all of our routes will be prefixed with /api

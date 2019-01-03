@@ -24,13 +24,31 @@ const db			= config.db;
 
 // read
 	function getCommitmentsByUser(req, res){
-		db.any(queries.PQ_getCommitmentByUser, [req.params.user_id])
+		db.any(queries.PQ_getCommitmentsByUser, [req.params.user_id])
 		.then(data => {
 			if (data){
 				res.status(200)
 				.json({
 					status: 'success',
 					message: 'Retrieved all commitments by this user',
+					data: data
+				});
+			}
+		})
+		.catch(error => {
+			console.log('ERROR:', error); // print the error
+		})
+		.finally(db.end);
+	}
+
+	function getAllCommitments(req, res){
+		db.any(queries.PQ_getAllCommitments)
+		.then(data => {
+			if (data){
+				res.status(200)
+				.json({
+					status: 'success',
+					message: 'Retrieved all commitments',
 					data: data
 				});
 			}
@@ -62,5 +80,6 @@ const db			= config.db;
 module.exports = {
 createCommitment: createCommitment,
 getCommitmentsByUser: getCommitmentsByUser,
+getAllCommitments: getAllCommitments,
 deleteCommitment: deleteCommitment
 };
