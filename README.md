@@ -1,5 +1,15 @@
 # SMILE API DOC
 
+## Index
+- [setup](#setup)
+- [usage](#usage)
+- [endpoints](#endpoints)
+  - [users](#users)
+  - [commitments](#commitments)
+  - [notes](#notes)
+- [links](#links)
+  
+
 <hr>  
 
 ## Setup
@@ -23,6 +33,8 @@ For requests requiring input:
 - select JSON from the drop-down menu above the output
 
 <hr>
+
+## Endpoints
 
 **HTTP request type:**
 **End point:**
