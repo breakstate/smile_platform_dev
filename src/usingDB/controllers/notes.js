@@ -23,12 +23,17 @@ const db			= config.db;
 		.then( function() {
 			res.status(200)
 			.json({
-				success: true,
+				status: 'success',
 				message: 'created new note'
 			});
 		})
 		.catch(error => {
 			console.log('ERROR:', error); // print the error
+			res.status(200)
+			.json({
+				status: 'fail',
+				message: error
+			});
 		})
 		.finally(db.end);
 	}

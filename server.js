@@ -7,9 +7,6 @@
 const express		= require('express');	// call express
 const app			= express();			// define our app using express
 const bodyParser	= require('body-parser');
-const pg			= require('pg');
-const pgp			= require('pg-promise')(/*options*/);
-const jwt			= require('jsonwebtoken');
 const morgan		= require('morgan');
 const cors			= require('cors');
 
