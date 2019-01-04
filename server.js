@@ -70,7 +70,7 @@ var router = express.Router();			// get instance of the express Router
 		.get(commitments.getAllCommitments)
 	router.route('/commitments/:user_id')
 		.get(commitments.getCommitmentsByUser)
-	router.route('/commitments/:id')// may need to change name of column
+	router.route('/commitments/:goal_id')// may need to change name of column
 		.delete(commitments.deleteCommitment)
 
 	// routes for /notes

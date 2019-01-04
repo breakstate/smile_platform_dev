@@ -32,7 +32,8 @@ const db			= config.db;
 			res.status(200)
 			.json({
 				status: 'fail',
-				message: error
+				message: 'error create note failed',
+				data: error
 			});
 		})
 		.finally(db.end);
