@@ -1,8 +1,9 @@
+const jwt			= require('jsonwebtoken');
+
 const login_utils	= require('./login_utils');
+const utils			= require('./utils');
 const queries		= require('./queries');
 const config		= require('../../../config.js');
-const pgp			= require('pg-promise')(/*options*/);
-const jwt			= require('jsonwebtoken');
 
 const db			= config.db;
 
@@ -14,7 +15,7 @@ const db			= config.db;
 			if (data){
 				res.status(200)
 				.json({
-					status: 'success',
+					success: true,
 					message: 'Retrieved single user',
 					data: data
 				});
@@ -22,13 +23,14 @@ const db			= config.db;
 			else {
 				res.status(200)
 				.json({
-					status: 'fail',
+					success: false,
 					message: 'No user with specified user_id',
 				});
 			}
 		})
 		.catch(error => {
 			console.log('ERROR:', error); // print the error
+			utils.returnErrObj(res, 200, 'failed to get user', error);
 		})
 		.finally(db.end);
 	}
@@ -43,7 +45,7 @@ const db			= config.db;
 			.then(data => {
 				res.status(200)
 				.json({
-					status: 'success',
+					success: true,
 					data: data,
 					message: 'Retrieved ALL users'
 				});
@@ -52,7 +54,6 @@ const db			= config.db;
 				console.log('ERROR:', error); // print the error
 			})
 			.finally(db.end);
-		//console.log('GET all users: SUCCEEDED');
 	}
 
 // addNewUser =================================================================
@@ -71,13 +72,13 @@ const db			= config.db;
 				message: 'email formatted incorrectly'
 			})
 		}
-		userExists(req.body.email)
+		utils.userExists(req.body.email)
 		.then(data => {
 			if (data.length){
 				console.log('user exists');
 				return res.status(200)
 				.json({
-					status: 'fail',
+					success: false,
 					message: 'user with that email already exists'
 				})
 			}
@@ -90,7 +91,7 @@ const db			= config.db;
 			.then( function() {
 				res.status(200)
 				.json({
-					status: 'fail',
+					success: false,
 					message: 'created new user'
 				});
 			})
@@ -98,7 +99,6 @@ const db			= config.db;
 				console.log('ERROR:', error); // print the error
 			})
 			.finally(db.end);
-		//console.log('POST create user: SUCCEEDED');
 
 		const token = jwt.sign({usr: req.body.email, grp: req.body.user_group_id}, config.secret);
 		db.none(queries.PQ_addNewUserVerifyToken, [token, req.body.email])
@@ -147,7 +147,7 @@ const db			= config.db;
 
 						res.status(200)
 						.json({
-							status: 'success',
+							success: true,
 							message: 'Authenticating',
 							token1: token,
 							data: data,
@@ -157,7 +157,7 @@ const db			= config.db;
 					} else {
 						res.status(200)
 						.json({
-							status: 'fail',
+							success: false,
 							message: 'incorrect password',
 							data: data,
 							data1: data.email,
@@ -168,7 +168,7 @@ const db			= config.db;
 				} else {
 					res.status(200)
 					.json({
-						status: 'fail',
+						success: false,
 						message: 'user ' + req.body.email + ' not found',
 					})
 				}
@@ -181,19 +181,7 @@ const db			= config.db;
 	}
 */
 
-// userExists =================================================================
 
-	function userExists(email){
-		return new Promise((resolve, reject) => {
-			db.oneOrNone(queries.PQ_userExists, [email])
-			.then(data => {
-				resolve(data);
-			})
-			.catch(err => {
-				reject(err);
-			})
-		})
-	}
 
 // getUserId ==================================================================
 
@@ -234,13 +222,13 @@ const db			= config.db;
 		if (!req.body.email || !req.body.user_password || !req.body.email.length || !req.body.user_password.length) {
 			return res.status(200)
 			.json({
-				status: 'fail',
+				success: false,
 				message: 'email and/or password missing'
 			})
 		} else if (!login_utils.isValidEmail(req.body.email)) {
 			return res.status(200)
 			.json({
-				status: 'fail',
+				success: false,
 				message: 'email formatted incorrectly'
 			})
 		}
@@ -276,7 +264,7 @@ const db			= config.db;
 
 								res.status(200)
 								.json({
-									status: 'success',
+									success: true,
 									message: 'Authenticated user',
 									data: data1,
 								})
@@ -288,14 +276,14 @@ const db			= config.db;
 					} else {
 						res.status(200)
 						.json({
-							status: 'fail',
+							success: false,
 							message: 'incorrect password'
 						})
 					}
 				} else {
 					res.status(200)
 					.json({
-						status: 'fail',
+						success: false,
 						message: 'user ' + req.body.email + ' not found',
 					})
 				}
@@ -312,18 +300,17 @@ const db			= config.db;
 		// check if token has admin rights
 		db.none('update user_info set first_name=$1, last_name=$2, phone_number=$3, email=$4, user_id=$5, user_password=$6 where user_id=$5',
 		[req.body.first_name, req.body.last_name, req.body.phone_number, req.body.email, req.body.user_id, req.body.user_password])
-		  .then(data => {
-			  res.status(200)
-			  .json({
-					status: 'success',
+		.then(data => {
+			res.status(200)
+				.json({
+					success: true,
 					message: 'Updated user'
-			  });
-		  })
-		  .catch(error => {
-			  console.log('Error:', error);
-		  })
-		  .finally(db.end);
-		//console.log('PUT to update user: SUCCEEDED');
+				});
+			})
+		.catch(error => {
+			console.log('Error:', error);
+			})
+		.finally(db.end);
 	}
 
 // deleteUser =================================================================
@@ -333,7 +320,7 @@ const db			= config.db;
 		.then( result => {
 			res.status(200)
 				.json({
-				  status: 'success',
+				  success: true,
 				  message: `Removed ${result.rowCount} user`
 			});
 		})
@@ -351,6 +338,5 @@ module.exports = {
 	login: login,
 	//authenticateUser: authenticateUser,
 	updateUser: updateUser,
-	deleteUser: deleteUser,
-	userExists: userExists
+	deleteUser: deleteUser
 };

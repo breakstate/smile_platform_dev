@@ -1,8 +1,6 @@
-const login_utils	= require('./login_utils');
 const queries		= require('./queries');
 const config		= require('../../../config');
-const pgp			= require('pg-promise')(/*options*/);
-const jwt			= require('jsonwebtoken');
+const utils			= require('./utils');
 
 const db			= config.db;
 
@@ -10,33 +8,40 @@ const db			= config.db;
 	function createCommitment(req, res){
 		db.none(queries.PQ_createCommitment, [req.body.goal_title, req.body.goal_description, req.body.start_date, req.body.end_date, req.body.start_time, req.body.end_time, req.body.is_full_day, req.body.is_recurring, req.body.user_id, req.body.created_by, req.body.created_date, req.body.parent_goal_id])
 		.then( function() {
-			res.status(200)
-			.json({
-				success: true,
-				message: 'created new commitment'
-			});
+			utils.resObj(res, 200, true, 'created new commitment', null);
 		})
 		.catch(error => {
 			console.log('ERROR:', error); // print the error
+			utils.resObj(res, 200, false, 'error: commitment not created', error);
 		})
 		.finally(db.end);
 	}
 
 // read
 	function getCommitmentsByUser(req, res){
-		db.any(queries.PQ_getCommitmentsByUser, [req.params.user_id])
+		utils.userExistsID(req.params.user_id)
 		.then(data => {
 			if (data){
-				res.status(200)
-				.json({
-					status: 'success',
-					message: 'Retrieved all commitments by this user',
-					data: data
-				});
+				db.any(queries.PQ_getCommitmentsByUser, [req.params.user_id])
+				.then(data => {
+					if (data.length){
+						utils.resObj(res, 200, true, 'retreived all commitments by this user', null);
+					} else {
+						utils.resObj(res, 200, false, 'no commitments by this user exist', null);
+					}
+				})
+				.catch(error => {
+					console.log('ERROR:', error); // print the error
+					utils.resObj(res, 200, false, 'error: could not get commitments by user_id', error);			
+				})
+				.finally(db.end);
+			} else {
+				utils.resObj(res, 200, false, 'user with that user_id does not exist', null);
 			}
 		})
 		.catch(error => {
 			console.log('ERROR:', error); // print the error
+			utils.resObj(res, 200, false, 'error: could not get commitments by user_id', error);			
 		})
 		.finally(db.end);
 	}
@@ -45,16 +50,14 @@ const db			= config.db;
 		db.any(queries.PQ_getAllCommitments)
 		.then(data => {
 			if (data){
-				res.status(200)
-				.json({
-					status: 'success',
-					message: 'Retrieved all commitments',
-					data: data
-				});
+				utils.resObj(res, 200, true, 'retreived all commitments', data);
+			} else {
+				utils.resObj(res, 200, false, 'no commitments exist', null);
 			}
 		})
 		.catch(error => {
 			console.log('ERROR:', error); // print the error
+			utils.resObj(res, 200, false, 'error: could not get commitments', error);
 		})
 		.finally(db.end);
 	}
@@ -62,17 +65,26 @@ const db			= config.db;
 // update
 
 // delete
+
 	function deleteCommitment(req, res){
-		db.result(queries.PQ_deleteCommitment, [req.params.id])
-		.then( result => {
-			res.status(200)
-				.json({
-					status: 'success',
-					message: `Removed ${result.rowCount} commitment`
-			});
+		utils.commitmentExists(req.params.goal_id)
+		.then(data =>{
+			if (data){
+				db.result(queries.PQ_deleteCommitment, [req.params.goal_id])
+				.then( result => {
+					if (result.rowCount){
+						utils.resObj(res, 200, true, 'commitment has been deactivated, to restore go to trash', null);
+					} else {
+						utils.resObj(res, 200, false, 'failed to delete commitment', null);
+					}
+				})
+			} else {
+				utils.resObj(res, 200, false, 'commitment with specified commitment_id does not exist', null);
+			}
 		})
 		.catch(error => {
 			console.log('Error:', error);
+			utils.resObj(res, 200, false, 'error: failed to delete commitment', error);
 		})
 		.finally(db.end);
 	}

@@ -13,6 +13,7 @@ const cors			= require('cors');
 const config		= require('./config');
 const user			= require('./src/usingDB/controllers/user');
 const commitments	= require('./src/usingDB/controllers/commitments');
+const completed_commitments	= require('./src/usingDB/controllers/completed_commitments');
 const notes			= require('./src/usingDB/controllers/notes');
 
 // configure database connection
@@ -72,6 +73,15 @@ var router = express.Router();			// get instance of the express Router
 		.get(commitments.getCommitmentsByUser)
 	router.route('/commitments/:goal_id')// may need to change name of column
 		.delete(commitments.deleteCommitment)
+
+	// routes for /completed_commitments
+	router.route('/completed_commitments')
+		.post(completed_commitments.createCompletedCommitment)
+		.get(completed_commitments.getAllCompletedCommitments)
+	router.route('/completed_commitments/:user_id')
+		.get(completed_commitments.getCompletedCommitmentsByUser)
+	router.route('/completed_commitments/:goal_id')// may need to change name of column
+		.delete(completed_commitments.deleteCompletedCommitment)
 
 	// routes for /notes
 	router.route('/notes')
