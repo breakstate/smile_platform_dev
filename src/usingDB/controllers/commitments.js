@@ -25,7 +25,7 @@ const db			= config.db;
 				db.any(queries.PQ_getCommitmentsByUser, [req.params.user_id])
 				.then(data => {
 					if (data.length){
-						utils.resObj(res, 200, true, 'retreived all commitments by this user', null);
+						utils.resObj(res, 200, true, 'retreived all commitments by this user', data);
 					} else {
 						utils.resObj(res, 200, false, 'no commitments by this user exist', null);
 					}
