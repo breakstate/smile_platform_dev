@@ -1,5 +1,15 @@
 # SMILE API DOC
 
+## Index
+- [setup](#setup)
+- [usage](#usage)
+- [endpoints](#endpoints)
+  - [users](#users)
+  - [commitments](#commitments)
+  - [notes](#notes)
+- [links](#links)
+  
+
 <hr>  
 
 ## Setup
@@ -23,6 +33,8 @@ For requests requiring input:
 - select JSON from the drop-down menu above the output
 
 <hr>
+
+## Endpoints
 
 **HTTP request type:**
 **End point:**
@@ -86,9 +98,9 @@ For requests requiring input:
 
 #### Update commitment
 **HTTP request type:** PUT  
-**End point:**  
-**Body:**  
-**Note:**  Implementation in progress
+**End point:** localhost:8080/api/commitments  
+**Body:** goal_title, goal_description, start_date, end_date, start_time, end_time, is_full_day, is_recurring, goal_id  
+**Note:** eg of date format: ```Jan, 01, 2019```. eg of timestamp format: ```17:00:00```. See sheet for types. All values must be present - any number of values can be changes in a single request, but unchanged values need to be included as well.  
 
 #### Delete commitment
 **HTTP request type:** DELETE  
