@@ -220,7 +220,7 @@ const db			= config.db;
 
 	function login(req, res){
 		if (!req.body.email || !req.body.user_password || !req.body.email.length || !req.body.user_password.length) {
-			return res.status(200)
+			return res.status(400)
 			.json({
 				success: false,
 				message: 'email and/or password missing'

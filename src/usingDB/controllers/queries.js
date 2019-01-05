@@ -21,12 +21,13 @@ const PQ_deleteUser = new PQ('DELETE FROM user_info WHERE user_id = $1');
 const PQ_createCommitment = new PQ('INSERT INTO goal(goal_title, goal_description, start_date, end_date, start_time, end_time, is_full_day, is_recurring, user_id, created_by, created_date, parent_goal_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)'); // duration instead of end time maybe
 const PQ_getCommitmentsByUser = new PQ("select goal_title, goal_description, TO_CHAR(start_date, 'yyyy-mm-dd') as start_date, TO_CHAR(end_date, 'yyyy-mm-dd') as end_date, start_time, end_time, is_full_day, is_recurring, user_id, created_by, TO_CHAR(created_date, 'yyyy-mm-dd') as created_date, parent_goal_id from goal where user_id = $1");//('SELECT * FROM goal WHERE user_id = $1');
 const PQ_getAllCommitments = new PQ('SELECT * FROM goal');
+const PQ_updateCommitment = new PQ('UPDATE goal SET goal_title=$1, goal_description=$2, start_date=$3, end_date=$4, start_time=$5, end_time=$6, is_full_day=$7, is_recurring=$8, goal_id=$9 WHERE goal_id=$9');
 const PQ_deleteCommitment = new PQ('DELETE FROM goal WHERE goal_id = $1');// update table to show goal_id instead of id
 
 // completed commitments.js
-const PQ_createCompletedCommitment = new PQ('INSERT INTO completed_goals(goal_title, goal_description, start_date, end_date, start_time, end_time, is_full_day, is_recurring, user_id, created_by, created_date, parent_goal_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)'); // duration instead of end time maybe
+const PQ_createCompletedCommitment = new PQ('INSERT INTO completed_goals(goal_id, date_completed, note, satisfaction) VALUES($1, $2, $3, $4)');
 const PQ_getCompletedCommitmentsByUser = new PQ("select goal_title, goal_description, TO_CHAR(start_date, 'yyyy-mm-dd') as start_date, TO_CHAR(end_date, 'yyyy-mm-dd') as end_date, start_time, end_time, is_full_day, is_recurring, user_id, created_by, TO_CHAR(created_date, 'yyyy-mm-dd') as created_date, parent_goal_id from goal where user_id = $1");//('SELECT * FROM goal WHERE user_id = $1');
-const PQ_getAllCompletedCommitments = new PQ('SELECT * FROM goal');
+const PQ_getAllCompletedCommitments = new PQ('SELECT * FROM completed_goals');
 const PQ_deleteCompletedCommitment = new PQ('DELETE FROM goal WHERE goal_id = $1');// update table to show goal_id instead of id
 
 // notes.js
@@ -63,6 +64,7 @@ module.exports = {
 	PQ_createCommitment: PQ_createCommitment,
 	PQ_getCommitmentsByUser: PQ_getCommitmentsByUser,
 	PQ_getAllCommitments: PQ_getAllCommitments,
+	PQ_updateCommitment: PQ_updateCommitment,
 	PQ_deleteCommitment: PQ_deleteCommitment,
 
 	// notes.js

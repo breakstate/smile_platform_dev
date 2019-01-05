@@ -49,7 +49,7 @@ const db			= config.db;
 	function getAllCompletedCommitments(req, res){
 		db.any(queries.PQ_getAllCompletedCommitments)
 		.then(data => {
-			if (data){
+			if (data.length){ // tested
 				utils.resObj(res, 200, true, 'retreived all completed commitments', data);
 			} else {
 				utils.resObj(res, 200, false, 'no completed commitmentss exist', null);

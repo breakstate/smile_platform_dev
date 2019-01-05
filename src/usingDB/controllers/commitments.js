@@ -63,6 +63,31 @@ const db			= config.db;
 	}
 
 // update
+	function updateCommitment(req, res){
+		utils.commitmentExists(req.body.goal_id)
+		.then(data => {
+			if (data){
+				console.log('commitment exists');
+				db.none(queries.PQ_updateCommitment, [req.body.goal_title, req.body.goal_description, req.body.start_date, req.body.end_date, req.body.start_time, req.body.end_time, req.body.is_full_day, req.body.is_recurring, req.body.goal_id])
+				.then(data => {
+					utils.resObj(res, 200, true, 'commitment updated', null);
+				})
+				.catch(error => {
+					console.log('Error:', error);
+					utils.resObj(res, 200, false, 'commitment not updated', error);
+				})
+				.finally(db.end);
+			}
+			else {
+				utils.resObj(res, 200, false, 'commitment with specified goal_id does not exist', null);
+			}
+		})
+		.catch(err => {
+			console.log('ERROR:', err); // print the error
+			utils.resObj(res, 200, false, 'error: failed to update commitment', error);
+		})
+		.finally(db.end);
+	};
 
 // delete
 
@@ -93,5 +118,6 @@ module.exports = {
 createCommitment: createCommitment,
 getCommitmentsByUser: getCommitmentsByUser,
 getAllCommitments: getAllCommitments,
+updateCommitment: updateCommitment,
 deleteCommitment: deleteCommitment
 };

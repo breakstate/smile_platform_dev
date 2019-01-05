@@ -84,7 +84,7 @@ const db			= config.db;
 		})
 		.catch(err => {
 			console.log('ERROR:', err); // print the error
-			utils.resObj(res, 200, false, 'error: failed to create note', error);
+			utils.resObj(res, 200, false, 'error: failed to update note', error);
 		})
 		.finally(db.end);
 	};

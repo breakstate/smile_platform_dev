@@ -69,6 +69,7 @@ var router = express.Router();			// get instance of the express Router
 	router.route('/commitments')
 		.post(commitments.createCommitment)
 		.get(commitments.getAllCommitments)
+		.put(commitments.updateCommitment)
 	router.route('/commitments/:user_id')
 		.get(commitments.getCommitmentsByUser)
 	router.route('/commitments/:goal_id')// may need to change name of column
