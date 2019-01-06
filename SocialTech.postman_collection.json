@@ -922,6 +922,208 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Achievements",
+			"description": "",
+			"item": [
+				{
+					"name": "Get all achievement information",
+					"request": {
+						"url": "localhost:8080/api/achievements",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get all achievement data by specified user_id",
+					"request": {
+						"url": "localhost:8080/api/achievements/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create new achievement entry for user_id",
+					"request": {
+						"url": "localhost:8080/api/achievements",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "percent_complete",
+									"value": "50",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "last_entry",
+									"value": "Jan, 10, 2019",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "next_entry",
+									"value": "Jan, 11, 2019",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "time",
+									"value": "10",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Media",
+			"description": "",
+			"item": [
+				{
+					"name": "Get all media entries",
+					"request": {
+						"url": "localhost:8080/api/media",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create media entry",
+					"request": {
+						"url": "localhost:8080/api/media",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "path_to_media",
+									"value": "path/to/media.jpg",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "media_title",
+									"value": "progress pic",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "2",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get media entry by user_id",
+					"request": {
+						"url": "localhost:8080/api/media/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update media entry",
+					"request": {
+						"url": "localhost:8080/api/media",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "path_to_media",
+									"value": "new/path/to/media",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "media_title",
+									"value": "new title",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "meida_id",
+									"value": "1",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete media entry by media_id",
+					"request": {
+						"url": "localhost:8080/api/media/1",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
