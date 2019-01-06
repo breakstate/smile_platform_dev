@@ -352,66 +352,9 @@
 					"response": []
 				},
 				{
-					"name": "Update user",
-					"request": {
-						"url": "localhost:8080/api/users",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "first_name",
-									"value": "pop",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "user_id",
-									"value": "15",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "last_name",
-									"value": "pop",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "phone_number",
-									"value": "0987654321",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "email",
-									"value": "pop@test.com",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "user_password",
-									"value": "pop",
-									"description": "",
-									"type": "text"
-								}
-							]
-						},
-						"description": "This updates every column in the user_info table for a specified user"
-					},
-					"response": []
-				},
-				{
 					"name": "Delete user by user_id",
 					"request": {
-						"url": "localhost:8080/api/users/20",
+						"url": "localhost:8080/api/users/51",
 						"method": "DELETE",
 						"header": [
 							{
@@ -427,11 +370,95 @@
 									"key": "user_id",
 									"value": "52",
 									"description": "",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
 						"description": "Deleted user from table (maybe should just deactivate)"
+					},
+					"response": []
+				},
+				{
+					"name": "Login with token",
+					"request": {
+						"url": "localhost:8080/api/token_login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3IiOiJmQGYuY29tIiwiZ3JwIjoxLCJpYXQiOjE1NDYwODM1MzV9.DSHdkyBV3TKqKO-s1dNL3DNx4Tz4NpYm6tqCHfFn0uc",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update user by user_id",
+					"request": {
+						"url": "localhost:8080/api/users",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "first_name",
+									"value": "z",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "h",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "0987654321",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "51",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": "Updates non-sensative user values"
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by user_id",
+					"request": {
+						"url": "localhost:8080/api/users/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
 					},
 					"response": []
 				}
@@ -622,7 +649,7 @@
 					"response": []
 				},
 				{
-					"name": "Get completed commidments by user_id",
+					"name": "Get completed commitments by user_id",
 					"request": {
 						"url": "localhost:8080/api/completed_commitments/2",
 						"method": "GET",
@@ -965,6 +992,12 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
+									"key": "id",
+									"value": "1",
+									"description": "",
+									"type": "text"
+								},
+								{
 									"key": "user_id",
 									"value": "2",
 									"description": "",
@@ -997,6 +1030,67 @@
 							]
 						},
 						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get all achievement TYPES",
+					"request": {
+						"url": "localhost:8080/api/achievements_d",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets achievement TYPES from achievement_description table"
+					},
+					"response": []
+				},
+				{
+					"name": "Create achievement TYPE",
+					"request": {
+						"url": "localhost:8080/api/achievements_d",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "achievement type",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "xp_worth",
+									"value": "50",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": "Creates a type of achievement that the user can then achieve in achievement_description table"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete achievement TYPE",
+					"request": {
+						"url": "localhost:8080/api/achievements_d/7",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "Deletes achievement TYPE from achievement_description table"
 					},
 					"response": []
 				}

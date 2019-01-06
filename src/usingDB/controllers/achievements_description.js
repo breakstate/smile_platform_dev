@@ -4,7 +4,8 @@ const utils			= require('./utils');
 
 const db			= config.db;
 
-// create
+// create achievement type ====================================================
+
 	function createAchievementType(req, res){
 		db.none(queries.PQ_createAchievementType, [req.body.id, req.body.name, req.body.xp_worth])
 		.then( function() {
@@ -17,7 +18,7 @@ const db			= config.db;
 		.finally(db.end);
 	}
 
-// read
+// get all achievement types ==================================================
 
 	function getAllAchievementTypes(req, res){
 		db.any(queries.PQ_getAllAchievementTypes)
@@ -63,12 +64,14 @@ const db			= config.db;
 		.finally(db.end);
 	};
 */
-// delete
+
+// delete achievement typep ===================================================
+
 	function deleteAchievementType(req, res){ // ADD CHECK FOR IF DELETION OCCURED AT ALL
-		utils.achievementTypeExists(req.params.achievement_d_id)
+		utils.achievementTypeExists(req.params.achievements_d_id)
 		.then(data =>{
 			if (data){
-				db.result(queries.PQ_deleteAchievementType, [req.params.achievement_d_id])
+				db.result(queries.PQ_deleteAchievementType, [req.params.achievements_d_id])
 				.then( result => {
 					if (result.rowCount){
 						utils.resObj(res, 200, true, 'achievement type has been deactivated, to restore go to trash', null);

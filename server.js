@@ -113,19 +113,19 @@ var router = express.Router();			// get instance of the express Router
 
 	// routes for /achievements
 	router.route('/achievements')
-		.put(achievements.updateAchievement)
+	//	.put(achievements.updateAchievement)
 		.post(achievements.createAchievement)
 		.get(achievements.getAllAchievements)
 	router.route('/achievements/:user_id')
 		.get(achievements.getAchievementsByUser)
-	router.route('/achievements/:achievement_id')
-		.delete(achievements.deleteAchievement)
+	//router.route('/achievements/:achievement_id')
+	//	.delete(achievements.deleteAchievement)
 
 	// routes for /achievements_d
 	router.route('/achievements_d')
 		.post(achievements_d.createAchievementType)
 		.get(achievements_d.getAllAchievementTypes)
-	router.route('/achievements/:achievement_d_id')
+	router.route('/achievements_d/:achievements_d_id')
 		.delete(achievements_d.deleteAchievementType)
 
 	// routes for /media

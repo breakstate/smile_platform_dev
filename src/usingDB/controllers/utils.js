@@ -50,6 +50,7 @@ const db			= config.db;
 	}
 
 // note exists ================================================================
+
 	function noteExists(note_id){
 		return new Promise((resolve, reject) => {
 			db.oneOrNone(queries.PQ_noteExists, [note_id])
@@ -63,6 +64,7 @@ const db			= config.db;
 	}
 
 // commitment exists ==========================================================
+
 	function commitmentExists(goal_id){
 		return new Promise((resolve, reject) => {
 			db.oneOrNone(queries.PQ_commitmentExists, [goal_id])
@@ -76,6 +78,7 @@ const db			= config.db;
 	}
 
 // completed commitment exists ================================================
+
 	function completedCommitmentExists(goal_id){
 		return new Promise((resolve, reject) => {
 			db.oneOrNone(queries.PQ_completedCommitmentExists, [goal_id])
@@ -89,6 +92,7 @@ const db			= config.db;
 	}
 
 // checkin exists =============================================================
+
 	function checkinExists(checkin_id){
 		return new Promise((resolve, reject) => {
 			db.oneOrNone(queries.PQ_checkinExists, [checkin_id])
@@ -102,6 +106,7 @@ const db			= config.db;
 	}
 
 // media exists ===============================================================
+
 	function mediaExists(media_id){
 		return new Promise((resolve, reject) => {
 			db.oneOrNone(queries.PQ_mediaExists, [media_id])
@@ -115,6 +120,7 @@ const db			= config.db;
 	}
 
 // motivational exists ========================================================
+
 	function motivationalExists(motivational_id){
 		return new Promise((resolve, reject) => {
 			db.oneOrNone(queries.PQ_motivationalExists, [motivational_id])
@@ -128,6 +134,7 @@ const db			= config.db;
 	}
 
 // achievement exists ========================================================
+
 	function achievementExists(achievement_id){
 		return new Promise((resolve, reject) => {
 			db.oneOrNone(queries.PQ_achievementExists, [achievement_id])
@@ -140,7 +147,8 @@ const db			= config.db;
 		})
 	}
 
-// achievement type exists ========================================================
+// achievement type exists ====================================================
+
 	function achievementTypeExists(achievementType_id){
 		return new Promise((resolve, reject) => {
 			db.oneOrNone(queries.PQ_achievementTypeExists, [achievementType_id])

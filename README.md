@@ -9,6 +9,10 @@
   - [completed_commitments](#completed_commitments)
   - [notes](#notes)
   - [checkins](#checkins)
+  - [media](#media)
+  - [motivational](#motivational)
+  - [achievementtypes](#achievementtypes)
+  - [achievements](#achievements)
 - [links](#links)
   
 
@@ -75,9 +79,9 @@ For requests requiring input:
 
 #### Update user
 **HTTP request type:** PUT  
-**End point:**  
-**Body:**  
-**Note:**  Implementation in progress
+**End point:** localhost:8080/api/users  
+**Body:** first_name, last_name, phone_number, user_id  
+**Note:** This is meant for updating info that isn't sensative. Email and password changing will be separate  
 
 #### Delete user
 **HTTP request type:** DELETE  
@@ -123,7 +127,7 @@ For requests requiring input:
 **HTTP request type:** POST  
 **End point:** localhost:8080/api/completed_commitments  
 **Body:** goal_id, date_completed, note, satisfaction  
-**Note:**  eg of date format: ```Jan, 01, 2019 or 2019-01-01```. .
+**Note:**  eg of date format: ```Jan, 01, 2019 or 2019-01-01```. This will change the "completed" value of the related commitment to true in the "commitments" table. Recurring patterns usage needs to be finalized.  
 
 #### Get completed commitment by user
 **HTTP request type:** GET  
@@ -181,29 +185,29 @@ For requests requiring input:
 <hr>  
 
 ### Checkins
-#### Add new note
+#### Add new checkin entry
 **HTTP request type:** POST  
 **End point:** localhost:8080/api/checkins  
 **Body:** user_id, date_answered, time_answered, q1...q34  
 **Note:** eg of date format: ```Jan, 01, 2019 or 2019-01-01```.  
 
-#### Get notes by user
+#### Get checkins by user
 **HTTP request type:** GET  
 **End point:** localhost:8080/api/checkins/:user_id  
 **Note:** This will return all checkins from specified user_id
 
-#### Get all notes
+#### Get all checkins
 **HTTP request type:** GET  
 **End point:** localhost:8080/api/checkins  
 **Note:** This will return all checkins  
 
-#### Update note
+#### Update checkin
 **HTTP request type:** PUT  
 **End point:**  
 **Body:**  
 **Note:** Implementation pending until deemed necessary?  
 
-#### Delete note
+#### Delete checkin
 **HTTP request type:** DELETE  
 **End point:** localhost:8080/api/checkins/:checkin_id  
 **Note:** Simply add the checkin_id value to the url, eg. ```.../api/checkins/2```. "status" in returned object will be "fail" if the the specified note_id does not exist.   
@@ -242,7 +246,6 @@ For requests requiring input:
 
 <hr>  
 
-
 ### Motivational
 #### Add new motivational entry
 **HTTP request type:** POST  
@@ -268,9 +271,49 @@ For requests requiring input:
 
 #### Delete motivational entry
 **HTTP request type:** DELETE  
-**End point:** localhost:8080/api/media/motivational/:motivational_id  
+**End point:** localhost:8080/api/motivational/:motivational_id  
 **Note:** Simply add the motivational_id value to the url, eg. ```.../api/media/2```. "status" in returned object will be "fail" if the the specified media entry does not exist.   
 **WARNING: this action cannot be undone.**  
+
+<hr>  
+
+### Achievementtypes
+#### Add new achievement type
+**HTTP request type:** POST  
+**End point:** localhost:8080/api/achievements_d  
+**Body:** id, name, xp_worth  
+**Note:** this id is one of the only ones that we have to specify ourselves. This is because the achievements will be handmade by the admins and won't be changed dynamically. They will be static.  
+
+#### Update achievement type
+**HTTP request type:** GET  
+**End point:** localhost:8080/api/achievements_d  
+**Body:**   
+**Note:** Gets list of all achievement types currently stored.  
+
+#### Delete motivational entry
+**HTTP request type:** DELETE  
+**End point:** localhost:8080/api/achievements_d/:id  
+**Note:** Simply add the id value to the url, eg. ```.../api/achievements_d/2```. "status" in returned object will be "fail" if the the specified media entry does not exist.   
+**WARNING: this action cannot be undone.**  
+
+<hr>  
+
+### Achievements
+#### Add new user achievement
+**HTTP request type:** POST  
+**End point:** localhost:8080/api/achievements  
+**Body:** id, user_id, percent_complete, last_entry, next_entry, time  
+**Note:** This creates new user achievement associated with the specified user_id, and of achievementtype: id.   
+
+#### Get all achievements
+**HTTP request type:** GET  
+**End point:** localhost:8080/api/achievements  
+**Note:** This will return all achievements  
+
+#### Get achievements by user_id
+**HTTP request type:** GET  
+**End point:** localhost:8080/api/achievements/:user_id  
+**Note:** This will return all achievements for specified user_id  
 
 <hr>  
 

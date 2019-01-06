@@ -9,6 +9,7 @@ const PQ_completedCommitmentExists = new PQ('SELECT goal_id FROM completed_goals
 const PQ_checkinExists = new PQ('SELECT checkin_id FROM check_in WHERE checkin_id = $1');
 const PQ_mediaExists = new PQ('SELECT meida_id FROM media WHERE meida_id = $1');
 const PQ_motivationalExists = new PQ('SELECT id FROM motivational_messages WHERE id = $1');
+const PQ_achievementTypeExists = new PQ('SELECT id FROM achievement_description WHERE id = $1');
 
 
 // user.js
@@ -50,17 +51,17 @@ const PQ_getAllCheckins = new PQ("SELECT checkin_id, user_id, TO_CHAR(date_answe
 //const PQ_updateCheckin = new PQ('UPDATE goal SET goal_title=$1, goal_description=$2, start_date=$3, end_date=$4, start_time=$5, end_time=$6, is_full_day=$7, is_recurring=$8, goal_id=$9 WHERE goal_id=$9');
 const PQ_deleteCheckin = new PQ('DELETE FROM check_in WHERE checkin_id = $1');
 
-// achievements.js //Pull description in the get queries
+// achievements.js //Pull description in the GET from achievment_description
 const PQ_createAchievement = new PQ('INSERT INTO achievements(id, user_id, percent_complete, last_entry, next_entry, times) VALUES($1, $2, $3, $4, $5, $6)');
 const PQ_getAchievementsByUser = new PQ('SELECT * FROM achievements WHERE user_id = $1');
 const PQ_getAllAchievements = new PQ('SELECT * FROM achievements');
-const PQ_updateAchievement = new PQ('UPDATE achievements SET percent_complete=$1, last_entry=$2, next_entry=$3, times=$4 WHERE id=$5'); //achievement_id
-const PQ_deleteAchievement = new PQ('DELETE FROM achievements WHERE id = $1');
+//const PQ_updateAchievement = new PQ('UPDATE achievements SET percent_complete=$1, last_entry=$2, next_entry=$3, times=$4 WHERE id=$5'); //achievement_id
+//const PQ_deleteAchievement = new PQ('DELETE FROM achievements WHERE id = $1');
 
 // achievement_description.js
 const PQ_createAchievementType = new PQ('INSERT INTO achievement_description(id, name, xp_worth) VALUES($1, $2, $3)');
 const PQ_getAllAchievementTypes = new PQ('SELECT * FROM achievement_description');
-const PQ_deleteAchievementType = new PQ('DELETE FROM achievements WHERE id = $1');
+const PQ_deleteAchievementType = new PQ('DELETE FROM achievement_description WHERE id = $1');
 
 // media.js
 const PQ_createMedia = new PQ('INSERT INTO media(path_to_media, media_title, user_id) VALUES($1, $2, $3)');
@@ -98,6 +99,7 @@ module.exports = {
 	PQ_checkinExists: PQ_checkinExists,
 	PQ_mediaExists: PQ_mediaExists,
 	PQ_motivationalExists: PQ_motivationalExists,
+	PQ_achievementTypeExists: PQ_achievementTypeExists,
 
 	// user.js
 	PQ_getSingleUser: PQ_getSingleUser,
@@ -142,8 +144,8 @@ module.exports = {
 	PQ_createAchievement: PQ_createAchievement,
 	PQ_getAchievementsByUser: PQ_getAchievementsByUser,
 	PQ_getAllAchievements: PQ_getAllAchievements,
-	PQ_updateAchievement: PQ_updateAchievement,
-	PQ_deleteAchievement: PQ_deleteAchievement,
+//	PQ_updateAchievement: PQ_updateAchievement,
+//	PQ_deleteAchievement: PQ_deleteAchievement,
 
 	// Achievements_description.js
 	PQ_createAchievementType: PQ_createAchievementType,
@@ -157,6 +159,7 @@ module.exports = {
 	PQ_updateMedia: PQ_updateMedia,
 	PQ_deleteMedia: PQ_deleteMedia,
 
+	// motivational.js
 	PQ_createMotivational: PQ_createMotivational,
 	PQ_getRandomMotivational: PQ_getRandomMotivational,
 	PQ_getAllMotivational: PQ_getAllMotivational,

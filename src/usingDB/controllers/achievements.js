@@ -4,7 +4,8 @@ const utils			= require('./utils');
 
 const db			= config.db;
 
-// create
+// create achievement =========================================================
+
 	function createAchievement(req, res){
 		db.none(queries.PQ_createAchievement, [req.body.id, req.body.user_id, req.body.percent_complete, req.body.last_entry, req.body.next_entry, req.body.times])
 		.then( function() {
@@ -17,7 +18,8 @@ const db			= config.db;
 		.finally(db.end);
 	}
 
-// read
+// get achievements by user ===================================================
+
 	function getAchievementsByUser(req, res){
 		utils.userExistsID(req.params.user_id)
 		.then(data => {
@@ -62,6 +64,7 @@ const db			= config.db;
 		.finally(db.end);
 	}
 
+/*
 // update
 	function updateAchievement(req, res){
 		utils.achievementExists(req.body.Achievement_id)
@@ -112,11 +115,11 @@ const db			= config.db;
 		})
 		.finally(db.end);
 	}
-
+*/
 module.exports = {
 	createAchievement: createAchievement,
 	getAchievementsByUser: getAchievementsByUser,
 	getAllAchievements: getAllAchievements,
-	updateAchievement: updateAchievement,
-	deleteAchievement: deleteAchievement
+//	updateAchievement: updateAchievement,
+//	deleteAchievement: deleteAchievement
 };
