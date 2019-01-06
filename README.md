@@ -67,6 +67,12 @@ For requests requiring input:
 **Body:** email, user_password  
 **Note:**  Currently logging in does not require the user to be verified as Postmark integration is underway. Logging in should demonstrate the system's ability to check that the user exists and that the password they enter matched the hashed password in the database. Fully fledged Token authentication will come later and also relies on Postmark.
 
+#### Login with token
+**HTTP request type:** POST  
+**End point:** localhost:8080/api/token_login  
+**Body:** token  
+**Note:** Checks exist to see if token is present, to see if token is valid, and to see if user exists  
+
 #### Update user
 **HTTP request type:** PUT  
 **End point:**  

@@ -59,6 +59,8 @@ var router = express.Router();			// get instance of the express Router
 
 	router.route('/login')
 		.post(user.login)
+	router.route('/token_login')
+		.post(user.rememberMe)
 
 	// routes for /users
 	router.route('/users')

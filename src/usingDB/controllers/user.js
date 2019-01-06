@@ -218,6 +218,41 @@ const db			= config.db;
 
 // login ======================================================================
 
+	function rememberMe(req, res){
+		var email;
+		//var decoded;
+		var isAdmin;
+		if (!req.body.token){
+			utils.resObj(res, 400, false, 'no token provided', null);
+		} else {
+			jwt.verify(req.body.token, config.secret, function(err, decoded) {
+				if (err) {
+					utils.resObj(res, 403, false, 'invalid token', null);
+				} else {
+					email = decoded.usr;
+					db.oneOrNone(queries.PQ_userLogin, [email])
+					.then(data =>{
+						if (data){
+							if (decoded.grp == 2){
+								isAdmin = true;
+							} else {
+								isAdmin = false;
+							}
+							data['admin'] = isAdmin;
+							utils.resObj(res, 200, true, 'authorized user', data);
+						} else {
+							utils.resObj(res, 400, false, 'unauthorized user', null);
+						}
+					})
+					.catch(error => {
+						console.log('ERROR:', error); // print the error
+					})
+					.finally(db.end);
+				}
+			})
+		}
+	}
+
 	function login(req, res){
 		if (!req.body.email || !req.body.user_password || !req.body.email.length || !req.body.user_password.length) {
 			return res.status(400)
@@ -265,7 +300,7 @@ const db			= config.db;
 								res.status(200)
 								.json({
 									success: true,
-									message: 'Authenticated user',
+									message: 'authorized user',
 									data: data1,
 								})
 							}
@@ -335,6 +370,7 @@ module.exports = {
 	getSingleUser: getSingleUser,
 	getAllUsers: getAllUsers,
 	addNewUser: addNewUser,
+	rememberMe: rememberMe,
 	login: login,
 	//authenticateUser: authenticateUser,
 	updateUser: updateUser,
