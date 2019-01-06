@@ -16,6 +16,8 @@ const commitments	= require('./src/usingDB/controllers/commitments');
 const completed_commitments	= require('./src/usingDB/controllers/completed_commitments');
 const notes			= require('./src/usingDB/controllers/notes');
 const checkins		= require('./src/usingDB/controllers/checkins');
+const achievements	= require('./src/usingDB/controllers/achievements');
+const media			= require('./src/usingDB/controllers/media');
 
 // configure database connection
 const db = config.db;
@@ -104,6 +106,26 @@ var router = express.Router();			// get instance of the express Router
 		.get(checkins.getCheckinsByUser)
 	router.route('/checkins/:checkin_id')
 		.delete(checkins.deleteCheckin)
+
+	// routes for /achievements
+	router.route('/achievements')
+		.put(achievements.updateAchievement)
+		.post(achievements.createAchievement)
+		.get(achievements.getAllAchievements)
+	router.route('/achievements/:user_id')
+		.get(achievements.getAchievementsByUser)
+	router.route('/achievements/:achievement_id')
+		.delete(achievements.deleteAchievement)
+
+	// routes for /media
+	router.route('/media')
+		.put(media.updateMedia)
+		.post(media.createMedia)
+		.get(media.getAllMedia)
+	router.route('/media/:user_id')
+		.get(media.getMediaByUser)
+	router.route('/media/:media_id')
+		.delete(media.deleteMedia)
 
 // REGISTER OUR ROUTES -----------------------------
 // all of our routes will be prefixed with /api

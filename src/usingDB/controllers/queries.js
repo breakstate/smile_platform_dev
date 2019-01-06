@@ -7,6 +7,7 @@ const PQ_noteExists = new PQ('SELECT note_id FROM notes WHERE note_id = $1');
 const PQ_commitmentExists = new PQ('SELECT goal_id FROM goal WHERE goal_id = $1');
 const PQ_completedCommitmentExists = new PQ('SELECT goal_id FROM completed_goals WHERE goal_id = $1');
 const PQ_checkinExists = new PQ('SELECT checkin_id FROM check_in WHERE checkin_id = $1');
+const PQ_mediaExists = new PQ('SELECT meida_id FROM media WHERE meida_id = $1');
 
 
 // user.js
@@ -47,6 +48,20 @@ const PQ_getAllCheckins = new PQ("SELECT checkin_id, user_id, TO_CHAR(date_answe
 //const PQ_updateCheckin = new PQ('UPDATE goal SET goal_title=$1, goal_description=$2, start_date=$3, end_date=$4, start_time=$5, end_time=$6, is_full_day=$7, is_recurring=$8, goal_id=$9 WHERE goal_id=$9');
 const PQ_deleteCheckin = new PQ('DELETE FROM check_in WHERE checkin_id = $1');
 
+// achievements.js
+const PQ_createAchievement = new PQ('INSERT INTO achievements(user_id, percent_complete, last_entry, next_entry, times) VALUES($1, $2, $3, $4, $5)');
+const PQ_getAchievementsByUser = new PQ('SELECT * FROM achievements WHERE user_id = $1');
+const PQ_getAllAchievements = new PQ('SELECT * FROM achievements');
+const PQ_updateAchievement = new PQ('UPDATE achievements SET percent_complete=$1, last_entry=$2, next_entry=$3, times=$4 WHERE id=$5'); //achievement_id
+const PQ_deleteAchievement = new PQ('DELETE FROM achievements WHERE id = $1');
+
+// media.js
+const PQ_createMedia = new PQ('INSERT INTO media(path_to_media, media_title, user_id) VALUES($1, $2, $3)');
+const PQ_getMediaByUser = new PQ('SELECT * FROM media WHERE user_id = $1');// include media type?
+const PQ_getAllMedia = new PQ('SELECT * FROM media');
+const PQ_updateMedia = new PQ('UPDATE media SET path_to_media=$1, media_title=$2 WHERE meida_id=$3'); //achievement_id
+const PQ_deleteMedia = new PQ('DELETE FROM media WHERE meida_id = $1');
+
 
 /*
 EXAMPLES:
@@ -67,6 +82,7 @@ module.exports = {
 	PQ_commitmentExists: PQ_commitmentExists,
 	PQ_completedCommitmentExists: PQ_completedCommitmentExists,
 	PQ_checkinExists: PQ_checkinExists,
+	PQ_mediaExists: PQ_mediaExists,
 
 	// user.js
 	PQ_getSingleUser: PQ_getSingleUser,
@@ -104,5 +120,19 @@ module.exports = {
 	PQ_getCheckinsByUser: PQ_getCheckinsByUser,
 	PQ_getAllCheckins: PQ_getAllCheckins,
 //	PQ_updateCheckin: PQ_updateCheckin,
-	PQ_deleteCheckin: PQ_deleteCheckin
+	PQ_deleteCheckin: PQ_deleteCheckin,
+
+	// Achievements.js
+	PQ_createAchievement: PQ_createAchievement,
+	PQ_getAchievementsByUser: PQ_getAchievementsByUser,
+	PQ_getAllAchievements: PQ_getAllAchievements,
+	PQ_updateAchievement: PQ_updateAchievement,
+	PQ_deleteAchievement: PQ_deleteAchievement,
+
+	// Media.js
+	PQ_createMedia: PQ_createMedia,
+	PQ_getMediaByUser: PQ_getMediaByUser,
+	PQ_getAllMedia: PQ_getAllMedia,
+	PQ_updateMedia: PQ_updateMedia,
+	PQ_deleteMedia: PQ_deleteMedia,
 };

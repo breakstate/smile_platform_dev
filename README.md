@@ -205,6 +205,37 @@ For requests requiring input:
 
 <hr>  
 
+### Media
+#### Add new media entry
+**HTTP request type:** POST  
+**End point:** localhost:8080/api/media  
+**Body:** path_to_media, media_title, user_id  
+**Note:**   
+
+#### Get notes by user
+**HTTP request type:** GET  
+**End point:** localhost:8080/api/media/:user_id  
+**Note:** This will return all media entries from specified user_id
+
+#### Get all notes
+**HTTP request type:** GET  
+**End point:** localhost:8080/api/media  
+**Note:** This will return all media entries  
+
+#### Update note
+**HTTP request type:** PUT  
+**End point:** localhost:8080/api/media  
+**Body:** path_to_media, media_title, meida_id  
+**Note:** meida_id is not a type here. Once corrected in the DB it will media_id  
+
+#### Delete note
+**HTTP request type:** DELETE  
+**End point:** localhost:8080/api/media/media_id  
+**Note:** Simply add the checkin_id value to the url, eg. ```.../api/media/2```. "status" in returned object will be "fail" if the the specified media entry does not exist.   
+**WARNING: this action cannot be undone.**  
+
+<hr>  
+
 ## LINKS
 
 - https://scotch.io/tutorials/getting-started-with-node-express-and-postgres-using-sequelize - for when we implement sequalize
