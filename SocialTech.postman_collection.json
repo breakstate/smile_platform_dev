@@ -1178,7 +1178,7 @@
 							"urlencoded": [
 								{
 									"key": "path_to_media",
-									"value": "new/path/to/media",
+									"value": "new/path/to/media/test",
 									"description": "",
 									"type": "text"
 								},
@@ -1189,8 +1189,8 @@
 									"type": "text"
 								},
 								{
-									"key": "meida_id",
-									"value": "1",
+									"key": "media_id",
+									"value": "2",
 									"description": "",
 									"type": "text"
 								}

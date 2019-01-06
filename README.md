@@ -235,8 +235,8 @@ For requests requiring input:
 #### Update media
 **HTTP request type:** PUT  
 **End point:** localhost:8080/api/media  
-**Body:** path_to_media, media_title, meida_id  
-**Note:** meida_id is not a type here. Once corrected in the DB it will media_id  
+**Body:** path_to_media, media_title, media_id  
+**Note:** Updates media entry  
 
 #### Delete media
 **HTTP request type:** DELETE  
