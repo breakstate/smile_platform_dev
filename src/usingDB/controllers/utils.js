@@ -101,10 +101,23 @@ const db			= config.db;
 		})
 	}
 
-// media exists ++=============================================================
+// media exists ===============================================================
 	function mediaExists(media_id){
 		return new Promise((resolve, reject) => {
 			db.oneOrNone(queries.PQ_mediaExists, [media_id])
+			.then(data => {
+				resolve(data);
+			})
+			.catch(err => {
+				reject(err);
+			})
+		})
+	}
+
+// motivational exists ========================================================
+	function motivationalExists(motivational_id){
+		return new Promise((resolve, reject) => {
+			db.oneOrNone(queries.PQ_motivationalExists, [motivational_id])
 			.then(data => {
 				resolve(data);
 			})
@@ -122,6 +135,7 @@ module.exports = {
 	commitmentExists: commitmentExists,
 	completedCommitmentExists: completedCommitmentExists,
 	checkinExists: checkinExists,
-	mediaExists: mediaExists
+	mediaExists: mediaExists,
+	motivationalExists: motivationalExists
 }
 //export default login_utils; check why this doesnt work

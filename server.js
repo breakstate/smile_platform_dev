@@ -18,6 +18,7 @@ const notes			= require('./src/usingDB/controllers/notes');
 const checkins		= require('./src/usingDB/controllers/checkins');
 const achievements	= require('./src/usingDB/controllers/achievements');
 const media			= require('./src/usingDB/controllers/media');
+const motivational	= require('./src/usingDB/controllers/motivational');
 
 // configure database connection
 const db = config.db;
@@ -126,6 +127,16 @@ var router = express.Router();			// get instance of the express Router
 		.get(media.getMediaByUser)
 	router.route('/media/:media_id')
 		.delete(media.deleteMedia)
+
+	// routes for /motivational
+	router.route('/motivational')
+		.put(motivational.updateMotivational)
+		.post(motivational.createMotivational)
+		.get(motivational.getAllMotivational)
+	router.route('/motivational/:motivational_id')
+		.delete(motivational.deleteMotivational)
+	router.route('/motivational_r')
+		.get(motivational.getRandomMotivational)
 
 // REGISTER OUR ROUTES -----------------------------
 // all of our routes will be prefixed with /api

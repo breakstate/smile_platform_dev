@@ -1124,6 +1124,117 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Motivational",
+			"description": "",
+			"item": [
+				{
+					"name": "Get random motivational entry",
+					"request": {
+						"url": "localhost:8080/api/motivational_r",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get all motivational entries",
+					"request": {
+						"url": "localhost:8080/api/motivational",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create motivational entry",
+					"request": {
+						"url": "localhost:8080/api/motivational",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "description",
+									"value": "this is a test",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "tags",
+									"value": "test",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update motivational entry",
+					"request": {
+						"url": "localhost:8080/api/motivational",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "description",
+									"value": "update test",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "tags",
+									"value": "updated tags",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "16",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete motivational entry",
+					"request": {
+						"url": "localhost:8080/api/motivational/16",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

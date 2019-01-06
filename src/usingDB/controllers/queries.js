@@ -8,6 +8,7 @@ const PQ_commitmentExists = new PQ('SELECT goal_id FROM goal WHERE goal_id = $1'
 const PQ_completedCommitmentExists = new PQ('SELECT goal_id FROM completed_goals WHERE goal_id = $1');
 const PQ_checkinExists = new PQ('SELECT checkin_id FROM check_in WHERE checkin_id = $1');
 const PQ_mediaExists = new PQ('SELECT meida_id FROM media WHERE meida_id = $1');
+const PQ_motivationalExists = new PQ('SELECT id FROM motivational_messages WHERE id = $1');
 
 
 // user.js
@@ -48,7 +49,7 @@ const PQ_getAllCheckins = new PQ("SELECT checkin_id, user_id, TO_CHAR(date_answe
 //const PQ_updateCheckin = new PQ('UPDATE goal SET goal_title=$1, goal_description=$2, start_date=$3, end_date=$4, start_time=$5, end_time=$6, is_full_day=$7, is_recurring=$8, goal_id=$9 WHERE goal_id=$9');
 const PQ_deleteCheckin = new PQ('DELETE FROM check_in WHERE checkin_id = $1');
 
-// achievements.js
+// achievements.js //Pull description in the get queries
 const PQ_createAchievement = new PQ('INSERT INTO achievements(user_id, percent_complete, last_entry, next_entry, times) VALUES($1, $2, $3, $4, $5)');
 const PQ_getAchievementsByUser = new PQ('SELECT * FROM achievements WHERE user_id = $1');
 const PQ_getAllAchievements = new PQ('SELECT * FROM achievements');
@@ -61,6 +62,13 @@ const PQ_getMediaByUser = new PQ('SELECT * FROM media WHERE user_id = $1');// in
 const PQ_getAllMedia = new PQ('SELECT * FROM media');
 const PQ_updateMedia = new PQ('UPDATE media SET path_to_media=$1, media_title=$2 WHERE meida_id=$3'); //achievement_id
 const PQ_deleteMedia = new PQ('DELETE FROM media WHERE meida_id = $1');
+
+// motivational.js
+const PQ_createMotivational = new PQ('INSERT INTO motivational_messages(description, tags) VALUES($1, $2)');
+const PQ_getRandomMotivational = new PQ('SELECT * FROM motivational_messages ORDER BY RANDOM() LIMIT 1');// include media type?
+const PQ_getAllMotivational = new PQ('SELECT * FROM motivational_messages');
+const PQ_updateMotivational = new PQ('UPDATE motivational_messages SET description=$1, tags=$2 WHERE id=$3'); //achievement_id
+const PQ_deleteMotivational = new PQ('DELETE FROM motivational_messages WHERE id = $1');
 
 
 /*
@@ -83,6 +91,7 @@ module.exports = {
 	PQ_completedCommitmentExists: PQ_completedCommitmentExists,
 	PQ_checkinExists: PQ_checkinExists,
 	PQ_mediaExists: PQ_mediaExists,
+	PQ_motivationalExists: PQ_motivationalExists,
 
 	// user.js
 	PQ_getSingleUser: PQ_getSingleUser,
@@ -135,4 +144,10 @@ module.exports = {
 	PQ_getAllMedia: PQ_getAllMedia,
 	PQ_updateMedia: PQ_updateMedia,
 	PQ_deleteMedia: PQ_deleteMedia,
+
+	PQ_createMotivational: PQ_createMotivational,
+	PQ_getRandomMotivational: PQ_getRandomMotivational,
+	PQ_getAllMotivational: PQ_getAllMotivational,
+	PQ_updateMotivational: PQ_updateMotivational,
+	PQ_deleteMotivational: PQ_deleteMotivational
 };

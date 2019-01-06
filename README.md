@@ -212,26 +212,58 @@ For requests requiring input:
 **Body:** path_to_media, media_title, user_id  
 **Note:**   
 
-#### Get notes by user
+#### Get media by user
 **HTTP request type:** GET  
 **End point:** localhost:8080/api/media/:user_id  
 **Note:** This will return all media entries from specified user_id
 
-#### Get all notes
+#### Get all media
 **HTTP request type:** GET  
 **End point:** localhost:8080/api/media  
 **Note:** This will return all media entries  
 
-#### Update note
+#### Update media
 **HTTP request type:** PUT  
 **End point:** localhost:8080/api/media  
 **Body:** path_to_media, media_title, meida_id  
 **Note:** meida_id is not a type here. Once corrected in the DB it will media_id  
 
-#### Delete note
+#### Delete media
 **HTTP request type:** DELETE  
 **End point:** localhost:8080/api/media/media_id  
-**Note:** Simply add the checkin_id value to the url, eg. ```.../api/media/2```. "status" in returned object will be "fail" if the the specified media entry does not exist.   
+**Note:** Simply add the media_id value to the url, eg. ```.../api/media/2```. "status" in returned object will be "fail" if the the specified media entry does not exist.   
+**WARNING: this action cannot be undone.**  
+
+<hr>  
+
+
+### Motivational
+#### Add new motivational entry
+**HTTP request type:** POST  
+**End point:** localhost:8080/api/motivational  
+**Body:** description, tags  
+**Note:** tags will be comma delimited and the string needs to be built on the front end. Tags are not high priority, only important for stretch goals.  
+
+#### Get random motivational entry
+**HTTP request type:** GET  
+**End point:** localhost:8080/api/motivational_r  
+**Note:** This will return a random entry from the motivational_messages table  
+
+#### Get all motivational entries
+**HTTP request type:** GET  
+**End point:** localhost:8080/api/motivational  
+**Note:** This will return all motivational entries  
+
+#### Update motivational entry
+**HTTP request type:** PUT  
+**End point:** localhost:8080/api/motivational  
+**Body:** description, tags  
+**Note:** tags will be comma delimited and the string needs to be built on the front end. Tags are not high priority, only important for stretch goals.  
+
+#### Delete motivational entry
+**HTTP request type:** DELETE  
+**End point:** localhost:8080/api/media/motivational/:motivational_id  
+**Note:** Simply add the motivational_id value to the url, eg. ```.../api/media/2```. "status" in returned object will be "fail" if the the specified media entry does not exist.   
 **WARNING: this action cannot be undone.**  
 
 <hr>  
