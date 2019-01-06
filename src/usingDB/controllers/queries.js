@@ -19,12 +19,13 @@ const PQ_addNewUser = new PQ('INSERT INTO user_info(first_name, last_name, phone
 const PQ_addNewUserVerifyToken = new PQ('UPDATE user_info SET v_token = $1 WHERE email = $2'); // add verify_token here once implemented
 const PQ_getUserToken = new PQ('SELECT v_token FROM user_info WHERE email = $1');
 const PQ_getUserId = new PQ('SELECT user_id FROM user_info WHERE email = $1');
+const PQ_updateUser = new PQ('UPDATE user_info SET first_name=$1, last_name=$2, phone_number=$3 WHERE user_id=$4')
 const PQ_deleteUser = new PQ('DELETE FROM user_info WHERE user_id = $1');
 
 // commitments.js
 const PQ_createCommitment = new PQ('INSERT INTO goal(goal_title, goal_description, start_date, end_date, start_time, end_time, is_full_day, is_recurring, user_id, created_by, created_date, parent_goal_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)'); // duration instead of end time maybe
-const PQ_getCommitmentsByUser = new PQ("SELECT goal_id, goal_title, goal_description, TO_CHAR(start_date, 'yyyy-mm-dd') as start_date, TO_CHAR(end_date, 'yyyy-mm-dd') as end_date, start_time, end_time, is_full_day, is_recurring, user_id, created_by, TO_CHAR(created_date, 'yyyy-mm-dd') as created_date, parent_goal_id FROM goal WHERE user_id = $1");//('SELECT * FROM goal WHERE user_id = $1');
-const PQ_getAllCommitments = new PQ('SELECT * FROM goal');
+const PQ_getCommitmentsByUser = new PQ("SELECT goal_id, goal_title, goal_description, TO_CHAR(start_date, 'yyyy-mm-dd') as start_date, TO_CHAR(end_date, 'yyyy-mm-dd') as end_date, start_time, end_time, is_full_day, is_recurring, user_id, created_by, TO_CHAR(created_date, 'yyyy-mm-dd') as created_date, parent_goal_id, difficulty, active, complete FROM goal WHERE user_id = $1");//('SELECT * FROM goal WHERE user_id = $1');
+const PQ_getAllCommitments = new PQ("SELECT goal_id, goal_title, goal_description, TO_CHAR(start_date, 'yyyy-mm-dd') as start_date, TO_CHAR(end_date, 'yyyy-mm-dd') as end_date, start_time, end_time, is_full_day, is_recurring, user_id, created_by, TO_CHAR(created_date, 'yyyy-mm-dd') as created_date, parent_goal_id, difficulty, active, complete FROM goal");
 const PQ_updateCommitment = new PQ('UPDATE goal SET goal_title=$1, goal_description=$2, start_date=$3, end_date=$4, start_time=$5, end_time=$6, is_full_day=$7, is_recurring=$8, goal_id=$9 WHERE goal_id=$9');
 const PQ_deleteCommitment = new PQ('DELETE FROM goal WHERE goal_id = $1');// update table to show goal_id instead of id
 
@@ -32,7 +33,7 @@ const PQ_deleteCommitment = new PQ('DELETE FROM goal WHERE goal_id = $1');// upd
 const PQ_createCompletedCommitment = new PQ('INSERT INTO completed_goals(goal_id, date_completed, note, satisfaction) VALUES($1, $2, $3, $4)');
 const PQ_setCommitmentComplete = new PQ('UPDATE goal SET complete=$1 WHERE goal_id=$2')
 const PQ_getCompletedCommitmentsByUser = new PQ("SELECT t1.goal_id, t1.date_completed, t1.note, t1.satisfaction FROM completed_goals t1 INNER JOIN goal t2 ON t1.goal_id = t2.goal_id AND t2.user_id = $1");//SELECT goal_id, date_completed, note, satisfaction FROM completed_goals WHERE user_id = $1");//('SELECT * FROM goal WHERE user_id = $1');
-const PQ_getAllCompletedCommitments = new PQ('SELECT * FROM completed_goals');
+const PQ_getAllCompletedCommitments = new PQ("SELECT goal_id, TO_CHAR(date_completed, 'yyyy-mm-dd') as date_completed, note, satisfaction FROM completed_goals");
 //const PQ_deleteCompletedCommitment = new PQ('DELETE FROM goal WHERE goal_id = $1');// update table to show goal_id instead of id
 
 // notes.js
@@ -50,11 +51,16 @@ const PQ_getAllCheckins = new PQ("SELECT checkin_id, user_id, TO_CHAR(date_answe
 const PQ_deleteCheckin = new PQ('DELETE FROM check_in WHERE checkin_id = $1');
 
 // achievements.js //Pull description in the get queries
-const PQ_createAchievement = new PQ('INSERT INTO achievements(user_id, percent_complete, last_entry, next_entry, times) VALUES($1, $2, $3, $4, $5)');
+const PQ_createAchievement = new PQ('INSERT INTO achievements(id, user_id, percent_complete, last_entry, next_entry, times) VALUES($1, $2, $3, $4, $5, $6)');
 const PQ_getAchievementsByUser = new PQ('SELECT * FROM achievements WHERE user_id = $1');
 const PQ_getAllAchievements = new PQ('SELECT * FROM achievements');
 const PQ_updateAchievement = new PQ('UPDATE achievements SET percent_complete=$1, last_entry=$2, next_entry=$3, times=$4 WHERE id=$5'); //achievement_id
 const PQ_deleteAchievement = new PQ('DELETE FROM achievements WHERE id = $1');
+
+// achievement_description.js
+const PQ_createAchievementType = new PQ('INSERT INTO achievement_description(id, name, xp_worth) VALUES($1, $2, $3)');
+const PQ_getAllAchievementTypes = new PQ('SELECT * FROM achievement_description');
+const PQ_deleteAchievementType = new PQ('DELETE FROM achievements WHERE id = $1');
 
 // media.js
 const PQ_createMedia = new PQ('INSERT INTO media(path_to_media, media_title, user_id) VALUES($1, $2, $3)');
@@ -101,6 +107,7 @@ module.exports = {
 	PQ_addNewUser: PQ_addNewUser,
 	PQ_addNewUserVerifyToken: PQ_addNewUserVerifyToken,
 	PQ_getUserId : PQ_getUserId,
+	PQ_updateUser: PQ_updateUser,
 	PQ_deleteUser: PQ_deleteUser,
 
 	// commitments.js
@@ -137,6 +144,11 @@ module.exports = {
 	PQ_getAllAchievements: PQ_getAllAchievements,
 	PQ_updateAchievement: PQ_updateAchievement,
 	PQ_deleteAchievement: PQ_deleteAchievement,
+
+	// Achievements_description.js
+	PQ_createAchievementType: PQ_createAchievementType,
+	PQ_getAllAchievementTypes: PQ_getAllAchievementTypes,
+	PQ_deleteAchievementType: PQ_deleteAchievementType,
 
 	// Media.js
 	PQ_createMedia: PQ_createMedia,

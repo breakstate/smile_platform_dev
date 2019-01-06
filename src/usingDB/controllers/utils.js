@@ -127,6 +127,32 @@ const db			= config.db;
 		})
 	}
 
+// achievement exists ========================================================
+	function achievementExists(achievement_id){
+		return new Promise((resolve, reject) => {
+			db.oneOrNone(queries.PQ_achievementExists, [achievement_id])
+			.then(data => {
+				resolve(data);
+			})
+			.catch(err => {
+				reject(err);
+			})
+		})
+	}
+
+// achievement type exists ========================================================
+	function achievementTypeExists(achievementType_id){
+		return new Promise((resolve, reject) => {
+			db.oneOrNone(queries.PQ_achievementTypeExists, [achievementType_id])
+			.then(data => {
+				resolve(data);
+			})
+			.catch(err => {
+				reject(err);
+			})
+		})
+	}
+
 module.exports = {
 	resObj: resObj,
 	userExists: userExists,
@@ -136,6 +162,8 @@ module.exports = {
 	completedCommitmentExists: completedCommitmentExists,
 	checkinExists: checkinExists,
 	mediaExists: mediaExists,
-	motivationalExists: motivationalExists
+	motivationalExists: motivationalExists,
+	achievementExists: achievementExists,
+	achievementTypeExists: achievementTypeExists
 }
 //export default login_utils; check why this doesnt work

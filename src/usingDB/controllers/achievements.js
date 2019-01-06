@@ -6,7 +6,7 @@ const db			= config.db;
 
 // create
 	function createAchievement(req, res){
-		db.none(queries.PQ_createAchievement, [req.body.user_id, req.body.percent_complete, req.body.last_entry, req.body.next_entry, req.body.times])
+		db.none(queries.PQ_createAchievement, [req.body.id, req.body.user_id, req.body.percent_complete, req.body.last_entry, req.body.next_entry, req.body.times])
 		.then( function() {
 			utils.resObj(res, 200, true, 'created new achievement', null);
 		})

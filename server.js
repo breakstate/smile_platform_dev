@@ -17,6 +17,7 @@ const completed_commitments	= require('./src/usingDB/controllers/completed_commi
 const notes			= require('./src/usingDB/controllers/notes');
 const checkins		= require('./src/usingDB/controllers/checkins');
 const achievements	= require('./src/usingDB/controllers/achievements');
+const achievements_d= require('./src/usingDB/controllers/achievements_description');
 const media			= require('./src/usingDB/controllers/media');
 const motivational	= require('./src/usingDB/controllers/motivational');
 
@@ -66,7 +67,7 @@ var router = express.Router();			// get instance of the express Router
 	router.route('/users')
 		.post(user.addNewUser)
 		.get(user.getAllUsers) // without passwords or ID
-		.put(user.updateUser) // put for each field needing updating
+		.put(user.updateUser)
 	router.route('/users/:user_id')
 		.get(user.getSingleUser)
 		.delete(user.deleteUser)
@@ -119,6 +120,13 @@ var router = express.Router();			// get instance of the express Router
 		.get(achievements.getAchievementsByUser)
 	router.route('/achievements/:achievement_id')
 		.delete(achievements.deleteAchievement)
+
+	// routes for /achievements_d
+	router.route('/achievements_d')
+		.post(achievements_d.createAchievementType)
+		.get(achievements_d.getAllAchievementTypes)
+	router.route('/achievements/:achievement_d_id')
+		.delete(achievements_d.deleteAchievementType)
 
 	// routes for /media
 	router.route('/media')
