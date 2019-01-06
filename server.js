@@ -15,6 +15,7 @@ const user			= require('./src/usingDB/controllers/user');
 const commitments	= require('./src/usingDB/controllers/commitments');
 const completed_commitments	= require('./src/usingDB/controllers/completed_commitments');
 const notes			= require('./src/usingDB/controllers/notes');
+const checkins		= require('./src/usingDB/controllers/checkins');
 
 // configure database connection
 const db = config.db;
@@ -81,8 +82,8 @@ var router = express.Router();			// get instance of the express Router
 		.get(completed_commitments.getAllCompletedCommitments)
 	router.route('/completed_commitments/:user_id')
 		.get(completed_commitments.getCompletedCommitmentsByUser)
-	router.route('/completed_commitments/:goal_id')// may need to change name of column
-		.delete(completed_commitments.deleteCompletedCommitment)
+	//router.route('/completed_commitments/:goal_id')// may need to change name of column
+	//	.delete(completed_commitments.deleteCompletedCommitment)
 
 	// routes for /notes
 	router.route('/notes')
@@ -94,6 +95,15 @@ var router = express.Router();			// get instance of the express Router
 	router.route('/notes/:note_id')
 		.delete(notes.deleteNote)
 
+	// routes for /checkins
+	router.route('/checkins')
+		.post(checkins.createCheckin)
+		.get(checkins.getAllCheckins)
+		//.put(checkins.updatecheckin)
+	router.route('/checkins/:user_id')
+		.get(checkins.getCheckinsByUser)
+	router.route('/checkins/:checkin_id')
+		.delete(checkins.deleteCheckin)
 
 // REGISTER OUR ROUTES -----------------------------
 // all of our routes will be prefixed with /api

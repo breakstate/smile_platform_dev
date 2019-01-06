@@ -6,7 +6,9 @@
 - [endpoints](#endpoints)
   - [users](#users)
   - [commitments](#commitments)
+  - [completed_commitments](#completed_commitments)
   - [notes](#notes)
+  - [checkins](#checkins)
 - [links](#links)
   
 
@@ -84,7 +86,7 @@ For requests requiring input:
 **HTTP request type:** POST  
 **End point:** localhost:8080/api/commitments  
 **Body:** goal_title, goal_description, start_date, end_date, start_time, end_time, is_full_day, is_recurring, user_id, created_by, created_date, parent_goal_id  
-**Note:**  eg of date format: ```Jan, 01, 2019```, eg of timestamp format: ```2018-12-12 17:00:00``` (May need to change these). Refer to db spreadsheet for more info.
+**Note:**  eg of date format: ```Jan, 01, 2019 or 2019-01-01```, eg of timestamp format: ```2018-12-12 17:00:00``` (May need to change these). Refer to db spreadsheet for more info.
 
 #### Get commitment by user
 **HTTP request type:** GET  
@@ -100,7 +102,7 @@ For requests requiring input:
 **HTTP request type:** PUT  
 **End point:** localhost:8080/api/commitments  
 **Body:** goal_title, goal_description, start_date, end_date, start_time, end_time, is_full_day, is_recurring, goal_id  
-**Note:** eg of date format: ```Jan, 01, 2019```. eg of timestamp format: ```17:00:00```. See sheet for types. All values must be present - any number of values can be changes in a single request, but unchanged values need to be included as well.  
+**Note:** eg of date format: ```Jan, 01, 2019 or 2019-01-01```. eg of timestamp format: ```17:00:00```. See sheet for types. All values must be present - any number of values can be changes in a single request, but unchanged values need to be included as well.  
 
 #### Delete commitment
 **HTTP request type:** DELETE  
@@ -110,12 +112,43 @@ For requests requiring input:
 
 <hr>  
 
+### Completed_commitments
+#### Set commitment as complete
+**HTTP request type:** POST  
+**End point:** localhost:8080/api/completed_commitments  
+**Body:** goal_id, date_completed, note, satisfaction  
+**Note:**  eg of date format: ```Jan, 01, 2019 or 2019-01-01```. .
+
+#### Get completed commitment by user
+**HTTP request type:** GET  
+**End point:** localhost:8080/api/completed_commmitment/:user_id  
+**Note:** Simply add the user_id value to the url, eg. ```.../api/completed_commitments/2```  
+
+#### Get all completed commitments
+**HTTP request type:** GET  
+**End point:** localhost:8080/api/completed_commitments  
+**Note:** This will return all completed commitments  
+
+#### Update completed commitment
+**HTTP request type:** PUT  
+**End point:**   
+**Body:**   
+**Note:** Implementaion pending until deemed necessary  
+
+#### Delete commitment
+**HTTP request type:** DELETE  
+**End point:**   
+**Note:** Don't delete yet, may not be necessary  
+**WARNING: this action cannot be undone.**  
+
+<hr>  
+
 ### Notes
 #### Add new note
 **HTTP request type:** POST  
 **End point:** localhost:8080/api/notes  
 **Body:** user_id, note, date_created  
-**Note:** eg of date format: ```Jan, 01, 2019```. "note" is the actual note text.  
+**Note:** eg of date format: ```Jan, 01, 2019 or 2019-01-01```. "note" is the actual note text.  
 
 #### Get notes by user
 **HTTP request type:** GET  
@@ -131,12 +164,43 @@ For requests requiring input:
 **HTTP request type:** PUT  
 **End point:** localhost:8080/api/notes  
 **Body:** note, date_edited, note_id  
-**Note:** eg of date format: ```Jan, 01, 2019```. "status" in returned object will be "fail" if the the specified note_id does not exist.  
+**Note:** eg of date format: ```Jan, 01, 2019 or 2019-01-01```. "status" in returned object will be "fail" if the the specified note_id does not exist.  
 
 #### Delete note
 **HTTP request type:** DELETE  
 **End point:** localhost:8080/api/notes/:note_id  
 **Note:** Simply add the note_id value to the url, eg. ```.../api/notes/2```. "status" in returned object will be "fail" if the the specified note_id does not exist.   
+**WARNING: this action cannot be undone.**  
+
+<hr>  
+
+### Checkins
+#### Add new note
+**HTTP request type:** POST  
+**End point:** localhost:8080/api/checkins  
+**Body:** user_id, date_answered, time_answered, q1...q34  
+**Note:** eg of date format: ```Jan, 01, 2019 or 2019-01-01```.  
+
+#### Get notes by user
+**HTTP request type:** GET  
+**End point:** localhost:8080/api/checkins/:user_id  
+**Note:** This will return all checkins from specified user_id
+
+#### Get all notes
+**HTTP request type:** GET  
+**End point:** localhost:8080/api/checkins  
+**Note:** This will return all checkins  
+
+#### Update note
+**HTTP request type:** PUT  
+**End point:**  
+**Body:**  
+**Note:** Implementation pending until deemed necessary?  
+
+#### Delete note
+**HTTP request type:** DELETE  
+**End point:** localhost:8080/api/checkins/:checkin_id  
+**Note:** Simply add the checkin_id value to the url, eg. ```.../api/checkins/2```. "status" in returned object will be "fail" if the the specified note_id does not exist.   
 **WARNING: this action cannot be undone.**  
 
 <hr>  

@@ -75,10 +75,23 @@ const db			= config.db;
 		})
 	}
 
-// commitment exists ==========================================================
+// completed commitment exists ================================================
 	function completedCommitmentExists(goal_id){
 		return new Promise((resolve, reject) => {
 			db.oneOrNone(queries.PQ_completedCommitmentExists, [goal_id])
+			.then(data => {
+				resolve(data);
+			})
+			.catch(err => {
+				reject(err);
+			})
+		})
+	}
+
+// checkin exists =============================================================
+	function checkinExists(checkin_id){
+		return new Promise((resolve, reject) => {
+			db.oneOrNone(queries.PQ_checkinExists, [checkin_id])
 			.then(data => {
 				resolve(data);
 			})
@@ -94,6 +107,7 @@ module.exports = {
 	userExistsID: userExistsID,
 	noteExists: noteExists,
 	commitmentExists: commitmentExists,
-	completedCommitmentExists: completedCommitmentExists
+	completedCommitmentExists: completedCommitmentExists,
+	checkinExists: checkinExists
 }
 //export default login_utils; check why this doesnt work

@@ -5,14 +5,46 @@ const utils			= require('./utils');
 const db			= config.db;
 
 // create
-	function createCompletedCommitment(req, res){
-		db.none(queries.PQ_createCompletedCommitment, [req.body.goal_title, req.body.goal_description, req.body.start_date, req.body.end_date, req.body.start_time, req.body.end_time, req.body.is_full_day, req.body.is_recurring, req.body.user_id, req.body.created_by, req.body.created_date, req.body.parent_goal_id])
-		.then( function() {
-			utils.resObj(res, 200, true, 'created new completed commitments', null);
+	function setCommitmentComplete(goal_id){
+		return new Promise((resolve, reject) => {
+			db.none(queries.PQ_setCommitmentComplete, [true, goal_id])
+			.then(data => {
+				resolve(data);
+			})
+			.catch(err => {
+				reject(err);
+			})
+		})
+	}
+
+	function createCompletedCommitment(req, res){ // needs testing after db update
+		utils.commitmentExists(req.body.goal_id)
+		.then(data =>{
+			if (data){
+				setCommitmentComplete(req.body.goal_id)
+				.then(() =>{
+					db.none(queries.PQ_createCompletedCommitment, [req.body.goal_id, req.body.date_completed, req.body.note, req.body.satisfaction])
+					.then( function() {
+						utils.resObj(res, 200, true, 'created new completed commitments', null);
+					})
+					.catch(error => {
+						console.log('ERROR:', error); // print the error
+						utils.resObj(res, 200, false, 'error: completed commitments not created', error);
+					})
+					.finally(db.end);
+				})
+				.catch(error => {
+					console.log('ERROR:', error); // print the error
+					utils.resObj(res, 200, false, 'error: could not set commitment as completed', error);
+				})
+				.finally(db.end);
+			} else {
+				utils.resObj(res, 400, false, 'commitment with specified goal_id does not exist', null);
+			}
 		})
 		.catch(error => {
 			console.log('ERROR:', error); // print the error
-			utils.resObj(res, 200, false, 'error: completed commitments not created', error);
+			utils.resObj(res, 200, false, 'error: could not check if commitment exists', error);
 		})
 		.finally(db.end);
 	}
@@ -25,9 +57,9 @@ const db			= config.db;
 				db.any(queries.PQ_getCompletedCommitmentsByUser, [req.params.user_id])
 				.then(data => {
 					if (data.length){
-						utils.resObj(res, 200, true, 'retreived all completed commitments by this user', null);
+						utils.resObj(res, 200, true, 'retreived all completed commitments by this user', data);
 					} else {
-						utils.resObj(res, 200, false, 'no completed commitmentss by this user exist', null);
+						utils.resObj(res, 200, false, 'no completed commitments by this user exist', null);
 					}
 				})
 				.catch(error => {

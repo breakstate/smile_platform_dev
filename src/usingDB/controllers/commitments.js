@@ -27,7 +27,7 @@ const db			= config.db;
 					if (data.length){
 						utils.resObj(res, 200, true, 'retreived all commitments by this user', data);
 					} else {
-						utils.resObj(res, 200, false, 'no commitments by this user exist', null);
+						utils.resObj(res, 200, true, 'no commitments by this user exist', null);
 					}
 				})
 				.catch(error => {
@@ -49,7 +49,7 @@ const db			= config.db;
 	function getAllCommitments(req, res){
 		db.any(queries.PQ_getAllCommitments)
 		.then(data => {
-			if (data){
+			if (data.length){
 				utils.resObj(res, 200, true, 'retreived all commitments', data);
 			} else {
 				utils.resObj(res, 200, false, 'no commitments exist', null);
