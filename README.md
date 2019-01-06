@@ -11,7 +11,7 @@
   - [checkins](#checkins)
   - [media](#media)
   - [motivational](#motivational)
-  - [achievementtypes](#achievementtypes)
+  - [achievements_d](#achievements_d)
   - [achievements](#achievements)
 - [links](#links)
   
@@ -277,7 +277,7 @@ For requests requiring input:
 
 <hr>  
 
-### Achievementtypes
+### Achievements_d
 #### Add new achievement type
 **HTTP request type:** POST  
 **End point:** localhost:8080/api/achievements_d  
