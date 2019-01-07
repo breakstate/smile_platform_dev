@@ -108,6 +108,11 @@ For requests requiring input:
 **End point:** localhost:8080/api/commitments  
 **Note:** This will return all commitments
 
+#### Get single commitments by goal_id
+**HTTP request type:** GET  
+**End point:** localhost:8080/api/commitment_id/:goal_id  
+**Note:** This will return commitment with specified goal_id if it exists
+
 #### Update commitment
 **HTTP request type:** PUT  
 **End point:** localhost:8080/api/commitments  

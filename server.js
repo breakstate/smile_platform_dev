@@ -81,6 +81,8 @@ var router = express.Router();			// get instance of the express Router
 		.get(commitments.getCommitmentsByUser)
 	router.route('/commitments/:goal_id')// may need to change name of column
 		.delete(commitments.deleteCommitment)
+	router.route('/commitment_id/:goal_id')
+		.get(commitments.getCommitmentByID)
 
 	// routes for /completed_commitments
 	router.route('/completed_commitments')

@@ -46,6 +46,23 @@ const db			= config.db;
 		.finally(db.end);
 	}
 
+	function getCommitmentByID(req, res){
+		db.any(queries.PQ_getCommitmentByID, [req.params.goal_id])
+		.then(data => {
+			if (data.length){
+				utils.resObj(res, 200, true, 'retreived commitment', data);
+			} else {
+				utils.resObj(res, 400, false, 'commitment with that goal_id does not exist', null);
+			}
+		})
+		.catch(error => {
+			console.log('ERROR:', error); // print the error
+			utils.resObj(res, 500, false, 'error: could not get commitment', error);			
+		})
+		.finally(db.end);
+	}
+
+
 	function getAllCommitments(req, res){
 		db.any(queries.PQ_getAllCommitments)
 		.then(data => {
@@ -117,6 +134,7 @@ const db			= config.db;
 module.exports = {
 createCommitment: createCommitment,
 getCommitmentsByUser: getCommitmentsByUser,
+getCommitmentByID: getCommitmentByID,
 getAllCommitments: getAllCommitments,
 updateCommitment: updateCommitment,
 deleteCommitment: deleteCommitment
