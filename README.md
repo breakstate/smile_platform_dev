@@ -92,11 +92,17 @@ For requests requiring input:
 <hr>  
 
 ### Commitments
-#### Add new commitment
+#### Add new GOAL
 **HTTP request type:** POST  
 **End point:** localhost:8080/api/commitments  
-**Body:** goal_title, goal_description, start_date, end_date, start_time, end_time, is_full_day, is_recurring, user_id, created_by, created_date, parent_goal_id  
-**Note:**  eg of date format: ```Jan, 01, 2019 or 2019-01-01```, eg of timestamp format: ```2018-12-12 17:00:00``` (May need to change these). Refer to db spreadsheet for more info.
+**Body:** goal_title, goal_description, start_date, end_date, start_time, end_time, is_full_day, is_recurring, user_id, created_by, created_date, difficulty  
+**Note:** Note that this is not a mistake. The endpoints for creating commitments is the same as for creating goals. The body is the only thing that differs. eg of date format: ```Jan, 01, 2019 or 2019-01-01```, eg of timestamp format: ```2018-12-12 17:00:00``` (May need to change these). Refer to db spreadsheet for more info.
+
+#### Add new COMMITMENT
+**HTTP request type:** POST  
+**End point:** localhost:8080/api/commitments  
+**Body:** goal_title, goal_description, start_date, end_date, start_time, end_time, is_full_day, is_recurring, user_id, created_by, created_date, parent_goal_id, difficulty, recurring_type, separation_count, max_occurrence, hour_of_day, day_of_week, day_of_month, day_of_year, week_of_month, week_of_year, month_of_year  
+**Note:**  eg of date format: ```Jan, 01, 2019 or 2019-01-01```, eg of timestamp format: ```2018-12-12 17:00:00``` (May need to change these). Refer to db spreadsheet for more info. Commitments will need their recurring_pattern information when being created.
 
 #### Get commitment by user
 **HTTP request type:** GET  

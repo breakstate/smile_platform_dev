@@ -161,12 +161,6 @@ const db			= config.db;
 		})
 	}
 
-	function topSecret(req, res){
-		res.status(200)
-		.json({message: 'Welcome to the crew, Scrunchy!'});
-	}
-
-
 module.exports = {
 	resObj: resObj,
 	userExists: userExists,
@@ -179,6 +173,5 @@ module.exports = {
 	motivationalExists: motivationalExists,
 	achievementExists: achievementExists,
 	achievementTypeExists: achievementTypeExists,
-	topSecret: topSecret
 }
 //export default login_utils; check why this doesnt work
