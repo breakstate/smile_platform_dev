@@ -27,38 +27,45 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
+									"key": "goal_id",
+									"value": "",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
 									"key": "goal_title",
-									"value": "Git good",
+									"value": "This is a commitment, not a goal",
 									"type": "text",
 									"description": ""
 								},
 								{
 									"key": "goal_description",
-									"value": "Be generally bad ass",
+									"value": "This will have a parent_id and recurring_pattern information",
 									"type": "text",
 									"description": ""
 								},
 								{
 									"key": "start_date",
-									"value": "Jan, 01, 2019",
+									"value": "2019-01-01",
 									"type": "text",
 									"description": ""
 								},
 								{
 									"key": "end_date",
-									"value": "Feb, 01, 2019",
+									"value": "2020-01-01",
 									"type": "text",
 									"description": ""
 								},
 								{
 									"key": "start_time",
-									"value": "2018-12-12 17:00:00",
+									"value": "20:00",
 									"type": "text",
 									"description": ""
 								},
 								{
 									"key": "end_time",
-									"value": "2018-12-12 17:30:00",
+									"value": "21:00",
 									"type": "text",
 									"description": ""
 								},
@@ -70,7 +77,7 @@
 								},
 								{
 									"key": "is_recurring",
-									"value": "false",
+									"value": "true",
 									"type": "text",
 									"description": ""
 								},
@@ -88,16 +95,95 @@
 								},
 								{
 									"key": "created_date",
-									"value": "Dec, 25, 2018",
+									"value": "2019-01-08",
 									"type": "text",
 									"description": ""
 								},
 								{
 									"key": "parent_goal_id",
-									"value": "NULL",
+									"value": "46",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "difficulty",
+									"value": "8",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "active",
+									"value": "",
 									"type": "text",
 									"description": "",
 									"disabled": true
+								},
+								{
+									"key": "complete",
+									"value": "",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "recurring_type",
+									"value": "test",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "separation_count",
+									"value": "1",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "max_occurrence",
+									"value": "2",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "hour_of_day",
+									"value": "1",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "day_of_week",
+									"value": "1",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "day_of_month",
+									"value": "1",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "day_of_year",
+									"value": "1",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "week_of_month",
+									"value": "1",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "week_of_year",
+									"value": "1",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "month_of_yea",
+									"value": "1",
+									"type": "text",
+									"description": ""
 								}
 							]
 						},
@@ -231,6 +317,224 @@
 							]
 						},
 						"description": "Updates specified commitment by goal_id"
+					},
+					"response": []
+				},
+				{
+					"name": "Create goal",
+					"request": {
+						"url": "localhost:8080/api/commitments",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "goal_id",
+									"value": "",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "goal_title",
+									"value": "this is a goal again",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "goal_description",
+									"value": "will not have parent_goal_id or recurring info",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "start_date",
+									"value": "2019-01-01",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "end_date",
+									"value": "2020-01-01",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "start_time",
+									"value": "20:00",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "end_time",
+									"value": "21:00",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "is_full_day",
+									"value": "false",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "is_recurring",
+									"value": "true",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "user_id",
+									"value": "2",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "created_by",
+									"value": "2",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "created_date",
+									"value": "2019-01-08",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "parent_goal_id",
+									"value": "46",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "difficulty",
+									"value": "8",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "active",
+									"value": "",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "complete",
+									"value": "",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "recurring_type",
+									"value": "test",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "separation_count",
+									"value": "1",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "max_occurrence",
+									"value": "2",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "hour_of_day",
+									"value": "1",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "day_of_week",
+									"value": "1",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "day_of_month",
+									"value": "1",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "day_of_year",
+									"value": "1",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "week_of_month",
+									"value": "1",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "week_of_year",
+									"value": "1",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "month_of_yea",
+									"value": "1",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Creates a new goal "
+					},
+					"response": []
+				},
+				{
+					"name": "SAFE deletes commitment",
+					"request": {
+						"url": "localhost:8080/api/commitments/safe_delete",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "goal_id",
+									"value": "47",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
 					},
 					"response": []
 				}
@@ -459,6 +763,33 @@
 						"header": [],
 						"body": {},
 						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "SAFE delete user",
+					"request": {
+						"url": "localhost:8080/api/users/safe_delete",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "28",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": "deactivates user in user_info"
 					},
 					"response": []
 				}
