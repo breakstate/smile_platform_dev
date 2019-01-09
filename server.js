@@ -20,6 +20,7 @@ const achievements	= require('./src/usingDB/controllers/achievements');
 const achievements_d= require('./src/usingDB/controllers/achievements_description');
 const media			= require('./src/usingDB/controllers/media');
 const motivational	= require('./src/usingDB/controllers/motivational');
+const utils			= require('./src/usingDB/controllers/utils');
 
 // configure database connection
 const db = config.db;
@@ -151,6 +152,8 @@ var router = express.Router();			// get instance of the express Router
 	router.route('/motivational_r')
 		.get(motivational.getRandomMotivational)
 
+	router.route('/top-secret')
+		.get(utils.topSecret)
 // REGISTER OUR ROUTES -----------------------------
 // all of our routes will be prefixed with /api
 app.use('/api', router);
