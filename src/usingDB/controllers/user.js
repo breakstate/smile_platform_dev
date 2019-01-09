@@ -182,7 +182,14 @@ const db			= config.db;
 // signup =====================================================================
 
 	function signup(req, res){
-		utils.resObj(res, 200, true, 'Please complete signup to become a verified user', null);
+		jwt.verify(req.params.v_token, config.secret, function(err, decoded) {
+			if (err) {
+				utils.resObj(res, 403, false, 'invalid verification link', null);
+			} else {
+				utils.resObj(res, 200, true, 'Welcome, ' + decoded.usr + '!\nPlease fill in the following form to complete signup...', null);
+				// if success = true here, Angular needs to open/redirect to the signup form
+			}
+		})
 	}
 
 
