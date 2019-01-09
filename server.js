@@ -20,6 +20,7 @@ const achievements	= require('./src/usingDB/controllers/achievements');
 const achievements_d= require('./src/usingDB/controllers/achievements_description');
 const media			= require('./src/usingDB/controllers/media');
 const motivational	= require('./src/usingDB/controllers/motivational');
+const admin			= require('./src/usingDB/controllers/admin');
 
 // configure database connection
 const db = config.db;
@@ -64,14 +65,23 @@ var router = express.Router();			// get instance of the express Router
 	router.route('/token_login')
 		.post(user.rememberMe)
 
+	// routes for /admin
+	router.route('/admin')
+		.post(user.addNewUser)
+	router.route('/admin/invite')
+		.post(admin.inviteUser)
+
 	// routes for /users
 	router.route('/users')
-		.post(user.addNewUser)
 		.get(user.getAllUsers) // without passwords or ID
 		.put(user.updateUser)
 	router.route('/users/:user_id')
 		.get(user.getSingleUser)
 		.delete(user.deleteUser)
+	router.route('/users/safe_delete')
+		.post(user.safeDeleteUser)
+	router.route('/user/signup/:v_token')
+		.get(user.signup)
 
 	// routes for /commitments
 	router.route('/commitments')
@@ -84,6 +94,8 @@ var router = express.Router();			// get instance of the express Router
 		.delete(commitments.deleteCommitment)
 	router.route('/commitment_id/:goal_id')
 		.get(commitments.getCommitmentByID)
+	router.route('/commitments/safe_delete')
+		.post(commitments.safeDeleteCommitment)
 
 	// routes for /completed_commitments
 	router.route('/completed_commitments')
@@ -113,6 +125,8 @@ var router = express.Router();			// get instance of the express Router
 		.get(checkins.getCheckinsByUser)
 	router.route('/checkins/:checkin_id')
 		.delete(checkins.deleteCheckin)
+	router.route('/checkins/safe_delete')
+		.post(checkins.safeDeleteCheckin)
 
 	// routes for /achievements
 	router.route('/achievements')

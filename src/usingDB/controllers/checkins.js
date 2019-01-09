@@ -114,10 +114,38 @@ const db			= config.db;
 		.finally(db.end);
 	}
 
+// safeDeleteCheckins =========================================================
+
+function safeDeleteCheckin(req, res){
+	utils.checkinExists(req.body.checkin_id)
+	.then(data =>{
+		if (data){
+			db.none(queries.PQ_safeDeleteCheckin, [req.body.checkin_id])
+			.then( function() {
+				utils.resObj(res, 200, true, 'commitment has been deactivated, to restore go to trash', null);
+			})
+			.catch(err => {
+				console.log('ERROR:', err); // print the error
+				utils.resObj(res, 500, false, 'error: failed to deactivate commitment', err);
+			})
+			.finally(db.end);
+		} else {
+			utils.resObj(res, 400, false, 'no active commitment with that user_id', null);
+		}
+	})
+	.catch(error => {
+		console.log('Error:', error);
+		utils.resObj(res, 500, false, 'error: failed to deactivate commitment, failed to find commitment', error);
+	})
+	.finally(db.end);
+}
+
+
 module.exports = {
 createCheckin: createCheckin,
 getCheckinsByUser: getCheckinsByUser,
 getAllCheckins: getAllCheckins,
 updateCheckin: updateCheckin,
-deleteCheckin: deleteCheckin
+deleteCheckin: deleteCheckin,
+safeDeleteCheckin: safeDeleteCheckin
 };

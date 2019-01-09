@@ -57,7 +57,7 @@ const db			= config.db;
 				utils.resObj(res, 400, false, 'user with that email already exists', null);
 			} else {
 				const hashedPassword = login_utils.hashPassword(req.body.user_password);
-				db.none(queries.PQ_addNewUser, [req.body.first_name, req.body.last_name, req.body.phone_number, req.body.email, hashedPassword, false, req.body.user_group_id, 0])
+				db.none(queries.PQ_addNewUser, [req.body.first_name, req.body.last_name, req.body.phone_number, req.body.email, hashedPassword, true, req.body.user_group_id, 0])
 					.then( function() {
 						utils.resObj(res, 200, true, 'created new user', null);
 					})
@@ -179,6 +179,13 @@ const db			= config.db;
 			.finally(db.end);
 	}
 
+// signup =====================================================================
+
+	function signup(req, res){
+		utils.resObj(res, 200, true, 'Please complete signup to become a verified user', null);
+	}
+
+
 // update user ================================================================
 
 	function updateUser(req, res){ // separate update for password, email
@@ -215,7 +222,7 @@ const db			= config.db;
 				db.result(queries.PQ_deleteUser, [req.params.user_id])
 				.then( result => {
 					if (result.rowCount){
-						utils.resObj(res, 200, true, 'user has been deactivated, to restore go to trash', null);
+						utils.resObj(res, 200, true, 'user has been permanently deleted', null);
 					} else {
 						utils.resObj(res, 400, false, 'failed to delete user', null);
 					}
@@ -236,12 +243,40 @@ const db			= config.db;
 		.finally(db.end);
 	}
 
+// safeDeleteUser =================================================================
+
+	function safeDeleteUser(req, res){
+		utils.userExistsID(req.body.user_id)
+		.then(data =>{
+			if (data){
+				db.none(queries.PQ_safeDeleteUser, [req.body.user_id])
+				.then( function() {
+					utils.resObj(res, 200, true, 'user has been deactivated, to restore go to trash', null);
+				})
+				.catch(err => {
+					console.log('ERROR:', err); // print the error
+					utils.resObj(res, 500, false, 'error: failed to deactivate user', err);
+				})
+				.finally(db.end);
+			} else {
+				utils.resObj(res, 400, false, 'no active user with that user_id', null);
+			}
+		})
+		.catch(error => {
+			console.log('Error:', error);
+			utils.resObj(res, 500, false, 'error: failed to deactivate user, failed to find user', error);
+		})
+		.finally(db.end);
+	}
+
 module.exports = {
 	getSingleUser: getSingleUser,
 	getAllUsers: getAllUsers,
 	addNewUser: addNewUser,
 	rememberMe: rememberMe,
 	login: login,
+	signup: signup,
 	updateUser: updateUser,
-	deleteUser: deleteUser
+	deleteUser: deleteUser,
+	safeDeleteUser: safeDeleteUser
 };

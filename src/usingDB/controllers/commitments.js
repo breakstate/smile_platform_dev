@@ -144,12 +144,40 @@ const db			= config.db;
 		.finally(db.end);
 	}
 
+// safeDeleteCommitment========================================================
+
+	function safeDeleteCommitment(req, res){
+		utils.commitmentExists(req.body.goal_id)
+		.then(data =>{
+			if (data){
+				db.none(queries.PQ_safeDeleteCommitment, [req.body.goal_id])
+				.then( function() {
+					utils.resObj(res, 200, true, 'commitment has been deactivated, to restore go to trash', null);
+				})
+				.catch(err => {
+					console.log('ERROR:', err); // print the error
+					utils.resObj(res, 500, false, 'error: failed to deactivate commitment', err);
+				})
+				.finally(db.end);
+			} else {
+				utils.resObj(res, 400, false, 'no active commitment with that user_id', null);
+			}
+		})
+		.catch(error => {
+			console.log('Error:', error);
+			utils.resObj(res, 500, false, 'error: failed to deactivate commitment, failed to find commitment', error);
+		})
+		.finally(db.end);
+	}
+
+
 module.exports = {
 createCommitment: createCommitment,
 getCommitmentsByUser: getCommitmentsByUser,
 getCommitmentByID: getCommitmentByID,
 getAllCommitments: getAllCommitments,
 updateCommitment: updateCommitment,
-deleteCommitment: deleteCommitment
+deleteCommitment: deleteCommitment,
+safeDeleteCommitment: safeDeleteCommitment
 };
 //req.body.goal_title, req.body.goal_description, req.body.start_date, req.body.end_date, req.body.start_time, req.body.end_time, req.body.is_full_day, req.body.is_recurring, req.body.user_id, req.body.created_by, req.body.created_date, req.body.parent_goal_id, req.body.difficulty, req.body.recurring_type, req.body.separation_count, req.body.max_occurrence, req.body.hour_of_day, req.body.day_of_week, req.body.day_of_month, req.body.day_of_year, req.body.week_of_month, req.body.week_of_year, req.body.month_of_yeal 

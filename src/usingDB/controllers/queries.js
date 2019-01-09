@@ -4,24 +4,28 @@ const PQ = require('pg-promise').ParameterizedQuery;
 const PQ_userExists = new PQ('SELECT user_id FROM user_info WHERE email = $1');
 const PQ_userExistsID = new PQ('SELECT user_id FROM user_info WHERE user_id = $1');
 const PQ_noteExists = new PQ('SELECT note_id FROM notes WHERE note_id = $1');
-const PQ_commitmentExists = new PQ('SELECT goal_id FROM goal WHERE goal_id = $1');
+const PQ_commitmentExists = new PQ('SELECT goal_id FROM goals WHERE goal_id = $1');
 const PQ_completedCommitmentExists = new PQ('SELECT goal_id FROM completed_goals WHERE goal_id = $1');
 const PQ_checkinExists = new PQ('SELECT checkin_id FROM check_in WHERE checkin_id = $1');
 const PQ_mediaExists = new PQ('SELECT meida_id FROM media WHERE meida_id = $1');
 const PQ_motivationalExists = new PQ('SELECT id FROM motivational_messages WHERE id = $1');
 const PQ_achievementTypeExists = new PQ('SELECT id FROM achievement_description WHERE id = $1');
 
+// admin.js
+const PQ_inviteUser = new PQ('INSERT INTO user_info(email, v_token) VALUES($1, $2)');
 
 // user.js
 const PQ_getSingleUser = new PQ('SELECT * FROM user_info WHERE user_id=$1');
 const PQ_getAllUsers = new PQ('SELECT * FROM user_info');//.token FROM user_info INNER JOIN authentication ON user_info.user_id = authentication.user_id');
-const PQ_userLogin = new PQ('SELECT email, user_password, user_id, v_token FROM user_info WHERE email = $1'); // v_token to be replace with u_token
+const PQ_userLogin = new PQ('SELECT email, user_password, user_id, v_token FROM user_info WHERE email = $1 AND active = true AND verified = true'); // v_token to be replace with u_token
 const PQ_addNewUser = new PQ('INSERT INTO user_info(first_name, last_name, phone_number, email, user_password, verified, user_group_id, v_token) VALUES($1, $2, $3, $4, $5, $6, $7, $8)');
+//const PQ_userSignUp = new PQ('INSERT INTO user_info(first_name, last_name, phone_number, email, user_password, verified, user_group_id, v_token) VALUES($1, $2, $3, $4, $5, $6, $7, $8)');
 const PQ_addNewUserVerifyToken = new PQ('UPDATE user_info SET v_token = $1 WHERE email = $2'); // add verify_token here once implemented
 const PQ_getUserToken = new PQ('SELECT v_token FROM user_info WHERE email = $1');
 const PQ_getUserId = new PQ('SELECT user_id FROM user_info WHERE email = $1');
 const PQ_updateUser = new PQ('UPDATE user_info SET first_name=$1, last_name=$2, phone_number=$3 WHERE user_id=$4')
 const PQ_deleteUser = new PQ('DELETE FROM user_info WHERE user_id = $1');
+const PQ_safeDeleteUser = new PQ('UPDATE user_info SET active=false WHERE user_id = $1 AND active=true');
 
 // commitments.js
 const PQ_createGoal = new PQ('INSERT INTO goals(goal_title, goal_description, start_date, end_date, start_time, end_time, is_full_day, is_recurring, user_id, created_by, created_date, difficulty) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)'); // update values
@@ -31,6 +35,8 @@ const PQ_getCommitmentByID = new PQ("SELECT goal_id, goal_title, goal_descriptio
 const PQ_getAllCommitments = new PQ("SELECT goal_id, goal_title, goal_description, start_date, end_date, start_time, end_time, is_full_day, is_recurring, user_id, created_by, created_date, parent_goal_id, difficulty, active, complete, recurring_type, separation_count, max_occurrence, hour_of_day, day_of_week, day_of_month, day_of_year, week_of_month, week_of_year, month_of_year FROM goals");
 //const PQ_updateCommitment = new PQ('UPDATE goal SET goal_title=$1, goal_description=$2, start_date=$3, end_date=$4, start_time=$5, end_time=$6, is_full_day=$7, is_recurring=$8, goal_id=$9 WHERE goal_id=$9');
 const PQ_deleteCommitment = new PQ('DELETE FROM goals WHERE goal_id = $1');// update table to show goal_id instead of id
+const PQ_safeDeleteCommitment = new PQ('UPDATE goals SET active=false WHERE goal_id = $1 AND active=true');
+
 
 // completed commitments.js
 const PQ_createCompletedCommitment = new PQ('INSERT INTO completed_goals(goal_id, date_completed, note, satisfaction) VALUES($1, $2, $3, $4)');
@@ -47,11 +53,13 @@ const PQ_updateNote = new PQ('UPDATE notes SET note=$1, date_edited=$2, is_edite
 const PQ_deleteNote = new PQ('DELETE FROM notes WHERE note_id = $1');
 
 // checkins.js
-const PQ_createCheckin = new PQ('INSERT INTO check_in(user_id, date_answered, time_answered, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20, q21, q22, q23, q24, q25, q26, q27, q28, q29, q30, q31, q32, q33, q34) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37)'); // duration instead of end time maybe
-const PQ_getCheckinsByUser = new PQ("SELECT checkin_id, user_id, TO_CHAR(date_answered, 'yyyy-mm-dd') as date_answered, time_answered, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20, q21, q22, q23, q24, q25, q26, q27, q28, q29, q30, q31, q32, q33, q34 FROM check_in WHERE user_id = $1");
-const PQ_getAllCheckins = new PQ("SELECT checkin_id, user_id, TO_CHAR(date_answered, 'yyyy-mm-dd') as date_answered, time_answered, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20, q21, q22, q23, q24, q25, q26, q27, q28, q29, q30, q31, q32, q33, q34 FROM check_in");
+const PQ_createCheckin = new PQ('INSERT INTO checkins(user_id, date_answered, time_answered, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20, q21, q22, q23, q24, q25, q26, q27, q28, q29, q30, q31, q32, q33, q34) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37)'); // duration instead of end time maybe
+const PQ_getCheckinsByUser = new PQ("SELECT checkin_id, user_id, TO_CHAR(date_answered, 'yyyy-mm-dd') as date_answered, time_answered, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20, q21, q22, q23, q24, q25, q26, q27, q28, q29, q30, q31, q32, q33, q34 FROM checkins WHERE user_id = $1");
+const PQ_getAllCheckins = new PQ("SELECT checkin_id, user_id, TO_CHAR(date_answered, 'yyyy-mm-dd') as date_answered, time_answered, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20, q21, q22, q23, q24, q25, q26, q27, q28, q29, q30, q31, q32, q33, q34 FROM checkins");
 //const PQ_updateCheckin = new PQ('UPDATE goal SET goal_title=$1, goal_description=$2, start_date=$3, end_date=$4, start_time=$5, end_time=$6, is_full_day=$7, is_recurring=$8, goal_id=$9 WHERE goal_id=$9');
-const PQ_deleteCheckin = new PQ('DELETE FROM check_in WHERE checkin_id = $1');
+const PQ_deleteCheckin = new PQ('DELETE FROM checkins WHERE checkin_id = $1');
+const PQ_safeDeleteCheckin = new PQ('UPDATE checkins SET active=false WHERE checkin_id = $1 AND active=true');
+
 
 // achievements.js //Pull description in the GET from achievment_description
 const PQ_createAchievement = new PQ('INSERT INTO achievements(id, user_id, percent_complete, last_entry, next_entry, times) VALUES($1, $2, $3, $4, $5, $6)');
@@ -105,6 +113,9 @@ module.exports = {
 	PQ_motivationalExists: PQ_motivationalExists,
 	PQ_achievementTypeExists: PQ_achievementTypeExists,
 
+	// admin
+	PQ_inviteUser: PQ_inviteUser,
+
 	// user.js
 	PQ_getSingleUser: PQ_getSingleUser,
 	PQ_getAllUsers: PQ_getAllUsers,
@@ -115,6 +126,7 @@ module.exports = {
 	PQ_getUserId : PQ_getUserId,
 	PQ_updateUser: PQ_updateUser,
 	PQ_deleteUser: PQ_deleteUser,
+	PQ_safeDeleteUser: PQ_safeDeleteUser,
 
 	// commitments.js
 	PQ_createCommitment: PQ_createCommitment,
@@ -124,6 +136,7 @@ module.exports = {
 	PQ_getAllCommitments: PQ_getAllCommitments,
 //	PQ_updateCommitment: PQ_updateCommitment,
 	PQ_deleteCommitment: PQ_deleteCommitment,
+	PQ_safeDeleteCommitment: PQ_safeDeleteCommitment,
 
 	// notes.js
 	PQ_createNote: PQ_createNote,
@@ -145,6 +158,7 @@ module.exports = {
 	PQ_getAllCheckins: PQ_getAllCheckins,
 //	PQ_updateCheckin: PQ_updateCheckin,
 	PQ_deleteCheckin: PQ_deleteCheckin,
+	PQ_safeDeleteCheckin: PQ_safeDeleteCheckin,
 
 	// Achievements.js
 	PQ_createAchievement: PQ_createAchievement,
