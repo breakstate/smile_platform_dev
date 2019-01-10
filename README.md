@@ -13,6 +13,7 @@
   - [motivational](#motivational)
   - [achievements_d](#achievements_d)
   - [achievements](#achievements)
+  - [analytics](#analytics)
 - [links](#links)
   
 
@@ -325,6 +326,39 @@ For requests requiring input:
 **HTTP request type:** GET  
 **End point:** localhost:8080/api/achievements/:user_id  
 **Note:** This will return all achievements for specified user_id  
+
+<hr>  
+
+### Analytics
+#### Get all activity logs
+**HTTP request type:** GET  
+**End point:** localhost:8080/api/analytics/all  
+**Note:** This will return all activity logs  
+
+#### Get activity logs by user_id
+**HTTP request type:** GET  
+**End point:** localhost:8080/api/analytics/by_user/:user_id  
+**Note:** This will return all activity logs by user. eg ```...by_user/2```  
+
+#### Get activity logs by date
+**HTTP request type:** GET  
+**End point:** localhost:8080/api/analytics/by_date/:date  
+**Note:** This will return all activity logs by user. eg ```...by_date/2019-01-10```  
+
+#### Get activity logs by user_id and date
+**HTTP request type:** GET  
+**End point:** localhost:8080/api/analytics/by_user_date/:user_id/:date  
+**Note:** This will return all activity logs by user and date. eg ```...by_user/2/2019-01-10```  
+
+<hr>  
+
+<hr>  
+
+### Admin
+#### Invite new user
+**HTTP request type:** POST  
+**End point:** REDACTED DUE TO LIMITED EMAILS  
+**Note:** This will send an email containing a singup link and verification token to the specified email.  
 
 <hr>  
 

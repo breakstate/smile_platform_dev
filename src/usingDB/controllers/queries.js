@@ -10,9 +10,17 @@ const PQ_checkinExists = new PQ('SELECT checkin_id FROM check_in WHERE checkin_i
 const PQ_mediaExists = new PQ('SELECT meida_id FROM media WHERE meida_id = $1');
 const PQ_motivationalExists = new PQ('SELECT id FROM motivational_messages WHERE id = $1');
 const PQ_achievementTypeExists = new PQ('SELECT id FROM achievement_description WHERE id = $1');
+const PQ_logActivity = new PQ('INSERT INTO activity(user_id, date_time, description) VALUES($1, $2, $3)');
 
 // admin.js
 const PQ_inviteUser = new PQ('INSERT INTO user_info(email, v_token) VALUES($1, $2)');
+
+// activity.js
+const PQ_getAllActivity = new PQ('SELECT * FROM activity');
+const PQ_getActivityByUser = new PQ('SELECT * FROM activity WHERE user_id = $1');
+const PQ_getActivityByDate = new PQ("SELECT user_id, to_char(date_time, 'dd/mm/yyyy') as date, to_char(date_time, 'HH24:MI:SS') as time, description FROM activity WHERE date_time::date = $1");
+const PQ_getActivityByPK = new PQ('SELECT * FROM activity WHERE user_id = $1 AND date_time = $2');
+//const PQ_deleteActivityByUser = new PQ('DELETE FROM activity WHERE user_id = $1');
 
 // user.js
 const PQ_getSingleUser = new PQ('SELECT * FROM user_info WHERE user_id=$1');
@@ -112,9 +120,17 @@ module.exports = {
 	PQ_mediaExists: PQ_mediaExists,
 	PQ_motivationalExists: PQ_motivationalExists,
 	PQ_achievementTypeExists: PQ_achievementTypeExists,
+	PQ_logActivity: PQ_logActivity,
 
 	// admin
 	PQ_inviteUser: PQ_inviteUser,
+
+	// activity.js
+	PQ_getAllActivity: PQ_getAllActivity,
+	PQ_getActivityByUser: PQ_getActivityByUser,
+	PQ_getActivityByDate: PQ_getActivityByDate,
+	PQ_getActivityByPK: PQ_getActivityByPK,
+//	PQ_deleteActivityByUser: PQ_deleteActivityByUser,
 
 	// user.js
 	PQ_getSingleUser: PQ_getSingleUser,

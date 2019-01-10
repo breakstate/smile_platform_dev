@@ -21,6 +21,7 @@ const achievements_d= require('./src/usingDB/controllers/achievements_descriptio
 const media			= require('./src/usingDB/controllers/media');
 const motivational	= require('./src/usingDB/controllers/motivational');
 const admin			= require('./src/usingDB/controllers/admin');
+const activity		= require('./src/usingDB/controllers/activity');
 
 // configure database connection
 const db = config.db;
@@ -70,6 +71,16 @@ var router = express.Router();			// get instance of the express Router
 		.post(user.addNewUser)
 	router.route('/admin/invite')
 		.post(admin.inviteUser)
+
+	// routes for /analytics
+	router.route('/analytics/all')
+		.get(activity.getAllActivity)
+	router.route('/analytics/by_user/:user_id')
+		.get(activity.getActivityByUser)
+	router.route('/analytics/by_date/:date')
+		.get(activity.getActivityByDate)
+	router.route('/analytics/by_user_date/:user_id/:date')
+		.get(activity.getActivityByPK)
 
 	// routes for /users
 	router.route('/users')

@@ -161,6 +161,32 @@ const db			= config.db;
 		})
 	}
 
+// log activity ==============================================================
+
+	function logActivity(user_id, date_time, description){
+		return new Promise((resolve, reject) => {
+			db.none(queries.PQ_logActivity, [user_id, date_time, description])
+			.then(() => {
+				console.log("logged activity: " + description + " for user_id: " + user_id);
+			})
+			.catch(err => {
+				reject(err);
+			})
+		})
+	}
+	
+/*
+	var date_time = datetime.create();
+	date_time = date_time.format('Y/m/d');
+	utils.logActivity(req.body.user_id, date_time, "[created checkin]")
+	.then({})
+	.catch(error => {
+		console.log('ERROR:', error); // print the error
+		utils.resObj(res, 500, false, 'error: checkin not logged', error);
+	})
+	.finally(db.end);
+*/
+
 module.exports = {
 	resObj: resObj,
 	userExists: userExists,
@@ -173,5 +199,6 @@ module.exports = {
 	motivationalExists: motivationalExists,
 	achievementExists: achievementExists,
 	achievementTypeExists: achievementTypeExists,
+	logActivity: logActivity
 }
 //export default login_utils; check why this doesnt work

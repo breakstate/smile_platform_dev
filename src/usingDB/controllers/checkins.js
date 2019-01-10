@@ -1,6 +1,7 @@
 const queries		= require('./queries');
 const config		= require('../../../config');
 const utils			= require('./utils');
+const datetime		= require('node-datetime');
 
 const db			= config.db;
 
@@ -9,10 +10,20 @@ const db			= config.db;
 		db.none(queries.PQ_createCheckin, [req.body.user_id, req.body.date_answered, req.body.time_answered, req.body.q1, req.body.q2, req.body.q3, req.body.q4, req.body.q5, req.body.q6, req.body.q7, req.body.q8, req.body.q9, req.body.q10, req.body.q11, req.body.q12, req.body.q13, req.body.q14, req.body.q15, req.body.q16, req.body.q17, req.body.q18, req.body.q19, req.body.q20, req.body.q21, req.body.q22, req.body.q23, req.body.q24, req.body.q25, req.body.q26, req.body.q27, req.body.q28, req.body.q29, req.body.q30, req.body.q31, req.body.q32, req.body.q33, req.body.q34])
 		.then( function() {
 			utils.resObj(res, 200, true, 'created new checkin', null);
+			//get current time
+			var date_time = datetime.create();
+			date_time = date_time.format('Y/m/d H:M:S');
+			utils.logActivity(req.body.user_id, date_time, "[created checkin]")
+			.then({})
+			.catch(error => {
+				console.log('ERROR:', error); // print the error
+				utils.resObj(res, 500, false, 'error: checkin not logged', error);
+			})
+			.finally(db.end);
 		})
 		.catch(error => {
 			console.log('ERROR:', error); // print the error
-			utils.resObj(res, 200, false, 'error: checkin not created', error);
+			utils.resObj(res, 500, false, 'error: checkin not created', error);
 		})
 		.finally(db.end);
 	}

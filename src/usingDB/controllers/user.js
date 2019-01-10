@@ -116,6 +116,15 @@ const db			= config.db;
 							}
 							data['admin'] = isAdmin;
 							utils.resObj(res, 200, true, 'authorized user', data);
+							var date_time = datetime.create();
+							date_time = date_time.format('Y/m/d H:M:S');
+							utils.logActivity(req.body.user_id, date_time, "[logged in (token)]")
+							.then({})
+							.catch(error => {
+								console.log('ERROR:', error); // print the error
+								utils.resObj(res, 500, false, 'error: token login not logged', error);
+							})
+							.finally(db.end);
 						} else {
 							utils.resObj(res, 400, false, 'unauthorized user', null);
 						}
@@ -155,6 +164,15 @@ const db			= config.db;
 										}
 										data1['admin'] = isAdmin;
 										utils.resObj(res, 200, true, 'authorized user', data1);
+										var date_time = datetime.create();
+										date_time = date_time.format('Y/m/d H:M:S');
+										utils.logActivity(req.body.user_id, date_time, "[logged in]")
+										.then({})
+										.catch(error => {
+											console.log('ERROR:', error); // print the error
+											utils.resObj(res, 500, false, 'error: loggin not logged', error);
+										})
+										.finally(db.end);
 									}
 								})
 							} else {

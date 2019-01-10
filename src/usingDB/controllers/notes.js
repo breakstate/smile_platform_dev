@@ -1,6 +1,8 @@
 const queries		= require('./queries');
 const config		= require('../../../config');
 const utils			= require('./utils');
+const datetime		= require('node-datetime');
+
 
 const db			= config.db;
 
@@ -9,6 +11,15 @@ const db			= config.db;
 		db.none(queries.PQ_createNote, [req.body.user_id, req.body.note, req.body.date_created, false, null])
 		.then( function() {
 			utils.resObj(res, 200, true, 'created new note', null);
+			var date_time = datetime.create();
+			date_time = date_time.format('Y/m/d H:M:S');
+			utils.logActivity(req.body.user_id, date_time, "[created note]")
+			.then({})
+			.catch(error => {
+				console.log('ERROR:', error); // print the error
+				utils.resObj(res, 500, false, 'error: note not logged', error);
+			})
+			.finally(db.end);
 		})
 		.catch(error => {
 			console.log('ERROR:', error); // print the error
