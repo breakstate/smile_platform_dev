@@ -87,8 +87,8 @@ For requests requiring input:
 #### Update user info
 **HTTP request type:** PUT  
 **End point:** localhost:8080/api/users/update_stats  
-**Body:** user_id, exp_points  
-**Note:** This is meant for updating user stats. More fields to be included shortly!  
+**Body:** user_id, exp_increase  
+**Note:** This is meant for updating user stats. exp_increase will add the amount specified to exp_points. Only put the amount to be added, and not the full new amount. More fields to be included shortly!  
 
 #### Delete user
 **HTTP request type:** DELETE  

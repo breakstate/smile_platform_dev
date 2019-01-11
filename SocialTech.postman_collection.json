@@ -843,13 +843,13 @@
 							"urlencoded": [
 								{
 									"key": "user_id",
-									"value": "51",
+									"value": "2",
 									"description": "",
 									"type": "text"
 								},
 								{
-									"key": "exp_points",
-									"value": "10",
+									"key": "exp_increase",
+									"value": "5",
 									"description": "",
 									"type": "text"
 								}

@@ -32,7 +32,7 @@ const PQ_addNewUserVerifyToken = new PQ('UPDATE user_info SET v_token = $1 WHERE
 const PQ_getUserToken = new PQ('SELECT v_token FROM user_info WHERE email = $1');
 const PQ_getUserId = new PQ('SELECT user_id FROM user_info WHERE email = $1');
 const PQ_updateUser = new PQ('UPDATE user_info SET first_name=$1, last_name=$2, phone_number=$3 WHERE user_id=$4')
-const PQ_updateUserStats = new PQ('UPDATE user_info SET exp_points=$2 WHERE user_id=$1')
+const PQ_updateUserStats = new PQ('UPDATE user_info SET exp_points=exp_points + $2 WHERE user_id=$1')
 const PQ_deleteUser = new PQ('DELETE FROM user_info WHERE user_id = $1');
 const PQ_safeDeleteUser = new PQ('UPDATE user_info SET active=false WHERE user_id = $1 AND active=true');
 

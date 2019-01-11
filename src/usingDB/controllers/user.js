@@ -242,7 +242,7 @@ const db			= config.db;
 		utils.userExistsID(req.body.user_id)
 		.then(data => {
 			if (data){
-				db.none(queries.PQ_updateUserStats, [req.body.user_id, req.body.exp_points])
+				db.none(queries.PQ_updateUserStats, [req.body.user_id, req.body.exp_increase])
 				.then(data => {
 					utils.resObj(res, 200, true, 'user stats updated', null);
 				})
