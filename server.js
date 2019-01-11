@@ -72,6 +72,8 @@ var router = express.Router();			// get instance of the express Router
 		.post(user.addNewUser)
 	router.route('/admin/invite')
 		.post(admin.inviteUser)
+	router.route('/admin/generate_token')
+		.post(admin.tokenGenerate)
 
 	// routes for /analytics
 	router.route('/analytics/all')

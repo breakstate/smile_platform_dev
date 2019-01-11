@@ -101,7 +101,7 @@ const db			= config.db;
 		if (!req.body.token){
 			utils.resObj(res, 400, false, 'no token provided', null);
 		} else {
-			jwt.verify(req.body.token, config.secret, function(err, decoded) {
+			jwt.verify(req.body.token, config.u_secret, function(err, decoded) {
 				if (err) {
 					utils.resObj(res, 403, false, 'invalid token', null);
 				} else {
@@ -153,7 +153,7 @@ const db			= config.db;
 						fetchToken(req.body.email, data1)
 						.then(data => {
 							if (data){
-								jwt.verify(data.v_token, config.secret, function(err, decoded) {
+								jwt.verify(data.u_token, config.u_secret, function(err, decoded) {
 									if (err) {
 										utils.resObj(res, 403, false, 'invalid token', err);
 									} else {

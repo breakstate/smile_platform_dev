@@ -42,7 +42,12 @@ const db			= config.db;
 		.finally(db.end);
 	}
 
+// u_token generator ==========================================================
 
+function tokenGenerate(req, res){
+	const token = jwt.sign({usr: req.body.email, grp: req.body.user_group_id}, config.u_secret);
+	utils.resObj(res, 200, true, "generated token: [" + token + "]", null);
+}
 
 
 /*
@@ -54,5 +59,6 @@ Getting data to display in graphs (still to be decided on what data)
 */
 
 module.exports = {
-	inviteUser: inviteUser
+	inviteUser: inviteUser,
+	tokenGenerate: tokenGenerate
 }
