@@ -1,0 +1,1820 @@
+{
+	"variables": [],
+	"info": {
+		"name": "SocialTech",
+		"_postman_id": "2dc7cc69-367b-507c-c87d-0925b1553601",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Commitments",
+			"description": "",
+			"item": [
+				{
+					"name": "Create commitment",
+					"request": {
+						"url": "localhost:8080/api/commitments",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "goal_id",
+									"value": "",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "goal_title",
+									"value": "This is a commitment, not a goal",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "goal_description",
+									"value": "This will have a parent_id and recurring_pattern information",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "start_date",
+									"value": "2019-01-01",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "end_date",
+									"value": "2020-01-01",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "start_time",
+									"value": "20:00",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "end_time",
+									"value": "21:00",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "is_full_day",
+									"value": "false",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "is_recurring",
+									"value": "true",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "user_id",
+									"value": "2",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "created_by",
+									"value": "2",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "created_date",
+									"value": "2019-01-08",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "parent_goal_id",
+									"value": "46",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "difficulty",
+									"value": "8",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "active",
+									"value": "",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "complete",
+									"value": "",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "recurring_type",
+									"value": "test",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "separation_count",
+									"value": "1",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "max_occurrence",
+									"value": "2",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "hour_of_day",
+									"value": "1",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "day_of_week",
+									"value": "1",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "day_of_month",
+									"value": "1",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "day_of_year",
+									"value": "1",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "week_of_month",
+									"value": "1",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "week_of_year",
+									"value": "1",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "month_of_yea",
+									"value": "1",
+									"type": "text",
+									"description": ""
+								}
+							]
+						},
+						"description": "Creates a new commitment "
+					},
+					"response": []
+				},
+				{
+					"name": "Get commitments by user_id",
+					"request": {
+						"url": "localhost:8080/api/commitments/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Retrieves all commitments from specified user as paramater using user_id"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete commitment by goal_id",
+					"request": {
+						"url": "localhost:8080/api/commitments/4",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "Deletes commitment using commitment's unique goal_id as parameter"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all commitments",
+					"request": {
+						"url": "localhost:8080/api/commitments",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets all commitments from every user"
+					},
+					"response": []
+				},
+				{
+					"name": "Update commitment by goal_id",
+					"request": {
+						"url": "localhost:8080/api/commitments",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "goal_title",
+									"value": "Git good edit",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "goal_description",
+									"value": "Be generally bad ass edit",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "start_date",
+									"value": "Jan, 01, 2019",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "end_date",
+									"value": "Feb, 01, 2019",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "start_time",
+									"value": "2018-12-12 17:00:00",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "end_time",
+									"value": "2018-12-12 17:30:00",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "is_full_day",
+									"value": "false",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "is_recurring",
+									"value": "false",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "goal_id",
+									"value": "40",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "created_by",
+									"value": "2",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "created_date",
+									"value": "Dec, 25, 2018",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "parent_goal_id",
+									"value": "NULL",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Updates specified commitment by goal_id"
+					},
+					"response": []
+				},
+				{
+					"name": "Create goal",
+					"request": {
+						"url": "localhost:8080/api/commitments",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "goal_id",
+									"value": "",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "goal_title",
+									"value": "this is a goal again",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "goal_description",
+									"value": "will not have parent_goal_id or recurring info",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "start_date",
+									"value": "2019-01-01",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "end_date",
+									"value": "2020-01-01",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "start_time",
+									"value": "20:00",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "end_time",
+									"value": "21:00",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "is_full_day",
+									"value": "false",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "is_recurring",
+									"value": "true",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "user_id",
+									"value": "2",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "created_by",
+									"value": "2",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "created_date",
+									"value": "2019-01-08",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "parent_goal_id",
+									"value": "46",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "difficulty",
+									"value": "8",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "active",
+									"value": "",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "complete",
+									"value": "",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "recurring_type",
+									"value": "test",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "separation_count",
+									"value": "1",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "max_occurrence",
+									"value": "2",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "hour_of_day",
+									"value": "1",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "day_of_week",
+									"value": "1",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "day_of_month",
+									"value": "1",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "day_of_year",
+									"value": "1",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "week_of_month",
+									"value": "1",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "week_of_year",
+									"value": "1",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "month_of_yea",
+									"value": "1",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Creates a new goal "
+					},
+					"response": []
+				},
+				{
+					"name": "SAFE deletes commitment",
+					"request": {
+						"url": "localhost:8080/api/commitments/safe_delete",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "goal_id",
+									"value": "47",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"description": "",
+			"item": [
+				{
+					"name": "Get all users",
+					"request": {
+						"url": "localhost:8080/api/users/",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "email@email.com",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": "Gets list of all users including hashed passwords and tokens"
+					},
+					"response": []
+				},
+				{
+					"name": "Create user",
+					"request": {
+						"url": "localhost:8080/api/users",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "first_name",
+									"value": "admin",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "admin",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "0987654321",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "admin@admin.com",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "user_password",
+									"value": "admin",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "user_group_id",
+									"value": "2",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": "Creates new user (email cannot belong to existing user)"
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"url": "localhost:8080/api/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "admin@admin.com",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "user_password",
+									"value": "admi",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": "This request verifies that the user exists and that they have entered the correct password. If not, status = fail"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user by user_id",
+					"request": {
+						"url": "localhost:8080/api/users/51",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "52",
+									"description": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Deleted user from table (maybe should just deactivate)"
+					},
+					"response": []
+				},
+				{
+					"name": "Login with token",
+					"request": {
+						"url": "localhost:8080/api/token_login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3IiOiJmQGYuY29tIiwiZ3JwIjoxLCJpYXQiOjE1NDYwODM1MzV9.DSHdkyBV3TKqKO-s1dNL3DNx4Tz4NpYm6tqCHfFn0uc",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update user by user_id",
+					"request": {
+						"url": "localhost:8080/api/users/update_info",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "first_name",
+									"value": "z",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "h",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "0987654321",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "51",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": "Updates non-sensative user values"
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by user_id",
+					"request": {
+						"url": "localhost:8080/api/users/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "SAFE delete user",
+					"request": {
+						"url": "localhost:8080/api/users/safe_delete",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "28",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": "deactivates user in user_info"
+					},
+					"response": []
+				},
+				{
+					"name": "Update user stats",
+					"request": {
+						"url": "localhost:8080/api/users/update_stats",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "exp_points",
+									"value": "10",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update user STATS by id",
+					"request": {
+						"url": "localhost:8080/api/users/update_stats",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "exp_increase",
+									"value": "5",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": "Updates user values related to statisitcs tracking"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notes",
+			"description": "",
+			"item": [
+				{
+					"name": "Get notes by user_id",
+					"request": {
+						"url": "localhost:8080/api/notes/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Get all notes from the specified user using user_id"
+					},
+					"response": []
+				},
+				{
+					"name": "Create new note",
+					"request": {
+						"url": "localhost:8080/api/notes",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "note",
+									"value": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "date_created",
+									"value": "Jan, 03, 2019",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "edited",
+									"value": "false",
+									"description": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Creates new note"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all notes",
+					"request": {
+						"url": "localhost:8080/api/notes",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Retrieves all notes from all users"
+					},
+					"response": []
+				},
+				{
+					"name": "Update note by note_id",
+					"request": {
+						"url": "localhost:8080/api/notes",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "note",
+									"value": "lol jk jkgsdf",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "date_edited",
+									"value": "Jan, 04, 2019",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "note_id",
+									"value": "1",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": "Updates a note with the specified note_id, checks to make sure that note exists"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete note by note_id",
+					"request": {
+						"url": "localhost:8080/api/notes/2",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "Deleted note with specified note_id if it exists"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Completed_commitments",
+			"description": "",
+			"item": [
+				{
+					"name": "Get all completed commitments",
+					"request": {
+						"url": "localhost:8080/api/completed_commitments",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets all completed commitments"
+					},
+					"response": []
+				},
+				{
+					"name": "Set commitment as complete",
+					"request": {
+						"url": "localhost:8080/api/completed_commitments",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "goal_id",
+									"value": "43",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "date_completed",
+									"value": "2019-01-04",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "note",
+									"value": "testing the completion mechanic",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "satisfaction",
+									"value": "90",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": "Sets a commitments as complete in the goal table and creates and entry for that commitment in the completed goals table"
+					},
+					"response": []
+				},
+				{
+					"name": "Get completed commitments by user_id",
+					"request": {
+						"url": "localhost:8080/api/completed_commitments/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets completed commitment based on user_id, can include more data from goal table"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Checkins",
+			"description": "",
+			"item": [
+				{
+					"name": "Get all checkins",
+					"request": {
+						"url": "localhost:8080/api/checkins",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets all checkins"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all checkins",
+					"request": {
+						"url": "localhost:8080/api/checkins",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create checkin",
+					"request": {
+						"url": "localhost:8080/api/checkins",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "2",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "checkin_id",
+									"value": "",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "date_answered",
+									"value": "Jan, 01, 2019",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "time_answered",
+									"value": "17:05:24",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q1",
+									"value": "qwe",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q2",
+									"value": "asd",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q3",
+									"value": "dfg",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q4",
+									"value": "vbn",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q5",
+									"value": "xcv",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q6",
+									"value": "ret",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q7",
+									"value": "vbn",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q8",
+									"value": "sdf",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q9",
+									"value": "xcv",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q10",
+									"value": "cvb",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q11",
+									"value": "xcv",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q12",
+									"value": "ghjk",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q13",
+									"value": "tyu",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q14",
+									"value": "ert",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q15",
+									"value": "wer",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q16",
+									"value": "yui",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q17",
+									"value": "sdf",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q18",
+									"value": "cvb",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q19",
+									"value": "hjk",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q20",
+									"value": "sdf",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q21",
+									"value": "dfg",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q22",
+									"value": "456",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q23",
+									"value": "345",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q24",
+									"value": "789",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q25",
+									"value": "ghj",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q26",
+									"value": "sdf",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q27",
+									"value": "xcv",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q28",
+									"value": "cvb",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q29",
+									"value": "ghj",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q30",
+									"value": "ert",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q31",
+									"value": "dsf",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q32",
+									"value": "uio",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q33",
+									"value": "hjk",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "q34",
+									"value": "hjk",
+									"type": "text",
+									"description": ""
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete checkin by checkin_id",
+					"request": {
+						"url": "localhost:8080/api/checkins/3",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "Deletes checkin with specified user_id"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Achievements",
+			"description": "",
+			"item": [
+				{
+					"name": "Get all achievement information",
+					"request": {
+						"url": "localhost:8080/api/achievements",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get all achievement data by specified user_id",
+					"request": {
+						"url": "localhost:8080/api/achievements/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create new achievement entry for user_id",
+					"request": {
+						"url": "localhost:8080/api/achievements",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "percent_complete",
+									"value": "50",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "last_entry",
+									"value": "Jan, 10, 2019",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "next_entry",
+									"value": "Jan, 11, 2019",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "time",
+									"value": "10",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get all achievement TYPES",
+					"request": {
+						"url": "localhost:8080/api/achievements_d",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets achievement TYPES from achievement_description table"
+					},
+					"response": []
+				},
+				{
+					"name": "Create achievement TYPE",
+					"request": {
+						"url": "localhost:8080/api/achievements_d",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "achievement type",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "xp_worth",
+									"value": "50",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": "Creates a type of achievement that the user can then achieve in achievement_description table"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete achievement TYPE",
+					"request": {
+						"url": "localhost:8080/api/achievements_d/7",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "Deletes achievement TYPE from achievement_description table"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Media",
+			"description": "",
+			"item": [
+				{
+					"name": "Get all media entries",
+					"request": {
+						"url": "localhost:8080/api/media",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create media entry",
+					"request": {
+						"url": "localhost:8080/api/media",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "path_to_media",
+									"value": "path/to/media.jpg",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "media_title",
+									"value": "progress pic",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "2",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get media entry by user_id",
+					"request": {
+						"url": "localhost:8080/api/media/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update media entry",
+					"request": {
+						"url": "localhost:8080/api/media",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "path_to_media",
+									"value": "new/path/to/media/test",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "media_title",
+									"value": "new title",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "media_id",
+									"value": "2",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete media entry by media_id",
+					"request": {
+						"url": "localhost:8080/api/media/1",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Motivational",
+			"description": "",
+			"item": [
+				{
+					"name": "Get random motivational entry",
+					"request": {
+						"url": "localhost:8080/api/motivational_r",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get all motivational entries",
+					"request": {
+						"url": "localhost:8080/api/motivational",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create motivational entry",
+					"request": {
+						"url": "localhost:8080/api/motivational",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "description",
+									"value": "this is a test",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "tags",
+									"value": "test",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update motivational entry",
+					"request": {
+						"url": "localhost:8080/api/motivational",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "description",
+									"value": "update test",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "tags",
+									"value": "updated tags",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "16",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete motivational entry",
+					"request": {
+						"url": "localhost:8080/api/motivational/16",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Activity logs",
+			"description": "",
+			"item": [
+				{
+					"name": "Get activity logs by user_id and date",
+					"request": {
+						"url": "localhost:8080/api/analytics/by_user_date/2/2019-01-10",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get activity logs by user_id ",
+					"request": {
+						"url": "localhost:8080/api/analytics/by_user/2/",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get activity logs by date",
+					"request": {
+						"url": "localhost:8080/api/analytics/by_date/2019-01-10",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get all activity logs",
+					"request": {
+						"url": "localhost:8080/api/analytics/all/",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"description": "",
+			"item": [
+				{
+					"name": "Invite user",
+					"request": {
+						"url": "localhost:8080/api/admin/invite",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "gsferopo@student.wethinkcode.co.za",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "user_group_id",
+									"value": "1",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
