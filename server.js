@@ -85,7 +85,10 @@ var router = express.Router();			// get instance of the express Router
 	// routes for /users
 	router.route('/users')
 		.get(user.getAllUsers) // without passwords or ID
+	router.route('/users/update_info')
 		.put(user.updateUser)
+	router.route('/users/update_stats')
+		.put(user.updateUserStats)
 	router.route('/users/:user_id')
 		.get(user.getSingleUser)
 		.delete(user.deleteUser)

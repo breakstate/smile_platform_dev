@@ -792,6 +792,39 @@
 						"description": "deactivates user in user_info"
 					},
 					"response": []
+				},
+				{
+					"name": "Update user stats",
+					"request": {
+						"url": "localhost:8080/api/users/update_stats",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "exp_points",
+									"value": "10",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
 				}
 			]
 		},
@@ -1655,6 +1688,95 @@
 						"method": "DELETE",
 						"header": [],
 						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Activity logs",
+			"description": "",
+			"item": [
+				{
+					"name": "Get activity logs by user_id and date",
+					"request": {
+						"url": "localhost:8080/api/analytics/by_user_date/2/2019-01-10",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get activity logs by user_id ",
+					"request": {
+						"url": "localhost:8080/api/analytics/by_user/2/",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get activity logs by date",
+					"request": {
+						"url": "localhost:8080/api/analytics/by_date/2019-01-10",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get all activity logs",
+					"request": {
+						"url": "localhost:8080/api/analytics/all/",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"description": "",
+			"item": [
+				{
+					"name": "Invite user",
+					"request": {
+						"url": "localhost:8080/api/admin/invite",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "gsferopo@student.wethinkcode.co.za",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "user_group_id",
+									"value": "1",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
 						"description": ""
 					},
 					"response": []

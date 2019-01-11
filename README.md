@@ -80,9 +80,15 @@ For requests requiring input:
 
 #### Update user
 **HTTP request type:** PUT  
-**End point:** localhost:8080/api/users  
+**End point:** localhost:8080/api/users/update_info  
 **Body:** first_name, last_name, phone_number, user_id  
 **Note:** This is meant for updating info that isn't sensative. Email and password changing will be separate  
+
+#### Update user info
+**HTTP request type:** PUT  
+**End point:** localhost:8080/api/users/update_stats  
+**Body:** user_id, exp_points  
+**Note:** This is meant for updating user stats. More fields to be included shortly!  
 
 #### Delete user
 **HTTP request type:** DELETE  
