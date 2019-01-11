@@ -9,6 +9,7 @@ const app			= express();			// define our app using express
 const bodyParser	= require('body-parser');
 const morgan		= require('morgan');
 const cors			= require('cors');
+const moment		= require('moment'); // test
 
 const config		= require('./config');
 const user			= require('./src/usingDB/controllers/user');

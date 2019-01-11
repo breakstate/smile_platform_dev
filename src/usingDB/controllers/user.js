@@ -199,7 +199,7 @@ const db			= config.db;
 
 // signup =====================================================================
 
-	function signup(req, res){
+	function verifyInvite(req, res){
 		jwt.verify(req.params.v_token, config.secret, function(err, decoded) {
 			if (err) {
 				utils.resObj(res, 403, false, 'invalid verification link', null);
@@ -208,6 +208,20 @@ const db			= config.db;
 				// if success = true here, Angular needs to open/redirect to the signup form
 			}
 		})
+	}
+
+	function signup(req, res){
+		//create token and hash password
+			//code
+		//post to db
+		db.none(queries.PQ_userSignup, [req.body.first_name, req.body.last_name, req.body.phone_number, req.body.user_password, u_token])
+		// submit rest of signup info
+		// first_name, 
+		//last_name, 
+		//phone_number, 
+		//user_password (with confirm password on front end), 
+		//set verified to true, 
+		//give a u_token (different secret)
 	}
 
 
@@ -326,6 +340,7 @@ module.exports = {
 	rememberMe: rememberMe,
 	login: login,
 	signup: signup,
+	verifyInvite: verifyInvite,
 	updateUser: updateUser,
 	updateUserStats: updateUserStats,
 	deleteUser: deleteUser,
