@@ -23,6 +23,7 @@ const media			= require('./src/usingDB/controllers/media');
 const motivational	= require('./src/usingDB/controllers/motivational');
 const admin			= require('./src/usingDB/controllers/admin');
 const activity		= require('./src/usingDB/controllers/activity');
+const notifications	= require('./src/usingDB/controllers/notifications');
 
 // configure database connection
 const db = config.db;
@@ -132,6 +133,18 @@ var router = express.Router();			// get instance of the express Router
 		.get(notes.getNotesByUser)
 	router.route('/notes/:note_id')
 		.delete(notes.deleteNote)
+
+	// routes for /notifications
+	router.route('/notifications/create')
+		.post(notifications.createNotification)
+	router.route('/notifications/seen/:user_id')
+		.get(notifications.getSeenNotificationsByUser)
+	router.route('/notifications/unseen/:user_id')
+		.get(notifications.getUnseenNotificationsByUser)
+	router.route('/notifications/all/:user_id')
+		.get(notifications.getAllNotificationsByUser)
+	router.route('/notifications/set_as_seen/:id')
+		.put(notifications.updateNotification)
 
 	// routes for /checkins
 	router.route('/checkins')

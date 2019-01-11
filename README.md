@@ -14,6 +14,7 @@
   - [achievements_d](#achievements_d)
   - [achievements](#achievements)
   - [analytics](#analytics)
+  - [notifications](#notifications)
 - [links](#links)
   
 
@@ -367,6 +368,36 @@ For requests requiring input:
 **Note:** This will send an email containing a singup link and verification token to the specified email.  
 
 <hr>  
+
+### Notifications
+#### Create new notification
+**HTTP request type:** POST  
+**End point:** .../api/notifications/create  
+**Body:** user_id, notification, time_date  
+**Note:** notification is just text. Example of date ```.../2019-01-10```. Is unseen by default  
+
+#### Get all notifications by user_id
+**HTTP request type:** GET  
+**End point:** .../api/notifications/all/:user_id  
+**Note:** This will return all notifications (seen and unseen) for user. eg ```...all/2```  
+
+#### Get all unseen noticications by user_id
+**HTTP request type:** GET  
+**End point:** .../api/notifications/unseen/:user_id  
+**Note:** This will return all unseen notifications for user. eg ```...all/2```  
+
+#### Get all seen noticications by user_id
+**HTTP request type:** GET  
+**End point:** .../api/notifications/seen/:user_id  
+**Note:** This will return all seen notifications for user. eg ```...all/2```  
+
+#### Update notification to seen
+**HTTP request type:** GET  
+**End point:** .../api/notifications/set_as_seen/:id  
+**Note:** This will set specified notification's seen value to true in the db.  simply add the id to the url eg ```...set_as_seen/2```  
+
+<hr>  
+
 
 ## LINKS
 
