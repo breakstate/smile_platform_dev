@@ -713,7 +713,7 @@
 				{
 					"name": "Update user by user_id",
 					"request": {
-						"url": "localhost:8080/api/users",
+						"url": "localhost:8080/api/users/update_info",
 						"method": "PUT",
 						"header": [
 							{
@@ -823,6 +823,39 @@
 							]
 						},
 						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update user STATS by id",
+					"request": {
+						"url": "localhost:8080/api/users/update_stats",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "51",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "exp_points",
+									"value": "10",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": "Updates user values related to statisitcs tracking"
 					},
 					"response": []
 				}
