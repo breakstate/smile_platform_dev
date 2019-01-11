@@ -187,6 +187,8 @@ const db			= config.db;
 	.finally(db.end);
 */
 
+
+
 module.exports = {
 	resObj: resObj,
 	userExists: userExists,
@@ -199,6 +201,6 @@ module.exports = {
 	motivationalExists: motivationalExists,
 	achievementExists: achievementExists,
 	achievementTypeExists: achievementTypeExists,
-	logActivity: logActivity
+	logActivity: logActivity,
 }
 //export default login_utils; check why this doesnt work
