@@ -11,10 +11,12 @@ const cn = {
     ssl: true
 };
 const db = pgp(cn);
-const secret = 'thisisthebestsecret';
+const v_secret = 'thisistheworstsecret';
+const u_secret = 'thisisthebestsecret';
 
 module.exports = {
-    secret: secret,
+    v_secret: v_secret,
+    u_secret: u_secret,
     db: db,
     postmarkClient: postmarkClient
 };

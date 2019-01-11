@@ -53,11 +53,11 @@ const db			= config.db;
 		}
 		utils.userExists(req.body.email)
 		.then(data => {
-			if (data.length){
+			if (data){
 				utils.resObj(res, 400, false, 'user with that email already exists', null);
 			} else {
 				const hashedPassword = login_utils.hashPassword(req.body.user_password);
-				db.none(queries.PQ_addNewUser, [req.body.first_name, req.body.last_name, req.body.phone_number, req.body.email, hashedPassword, true, req.body.user_group_id, 0])
+				db.none(queries.PQ_addNewUser, [req.body.first_name, req.body.last_name, req.body.phone_number, req.body.email, hashedPassword, true, req.body.user_group_id])
 					.then( function() {
 						utils.resObj(res, 200, true, 'created new user', null);
 					})
@@ -67,8 +67,8 @@ const db			= config.db;
 					})
 					.finally(db.end);
 
-				const token = jwt.sign({usr: req.body.email, grp: req.body.user_group_id}, config.secret);
-				db.none(queries.PQ_addNewUserVerifyToken, [token, req.body.email])
+				const token = jwt.sign({usr: req.body.email, grp: req.body.user_group_id}, config.u_secret);
+				db.none(queries.PQ_addNewUserToken, [token, req.body.email])
 					.then()
 					.catch(error => {
 						console.log('ERROR:', error); // print the error

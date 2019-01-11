@@ -68,7 +68,7 @@ var router = express.Router();			// get instance of the express Router
 		.post(user.rememberMe)
 
 	// routes for /admin
-	router.route('/admin')
+	router.route('/admin/add_new_user')
 		.post(user.addNewUser)
 	router.route('/admin/invite')
 		.post(admin.inviteUser)

@@ -26,9 +26,9 @@ const PQ_getActivityByPK = new PQ('SELECT * FROM activity WHERE user_id = $1 AND
 const PQ_getSingleUser = new PQ('SELECT * FROM user_info WHERE user_id=$1');
 const PQ_getAllUsers = new PQ('SELECT * FROM user_info');//.token FROM user_info INNER JOIN authentication ON user_info.user_id = authentication.user_id');
 const PQ_userLogin = new PQ('SELECT email, user_password, user_id, v_token FROM user_info WHERE email = $1 AND active = true AND verified = true'); // v_token to be replace with u_token
-const PQ_addNewUser = new PQ('INSERT INTO user_info(first_name, last_name, phone_number, email, user_password, verified, user_group_id, v_token) VALUES($1, $2, $3, $4, $5, $6, $7, $8)');
+const PQ_addNewUser = new PQ('INSERT INTO user_info(first_name, last_name, phone_number, email, user_password, verified, user_group_id) VALUES($1, $2, $3, $4, $5, $6, $7)');
 const PQ_userSignup = new PQ('INSERT INTO user_info(first_name, last_name, phone_number, email, user_password, verified, user_group_id, v_token) VALUES($1, $2, $3, $4, $5, $6, $7, $8)');
-const PQ_addNewUserVerifyToken = new PQ('UPDATE user_info SET v_token = $1 WHERE email = $2'); // add verify_token here once implemented
+const PQ_addNewUserToken = new PQ('UPDATE user_info SET u_token = $1 WHERE email = $2'); // add token here once implemented
 const PQ_getUserToken = new PQ('SELECT v_token FROM user_info WHERE email = $1');
 const PQ_getUserId = new PQ('SELECT user_id FROM user_info WHERE email = $1');
 const PQ_updateUser = new PQ('UPDATE user_info SET first_name=$1, last_name=$2, phone_number=$3 WHERE user_id=$4')
@@ -140,7 +140,7 @@ module.exports = {
 	PQ_userSignup: PQ_userSignup,
 	PQ_getUserToken: PQ_getUserToken,
 	PQ_addNewUser: PQ_addNewUser,
-	PQ_addNewUserVerifyToken: PQ_addNewUserVerifyToken,
+	PQ_addNewUserToken: PQ_addNewUserToken,
 	PQ_getUserId : PQ_getUserId,
 	PQ_updateUser: PQ_updateUser,
 	PQ_updateUserStats: PQ_updateUserStats,
