@@ -1813,6 +1813,128 @@
 						"description": ""
 					},
 					"response": []
+				},
+				{
+					"name": "Generate u_token manually",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/admin/generate_token",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "george@test.com",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "user_group_id",
+									"value": "1",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notifications",
+			"description": "",
+			"item": [
+				{
+					"name": "Create notification",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/notifications/create",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "notification",
+									"value": "ALERT! lol jk",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "time_date",
+									"value": "2019-01-01",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get all notifications by user_id",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/notifications/all/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get SEEN notifications by user_id",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/notifications/seen/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get UNseen notifications by user_id",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/notifications/unseen/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update notification to seen",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/notifications/set_as_seen/2",
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
 				}
 			]
 		}

@@ -10,10 +10,12 @@ const PQ_checkinExists = new PQ('SELECT checkin_id FROM check_in WHERE checkin_i
 const PQ_mediaExists = new PQ('SELECT meida_id FROM media WHERE meida_id = $1');
 const PQ_motivationalExists = new PQ('SELECT id FROM motivational_messages WHERE id = $1');
 const PQ_achievementTypeExists = new PQ('SELECT id FROM achievement_description WHERE id = $1');
+const PQ_notificationExists = new PQ('SELECT id FROM notifications WHERE id = $1');
 const PQ_logActivity = new PQ('INSERT INTO activity(user_id, date_time, description) VALUES($1, $2, $3)');
 
 // admin.js
 const PQ_inviteUser = new PQ('INSERT INTO user_info(email, v_token) VALUES($1, $2)');
+
 
 // activity.js
 const PQ_getAllActivity = new PQ('SELECT * FROM activity');
@@ -60,6 +62,13 @@ const PQ_getNotesByUser = new PQ('SELECT * FROM notes WHERE user_id = $1');
 const PQ_getAllNotes = new PQ('SELECT * FROM notes');
 const PQ_updateNote = new PQ('UPDATE notes SET note=$1, date_edited=$2, is_edited=$3 WHERE note_id=$4')
 const PQ_deleteNote = new PQ('DELETE FROM notes WHERE note_id = $1');
+
+// notifications.js
+const PQ_createNotification = new PQ('INSERT INTO notifications(user_id, notification, time_date) VALUES($1, $2, $3)');
+const PQ_getUnseenNotificationsByUser = new PQ('SELECT * FROM notifications WHERE seen=false AND user_id = $1');
+const PQ_getSeenNotificationsByUser = new PQ('SELECT * FROM notifications WHERE seen=true AND user_id = $1');
+const PQ_getAllNotificationsByUser = new PQ('SELECT * FROM notifications WHERE user_id = $1');
+const PQ_updateNotification = new PQ('UPDATE notifications SET seen=true WHERE id=$1');
 
 // checkins.js
 const PQ_createCheckin = new PQ('INSERT INTO checkins(user_id, date_answered, time_answered, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20, q21, q22, q23, q24, q25, q26, q27, q28, q29, q30, q31, q32, q33, q34) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37)'); // duration instead of end time maybe
@@ -121,6 +130,7 @@ module.exports = {
 	PQ_mediaExists: PQ_mediaExists,
 	PQ_motivationalExists: PQ_motivationalExists,
 	PQ_achievementTypeExists: PQ_achievementTypeExists,
+	PQ_notificationExists: PQ_notificationExists,
 	PQ_logActivity: PQ_logActivity,
 
 	// admin
@@ -163,6 +173,13 @@ module.exports = {
 	PQ_getAllNotes: PQ_getAllNotes,
 	PQ_updateNote: PQ_updateNote,
 	PQ_deleteNote: PQ_deleteNote,
+
+	// notifications.js
+	PQ_createNotification: PQ_createNotification,
+	PQ_getUnseenNotificationsByUser: PQ_getUnseenNotificationsByUser,
+	PQ_getSeenNotificationsByUser: PQ_getSeenNotificationsByUser,
+	PQ_getAllNotificationsByUser: PQ_getAllNotificationsByUser,
+	PQ_updateNotification: PQ_updateNotification,
 
 	// completed commitments.js
 	PQ_createCompletedCommitment: PQ_createCompletedCommitment,

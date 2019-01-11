@@ -161,6 +161,20 @@ const db			= config.db;
 		})
 	}
 
+// notification exists ========================================================
+
+function notificationExists(id){
+	return new Promise((resolve, reject) => {
+		db.oneOrNone(queries.PQ_notificationExists, [id])
+		.then(data => {
+			resolve(data);
+		})
+		.catch(err => {
+			reject(err);
+		})
+	})
+}
+
 // log activity ==============================================================
 
 	function logActivity(user_id, date_time, description){
@@ -201,6 +215,7 @@ module.exports = {
 	motivationalExists: motivationalExists,
 	achievementExists: achievementExists,
 	achievementTypeExists: achievementTypeExists,
+	notificationExists: notificationExists,
 	logActivity: logActivity,
 }
 //export default login_utils; check why this doesnt work
