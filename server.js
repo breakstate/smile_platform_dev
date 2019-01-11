@@ -98,8 +98,10 @@ var router = express.Router();			// get instance of the express Router
 		.delete(user.deleteUser)
 	router.route('/users/safe_delete')
 		.post(user.safeDeleteUser)
-	router.route('/user/signup/:v_token')
-		.get(user.signup)
+	router.route('/users/verify/:v_token')
+		.get(user.verifyInvite)
+	router.route('/users/signup')
+		.post(user.signup)
 
 	// routes for /commitments
 	router.route('/commitments')

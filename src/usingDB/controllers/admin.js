@@ -15,14 +15,14 @@ const db			= config.db;
 		.then(data =>{
 			if (!data){
 				// create v_token
-				var v_token = jwt.sign({usr: req.body.email, grp: req.body.user_group_id}, config.secret);
+				var v_token = jwt.sign({usr: req.body.email, grp: req.body.user_group_id}, config.v_secret);
 				db.none(queries.PQ_inviteUser, [req.body.email, v_token])
 				.then( function() {
 					config.postmarkClient.sendEmail({
 						"From": "bmoodley@student.wethinkcode.co.za",
 						"To": req.body.email,
 						"Subject": "Invite test",
-						"TextBody": "https://smile-coaching-platform-dev.herokuapp.com/api/user/signup/" + v_token
+						"TextBody": "https://smile-coaching-platform-dev.herokuapp.com/api/users/verify/" + v_token
 					});
 					utils.resObj(res, 200, true, 'user invite sent to: ' + req.body.email, null);
 				})

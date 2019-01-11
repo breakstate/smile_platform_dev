@@ -200,7 +200,7 @@ const db			= config.db;
 // signup =====================================================================
 
 	function verifyInvite(req, res){
-		jwt.verify(req.params.v_token, config.secret, function(err, decoded) {
+		jwt.verify(req.params.v_token, config.v_secret, function(err, decoded) {
 			if (err) {
 				utils.resObj(res, 403, false, 'invalid verification link', null);
 			} else {
@@ -210,20 +210,38 @@ const db			= config.db;
 		})
 	}
 
-	function signup(req, res){
-		//create token and hash password
-			//code
-		//post to db
-		db.none(queries.PQ_userSignup, [req.body.first_name, req.body.last_name, req.body.phone_number, req.body.user_password, u_token])
-		// submit rest of signup info
-		// first_name, 
-		//last_name, 
-		//phone_number, 
-		//user_password (with confirm password on front end), 
-		//set verified to true, 
-		//give a u_token (different secret)
+	function signup(req, res) {
+		if (!req.body.email || !req.body.user_group_id || !req.body.user_password || !req.body.first_name || !req.body.last_name || !req.body.phone_number || !req.body.v_token) {
+			utils.resObj(res, 400, false, 'missing values', null);
+		} else if(!login_utils.isValidEmail(req.body.email)) {
+			utils.resObj(res, 400, false, 'email formatted incorrectly', null);
+		}
+		utils.userExists(req.body.email)
+		.then(data => {
+			if (data){
+				const hashedPassword = login_utils.hashPassword(req.body.user_password);
+				db.none(queries.PQ_userSignup, [req.body.first_name, req.body.last_name, req.body.phone_number, hashedPassword, true, req.body.user_group_id, req.body.email])
+					.then( function() {
+						utils.resObj(res, 200, true, 'completed signup!', null);
+					})
+					.catch(error => {
+						console.log('ERROR:', error); // print the error
+						utils.resObj(res, 500, false, 'error: failed to complete signup', error);
+					})
+					.finally(db.end);
+				const u_token = jwt.sign({usr: req.body.email, grp: req.body.user_group_id}, config.u_secret);
+				db.none(queries.PQ_addNewUserToken, [u_token, req.bodyemail])
+					.then()
+					.catch(error => {
+						console.log('ERROR:', error); // print the error
+						utils.resObj(res, 500, false, 'error: failed to create token for user', error);
+					})
+					.finally(db.end);
+			} else {
+				utils.resObj(res, 400, false, "user with that email doesn't exist", null);
+			}	
+		})
 	}
-
 
 // update user ================================================================
 

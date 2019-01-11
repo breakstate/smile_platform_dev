@@ -29,7 +29,7 @@ const PQ_getSingleUser = new PQ('SELECT * FROM user_info WHERE user_id=$1');
 const PQ_getAllUsers = new PQ('SELECT * FROM user_info');//.token FROM user_info INNER JOIN authentication ON user_info.user_id = authentication.user_id');
 const PQ_userLogin = new PQ('SELECT email, user_password, user_id, v_token FROM user_info WHERE email = $1 AND active = true AND verified = true'); // v_token to be replace with u_token
 const PQ_addNewUser = new PQ('INSERT INTO user_info(first_name, last_name, phone_number, email, user_password, verified, user_group_id) VALUES($1, $2, $3, $4, $5, $6, $7)');
-const PQ_userSignup = new PQ('INSERT INTO user_info(first_name, last_name, phone_number, email, user_password, verified, user_group_id, v_token) VALUES($1, $2, $3, $4, $5, $6, $7, $8)');
+const PQ_userSignup = new PQ('UPDATE user_info SET first_name=$1, last_name=$2, phone_number=$3, user_password=$4, verified=$5, user_group_id=$6 WHERE email=$7');
 const PQ_addNewUserToken = new PQ('UPDATE user_info SET u_token = $1 WHERE email = $2'); // add token here once implemented
 const PQ_getUserToken = new PQ('SELECT u_token FROM user_info WHERE email = $1');
 const PQ_getUserId = new PQ('SELECT user_id FROM user_info WHERE email = $1');

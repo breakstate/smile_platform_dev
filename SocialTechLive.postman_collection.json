@@ -8,13 +8,13 @@
 	},
 	"item": [
 		{
-			"name": "Commitments",
+			"name": "Admin",
 			"description": "",
 			"item": [
 				{
-					"name": "Create commitment",
+					"name": "Invite user",
 					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/commitments",
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/admin/invite",
 						"method": "POST",
 						"header": [
 							{
@@ -27,303 +27,27 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "goal_id",
-									"value": "",
-									"type": "text",
+									"key": "email",
+									"value": "gsferopo@student.wethinkcode.co.za",
 									"description": "",
-									"disabled": true
+									"type": "text"
 								},
 								{
-									"key": "goal_title",
-									"value": "This is a commitment, not a goal",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "goal_description",
-									"value": "This will have a parent_id and recurring_pattern information",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "start_date",
-									"value": "2019-01-01",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "end_date",
-									"value": "2020-01-01",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "start_time",
-									"value": "20:00",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "end_time",
-									"value": "21:00",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "is_full_day",
-									"value": "false",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "is_recurring",
-									"value": "true",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "user_id",
-									"value": "2",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "created_by",
-									"value": "2",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "created_date",
-									"value": "2019-01-08",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "parent_goal_id",
-									"value": "46",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "difficulty",
-									"value": "8",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "active",
-									"value": "",
-									"type": "text",
+									"key": "user_group_id",
+									"value": "1",
 									"description": "",
-									"disabled": true
-								},
-								{
-									"key": "complete",
-									"value": "",
-									"type": "text",
-									"description": "",
-									"disabled": true
-								},
-								{
-									"key": "recurring_type",
-									"value": "test",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "separation_count",
-									"value": "1",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "max_occurrence",
-									"value": "2",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "hour_of_day",
-									"value": "1",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "day_of_week",
-									"value": "1",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "day_of_month",
-									"value": "1",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "day_of_year",
-									"value": "1",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "week_of_month",
-									"value": "1",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "week_of_year",
-									"value": "1",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "month_of_yea",
-									"value": "1",
-									"type": "text",
-									"description": ""
+									"type": "text"
 								}
 							]
 						},
-						"description": "Creates a new commitment "
+						"description": ""
 					},
 					"response": []
 				},
 				{
-					"name": "Get commitments by user_id",
+					"name": "Generate u_token manually",
 					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/commitments/2",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": "Retrieves all commitments from specified user as paramater using user_id"
-					},
-					"response": []
-				},
-				{
-					"name": "Delete commitment by goal_id",
-					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/commitments/4",
-						"method": "DELETE",
-						"header": [],
-						"body": {},
-						"description": "Deletes commitment using commitment's unique goal_id as parameter"
-					},
-					"response": []
-				},
-				{
-					"name": "Get all commitments",
-					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/commitments",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": "Gets all commitments from every user"
-					},
-					"response": []
-				},
-				{
-					"name": "Update commitment by goal_id",
-					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/commitments",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "goal_title",
-									"value": "Git good edit",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "goal_description",
-									"value": "Be generally bad ass edit",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "start_date",
-									"value": "Jan, 01, 2019",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "end_date",
-									"value": "Feb, 01, 2019",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "start_time",
-									"value": "2018-12-12 17:00:00",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "end_time",
-									"value": "2018-12-12 17:30:00",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "is_full_day",
-									"value": "false",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "is_recurring",
-									"value": "false",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "goal_id",
-									"value": "40",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "created_by",
-									"value": "2",
-									"type": "text",
-									"description": "",
-									"disabled": true
-								},
-								{
-									"key": "created_date",
-									"value": "Dec, 25, 2018",
-									"type": "text",
-									"description": "",
-									"disabled": true
-								},
-								{
-									"key": "parent_goal_id",
-									"value": "NULL",
-									"type": "text",
-									"description": "",
-									"disabled": true
-								}
-							]
-						},
-						"description": "Updates specified commitment by goal_id"
-					},
-					"response": []
-				},
-				{
-					"name": "Create goal",
-					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/commitments",
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/admin/generate_token",
 						"method": "POST",
 						"header": [
 							{
@@ -336,199 +60,14 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "goal_id",
-									"value": "",
-									"type": "text",
+									"key": "email",
+									"value": "george@test.com",
 									"description": "",
-									"disabled": true
+									"type": "text"
 								},
 								{
-									"key": "goal_title",
-									"value": "this is a goal again",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "goal_description",
-									"value": "will not have parent_goal_id or recurring info",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "start_date",
-									"value": "2019-01-01",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "end_date",
-									"value": "2020-01-01",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "start_time",
-									"value": "20:00",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "end_time",
-									"value": "21:00",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "is_full_day",
-									"value": "false",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "is_recurring",
-									"value": "true",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "user_id",
-									"value": "2",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "created_by",
-									"value": "2",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "created_date",
-									"value": "2019-01-08",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "parent_goal_id",
-									"value": "46",
-									"type": "text",
-									"description": "",
-									"disabled": true
-								},
-								{
-									"key": "difficulty",
-									"value": "8",
-									"type": "text",
-									"description": ""
-								},
-								{
-									"key": "active",
-									"value": "",
-									"type": "text",
-									"description": "",
-									"disabled": true
-								},
-								{
-									"key": "complete",
-									"value": "",
-									"type": "text",
-									"description": "",
-									"disabled": true
-								},
-								{
-									"key": "recurring_type",
-									"value": "test",
-									"type": "text",
-									"description": "",
-									"disabled": true
-								},
-								{
-									"key": "separation_count",
+									"key": "user_group_id",
 									"value": "1",
-									"type": "text",
-									"description": "",
-									"disabled": true
-								},
-								{
-									"key": "max_occurrence",
-									"value": "2",
-									"type": "text",
-									"description": "",
-									"disabled": true
-								},
-								{
-									"key": "hour_of_day",
-									"value": "1",
-									"type": "text",
-									"description": "",
-									"disabled": true
-								},
-								{
-									"key": "day_of_week",
-									"value": "1",
-									"type": "text",
-									"description": "",
-									"disabled": true
-								},
-								{
-									"key": "day_of_month",
-									"value": "1",
-									"type": "text",
-									"description": "",
-									"disabled": true
-								},
-								{
-									"key": "day_of_year",
-									"value": "1",
-									"type": "text",
-									"description": "",
-									"disabled": true
-								},
-								{
-									"key": "week_of_month",
-									"value": "1",
-									"type": "text",
-									"description": "",
-									"disabled": true
-								},
-								{
-									"key": "week_of_year",
-									"value": "1",
-									"type": "text",
-									"description": "",
-									"disabled": true
-								},
-								{
-									"key": "month_of_yea",
-									"value": "1",
-									"type": "text",
-									"description": "",
-									"disabled": true
-								}
-							]
-						},
-						"description": "Creates a new goal "
-					},
-					"response": []
-				},
-				{
-					"name": "SAFE deletes commitment",
-					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/commitments/safe_delete",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "goal_id",
-									"value": "47",
 									"description": "",
 									"type": "text"
 								}
@@ -541,34 +80,13 @@
 			]
 		},
 		{
-			"name": "Users",
+			"name": "Achievements",
 			"description": "",
 			"item": [
 				{
-					"name": "Get all users",
+					"name": "Create new achievement entry for user_id",
 					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/users/",
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "email",
-									"value": "email@email.com",
-									"description": "",
-									"type": "text"
-								}
-							]
-						},
-						"description": "Gets list of all users including hashed passwords and tokens"
-					},
-					"response": []
-				},
-				{
-					"name": "Create user",
-					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/users",
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/achievements",
 						"method": "POST",
 						"header": [
 							{
@@ -581,233 +99,11 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "first_name",
-									"value": "admin",
+									"key": "id",
+									"value": "1",
 									"description": "",
 									"type": "text"
 								},
-								{
-									"key": "last_name",
-									"value": "admin",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "phone_number",
-									"value": "0987654321",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "email",
-									"value": "admin@admin.com",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "user_password",
-									"value": "admin",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "user_group_id",
-									"value": "2",
-									"description": "",
-									"type": "text"
-								}
-							]
-						},
-						"description": "Creates new user (email cannot belong to existing user)"
-					},
-					"response": []
-				},
-				{
-					"name": "Login",
-					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/login",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "email",
-									"value": "admin@admin.com",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "user_password",
-									"value": "admi",
-									"description": "",
-									"type": "text"
-								}
-							]
-						},
-						"description": "This request verifies that the user exists and that they have entered the correct password. If not, status = fail"
-					},
-					"response": []
-				},
-				{
-					"name": "Delete user by user_id",
-					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/users/51",
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "user_id",
-									"value": "52",
-									"description": "",
-									"type": "text",
-									"disabled": true
-								}
-							]
-						},
-						"description": "Deleted user from table (maybe should just deactivate)"
-					},
-					"response": []
-				},
-				{
-					"name": "Login with token",
-					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/token_login",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3IiOiJmQGYuY29tIiwiZ3JwIjoxLCJpYXQiOjE1NDYwODM1MzV9.DSHdkyBV3TKqKO-s1dNL3DNx4Tz4NpYm6tqCHfFn0uc",
-									"description": "",
-									"type": "text"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Update user by user_id",
-					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/users/update_info",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "first_name",
-									"value": "z",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "last_name",
-									"value": "h",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "phone_number",
-									"value": "0987654321",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "user_id",
-									"value": "51",
-									"description": "",
-									"type": "text"
-								}
-							]
-						},
-						"description": "Updates non-sensative user values"
-					},
-					"response": []
-				},
-				{
-					"name": "Get user by user_id",
-					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/users/2",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "SAFE delete user",
-					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/users/safe_delete",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "user_id",
-									"value": "28",
-									"description": "",
-									"type": "text"
-								}
-							]
-						},
-						"description": "deactivates user in user_info"
-					},
-					"response": []
-				},
-				{
-					"name": "Update user stats",
-					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/users/update_stats",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
 								{
 									"key": "user_id",
 									"value": "2",
@@ -815,7 +111,25 @@
 									"type": "text"
 								},
 								{
-									"key": "exp_points",
+									"key": "percent_complete",
+									"value": "50",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "last_entry",
+									"value": "Jan, 10, 2019",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "next_entry",
+									"value": "Jan, 11, 2019",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "time",
 									"value": "10",
 									"description": "",
 									"type": "text"
@@ -827,59 +141,37 @@
 					"response": []
 				},
 				{
-					"name": "Update user STATS by id",
+					"name": "Get all achievement information",
 					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/users/update_stats",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "user_id",
-									"value": "2",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "exp_increase",
-									"value": "5",
-									"description": "",
-									"type": "text"
-								}
-							]
-						},
-						"description": "Updates user values related to statisitcs tracking"
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/achievements",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get all achievement data by specified user_id",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/achievements/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
 					},
 					"response": []
 				}
 			]
 		},
 		{
-			"name": "Notes",
+			"name": "Achievements_d",
 			"description": "",
 			"item": [
 				{
-					"name": "Get notes by user_id",
+					"name": "Create achievement TYPE",
 					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/notes/2",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": "Get all notes from the specified user using user_id"
-					},
-					"response": []
-				},
-				{
-					"name": "Create new note",
-					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/notes",
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/achievements_d",
 						"method": "POST",
 						"header": [
 							{
@@ -892,167 +184,98 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "user_id",
-									"value": "2",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "note",
-									"value": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "date_created",
-									"value": "Jan, 03, 2019",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "edited",
-									"value": "false",
-									"description": "",
-									"type": "text",
-									"disabled": true
-								}
-							]
-						},
-						"description": "Creates new note"
-					},
-					"response": []
-				},
-				{
-					"name": "Get all notes",
-					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/notes",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": "Retrieves all notes from all users"
-					},
-					"response": []
-				},
-				{
-					"name": "Update note by note_id",
-					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/notes",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "note",
-									"value": "lol jk jkgsdf",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "date_edited",
-									"value": "Jan, 04, 2019",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "note_id",
+									"key": "id",
 									"value": "1",
 									"description": "",
 									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "achievement type",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "xp_worth",
+									"value": "50",
+									"description": "",
+									"type": "text"
 								}
 							]
 						},
-						"description": "Updates a note with the specified note_id, checks to make sure that note exists"
+						"description": "Creates a type of achievement that the user can then achieve in achievement_description table"
 					},
 					"response": []
 				},
 				{
-					"name": "Delete note by note_id",
+					"name": "Get all achievement TYPES",
 					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/notes/2",
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/achievements_d",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets achievement TYPES from achievement_description table"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete achievement TYPE",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/achievements_d/7",
 						"method": "DELETE",
 						"header": [],
 						"body": {},
-						"description": "Deleted note with specified note_id if it exists"
+						"description": "Deletes achievement TYPE from achievement_description table"
 					},
 					"response": []
 				}
 			]
 		},
 		{
-			"name": "Completed_commitments",
+			"name": "Analytics (activity logs)",
 			"description": "",
 			"item": [
 				{
-					"name": "Get all completed commitments",
+					"name": "Get all activity logs",
 					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/completed_commitments",
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/analytics/all/",
 						"method": "GET",
 						"header": [],
 						"body": {},
-						"description": "Gets all completed commitments"
+						"description": ""
 					},
 					"response": []
 				},
 				{
-					"name": "Set commitment as complete",
+					"name": "Get activity logs by user_id ",
 					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/completed_commitments",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "goal_id",
-									"value": "43",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "date_completed",
-									"value": "2019-01-04",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "note",
-									"value": "testing the completion mechanic",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "satisfaction",
-									"value": "90",
-									"description": "",
-									"type": "text"
-								}
-							]
-						},
-						"description": "Sets a commitments as complete in the goal table and creates and entry for that commitment in the completed goals table"
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/analytics/by_user/2/",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
 					},
 					"response": []
 				},
 				{
-					"name": "Get completed commitments by user_id",
+					"name": "Get activity logs by date",
 					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/completed_commitments/2",
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/analytics/by_date/2019-01-10",
 						"method": "GET",
 						"header": [],
 						"body": {},
-						"description": "Gets completed commitment based on user_id, can include more data from goal table"
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get activity logs by user_id and date",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/analytics/by_user_date/2/2019-01-10",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
 					},
 					"response": []
 				}
@@ -1062,28 +285,6 @@
 			"name": "Checkins",
 			"description": "",
 			"item": [
-				{
-					"name": "Get all checkins",
-					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/checkins",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": "Gets all checkins"
-					},
-					"response": []
-				},
-				{
-					"name": "Get all checkins",
-					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/checkins",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": ""
-					},
-					"response": []
-				},
 				{
 					"name": "Create checkin",
 					"request": {
@@ -1335,6 +536,28 @@
 					"response": []
 				},
 				{
+					"name": "Get all checkins by user_id",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/checkins/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets all checkins"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all checkins",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/checkins",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets all checkins"
+					},
+					"response": []
+				},
+				{
 					"name": "Delete checkin by checkin_id",
 					"request": {
 						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/checkins/3",
@@ -1348,35 +571,13 @@
 			]
 		},
 		{
-			"name": "Achievements",
+			"name": "Commitments",
 			"description": "",
 			"item": [
 				{
-					"name": "Get all achievement information",
+					"name": "Create goal",
 					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/achievements",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Get all achievement data by specified user_id",
-					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/achievements/2",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Create new achievement entry for user_id",
-					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/achievements",
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/commitments",
 						"method": "POST",
 						"header": [
 							{
@@ -1389,62 +590,185 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "id",
-									"value": "1",
+									"key": "goal_id",
+									"value": "",
+									"type": "text",
 									"description": "",
-									"type": "text"
+									"disabled": true
+								},
+								{
+									"key": "goal_title",
+									"value": "this is a goal again",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "goal_description",
+									"value": "will not have parent_goal_id or recurring info",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "start_date",
+									"value": "2019-01-01",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "end_date",
+									"value": "2020-01-01",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "start_time",
+									"value": "20:00",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "end_time",
+									"value": "21:00",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "is_full_day",
+									"value": "false",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "is_recurring",
+									"value": "true",
+									"type": "text",
+									"description": ""
 								},
 								{
 									"key": "user_id",
 									"value": "2",
-									"description": "",
-									"type": "text"
+									"type": "text",
+									"description": ""
 								},
 								{
-									"key": "percent_complete",
-									"value": "50",
-									"description": "",
-									"type": "text"
+									"key": "created_by",
+									"value": "2",
+									"type": "text",
+									"description": ""
 								},
 								{
-									"key": "last_entry",
-									"value": "Jan, 10, 2019",
-									"description": "",
-									"type": "text"
+									"key": "created_date",
+									"value": "2019-01-08",
+									"type": "text",
+									"description": ""
 								},
 								{
-									"key": "next_entry",
-									"value": "Jan, 11, 2019",
+									"key": "parent_goal_id",
+									"value": "46",
+									"type": "text",
 									"description": "",
-									"type": "text"
+									"disabled": true
 								},
 								{
-									"key": "time",
-									"value": "10",
+									"key": "difficulty",
+									"value": "8",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "active",
+									"value": "",
+									"type": "text",
 									"description": "",
-									"type": "text"
+									"disabled": true
+								},
+								{
+									"key": "complete",
+									"value": "",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "recurring_type",
+									"value": "test",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "separation_count",
+									"value": "1",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "max_occurrence",
+									"value": "2",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "hour_of_day",
+									"value": "1",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "day_of_week",
+									"value": "1",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "day_of_month",
+									"value": "1",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "day_of_year",
+									"value": "1",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "week_of_month",
+									"value": "1",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "week_of_year",
+									"value": "1",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "month_of_yea",
+									"value": "1",
+									"type": "text",
+									"description": "",
+									"disabled": true
 								}
 							]
 						},
-						"description": ""
+						"description": "Creates a new goal "
 					},
 					"response": []
 				},
 				{
-					"name": "Get all achievement TYPES",
+					"name": "Create commitment",
 					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/achievements_d",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": "Gets achievement TYPES from achievement_description table"
-					},
-					"response": []
-				},
-				{
-					"name": "Create achievement TYPE",
-					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/achievements_d",
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/commitments",
 						"method": "POST",
 						"header": [
 							{
@@ -1457,37 +781,407 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "id",
+									"key": "goal_id",
+									"value": "",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "goal_title",
+									"value": "This is a commitment, not a goal",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "goal_description",
+									"value": "This will have a parent_id and recurring_pattern information",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "start_date",
+									"value": "2019-01-01",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "end_date",
+									"value": "2020-01-01",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "start_time",
+									"value": "20:00",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "end_time",
+									"value": "21:00",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "is_full_day",
+									"value": "false",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "is_recurring",
+									"value": "true",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "user_id",
+									"value": "2",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "created_by",
+									"value": "2",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "created_date",
+									"value": "2019-01-08",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "parent_goal_id",
+									"value": "46",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "difficulty",
+									"value": "8",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "active",
+									"value": "",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "complete",
+									"value": "",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "recurring_type",
+									"value": "test",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "separation_count",
 									"value": "1",
-									"description": "",
-									"type": "text"
+									"type": "text",
+									"description": ""
 								},
 								{
-									"key": "name",
-									"value": "achievement type",
-									"description": "",
-									"type": "text"
+									"key": "max_occurrence",
+									"value": "2",
+									"type": "text",
+									"description": ""
 								},
 								{
-									"key": "xp_worth",
-									"value": "50",
+									"key": "hour_of_day",
+									"value": "1",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "day_of_week",
+									"value": "1",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "day_of_month",
+									"value": "1",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "day_of_year",
+									"value": "1",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "week_of_month",
+									"value": "1",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "week_of_year",
+									"value": "1",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "month_of_yea",
+									"value": "1",
+									"type": "text",
+									"description": ""
+								}
+							]
+						},
+						"description": "Creates a new commitment "
+					},
+					"response": []
+				},
+				{
+					"name": "Get commitments by user_id",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/commitments/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Retrieves all commitments from specified user as paramater using user_id"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all commitments",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/commitments",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets all commitments from every user"
+					},
+					"response": []
+				},
+				{
+					"name": "Get single commitment by goal_id",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/commitment_id/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update commitment by goal_id",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/commitments",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "goal_title",
+									"value": "Git good edit",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "goal_description",
+									"value": "Be generally bad ass edit",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "start_date",
+									"value": "Jan, 01, 2019",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "end_date",
+									"value": "Feb, 01, 2019",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "start_time",
+									"value": "2018-12-12 17:00:00",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "end_time",
+									"value": "2018-12-12 17:30:00",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "is_full_day",
+									"value": "false",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "is_recurring",
+									"value": "false",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "goal_id",
+									"value": "40",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "created_by",
+									"value": "2",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "created_date",
+									"value": "Dec, 25, 2018",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "parent_goal_id",
+									"value": "NULL",
+									"type": "text",
+									"description": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Updates specified commitment by goal_id"
+					},
+					"response": []
+				},
+				{
+					"name": "SAFE deletes commitment",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/commitments/safe_delete",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "goal_id",
+									"value": "47",
 									"description": "",
 									"type": "text"
 								}
 							]
 						},
-						"description": "Creates a type of achievement that the user can then achieve in achievement_description table"
+						"description": ""
 					},
 					"response": []
 				},
 				{
-					"name": "Delete achievement TYPE",
+					"name": "Delete commitment by goal_id",
 					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/achievements_d/7",
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/commitments/4",
 						"method": "DELETE",
 						"header": [],
 						"body": {},
-						"description": "Deletes achievement TYPE from achievement_description table"
+						"description": "Deletes commitment using commitment's unique goal_id as parameter"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Completed_commitments",
+			"description": "",
+			"item": [
+				{
+					"name": "Set commitment as complete",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/completed_commitments",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "goal_id",
+									"value": "43",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "date_completed",
+									"value": "2019-01-04",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "note",
+									"value": "testing the completion mechanic",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "satisfaction",
+									"value": "90",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": "Sets a commitments as complete in the goal table and creates and entry for that commitment in the completed goals table"
+					},
+					"response": []
+				},
+				{
+					"name": "Get completed commitments by user_id",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/completed_commitments/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets completed commitment based on user_id, can include more data from goal table"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all completed commitments",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/completed_commitments",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets all completed commitments"
 					},
 					"response": []
 				}
@@ -1497,17 +1191,6 @@
 			"name": "Media",
 			"description": "",
 			"item": [
-				{
-					"name": "Get all media entries",
-					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/media",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": ""
-					},
-					"response": []
-				},
 				{
 					"name": "Create media entry",
 					"request": {
@@ -1551,6 +1234,17 @@
 					"name": "Get media entry by user_id",
 					"request": {
 						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/media/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get all media entries",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/media",
 						"method": "GET",
 						"header": [],
 						"body": {},
@@ -1621,28 +1315,6 @@
 			"description": "",
 			"item": [
 				{
-					"name": "Get random motivational entry",
-					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/motivational_r",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Get all motivational entries",
-					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/motivational",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": ""
-					},
-					"response": []
-				},
-				{
 					"name": "Create motivational entry",
 					"request": {
 						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/motivational",
@@ -1671,6 +1343,28 @@
 								}
 							]
 						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get random motivational entry",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/motivational_r",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get all motivational entries",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/motivational",
+						"method": "GET",
+						"header": [],
+						"body": {},
 						"description": ""
 					},
 					"response": []
@@ -1728,63 +1422,13 @@
 			]
 		},
 		{
-			"name": "Activity logs",
+			"name": "Notes",
 			"description": "",
 			"item": [
 				{
-					"name": "Get activity logs by user_id and date",
+					"name": "Create new note",
 					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/analytics/by_user_date/2/2019-01-10",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Get activity logs by user_id ",
-					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/analytics/by_user/2/",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Get activity logs by date",
-					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/analytics/by_date/2019-01-10",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Get all activity logs",
-					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/analytics/all/",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": ""
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Admin",
-			"description": "",
-			"item": [
-				{
-					"name": "Invite user",
-					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/admin/invite",
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/notes",
 						"method": "POST",
 						"header": [
 							{
@@ -1797,28 +1441,63 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "email",
-									"value": "gsferopo@student.wethinkcode.co.za",
+									"key": "user_id",
+									"value": "2",
 									"description": "",
 									"type": "text"
 								},
 								{
-									"key": "user_group_id",
-									"value": "1",
+									"key": "note",
+									"value": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
 									"description": "",
 									"type": "text"
+								},
+								{
+									"key": "date_created",
+									"value": "Jan, 03, 2019",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "edited",
+									"value": "false",
+									"description": "",
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
-						"description": ""
+						"description": "Creates new note"
 					},
 					"response": []
 				},
 				{
-					"name": "Generate u_token manually",
+					"name": "Get notes by user_id",
 					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/admin/generate_token",
-						"method": "POST",
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/notes/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Get all notes from the specified user using user_id"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all notes",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/notes",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Retrieves all notes from all users"
+					},
+					"response": []
+				},
+				{
+					"name": "Update note by note_id",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/notes",
+						"method": "PUT",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -1830,20 +1509,37 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "email",
-									"value": "george@test.com",
+									"key": "note",
+									"value": "lol jk jkgsdf",
 									"description": "",
 									"type": "text"
 								},
 								{
-									"key": "user_group_id",
+									"key": "date_edited",
+									"value": "Jan, 04, 2019",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "note_id",
 									"value": "1",
 									"description": "",
 									"type": "text"
 								}
 							]
 						},
-						"description": ""
+						"description": "Updates a note with the specified note_id, checks to make sure that note exists"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete note by note_id",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/notes/2",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "Deleted note with specified note_id if it exists"
 					},
 					"response": []
 				}
@@ -1904,9 +1600,9 @@
 					"response": []
 				},
 				{
-					"name": "Get SEEN notifications by user_id",
+					"name": "Get UNseen notifications by user_id",
 					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/notifications/seen/2",
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/notifications/unseen/2",
 						"method": "GET",
 						"header": [],
 						"body": {},
@@ -1915,9 +1611,9 @@
 					"response": []
 				},
 				{
-					"name": "Get UNseen notifications by user_id",
+					"name": "Get SEEN notifications by user_id",
 					"request": {
-						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/notifications/unseen/2",
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/notifications/seen/2",
 						"method": "GET",
 						"header": [],
 						"body": {},
@@ -1932,6 +1628,368 @@
 						"method": "PUT",
 						"header": [],
 						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"description": "",
+			"item": [
+				{
+					"name": "Create user",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/users",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "first_name",
+									"value": "admin",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "admin",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "0987654321",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "admin@admin.com",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "user_password",
+									"value": "admin",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "user_group_id",
+									"value": "2",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": "Creates new user (email cannot belong to existing user)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all users",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/users/",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "email@email.com",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": "Gets list of all users including hashed passwords and tokens"
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by user_id",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/users/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "admin@admin.com",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "user_password",
+									"value": "admi",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": "This request verifies that the user exists and that they have entered the correct password. If not, status = fail"
+					},
+					"response": []
+				},
+				{
+					"name": "Login with token",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/token_login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3IiOiJmQGYuY29tIiwiZ3JwIjoxLCJpYXQiOjE1NDYwODM1MzV9.DSHdkyBV3TKqKO-s1dNL3DNx4Tz4NpYm6tqCHfFn0uc",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user by user_id",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/users/51",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "52",
+									"description": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Deleted user from table (maybe should just deactivate)"
+					},
+					"response": []
+				},
+				{
+					"name": "Update user INFO by user_id",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/users/update_info",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "first_name",
+									"value": "z",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "h",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "0987654321",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "51",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": "Updates non-sensative user values"
+					},
+					"response": []
+				},
+				{
+					"name": "Update user STATS by id",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/users/update_stats",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "exp_increase",
+									"value": "5",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": "Updates user values related to statisitcs tracking"
+					},
+					"response": []
+				},
+				{
+					"name": "SAFE delete user",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/users/safe_delete",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "28",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": "deactivates user in user_info"
+					},
+					"response": []
+				},
+				{
+					"name": "Verify invitation",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/users/verify/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3IiOiJqdWdhbmF1Z2h0NzJAZ21haWwuY29tIiwiZ3JwIjoiMSIsImlhdCI6MTU0NzIyMTY4N30.UkEoqozu-dFToMoIJnzyk7olA-o5uP2vo5K8MsN_wGk\n\n",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "User SIGNUP after verify (verify links to this endpoint and that call sends the body)",
+					"request": {
+						"url": "https://smile-coaching-platform-dev.herokuapp.com/api/users/signup",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "first_name",
+									"value": "Brenton",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "Moodley",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "user_password",
+									"value": "Brenton",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "0987654321",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "v_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3IiOiJqdWdhbmF1Z2h0NzJAZ21haWwuY29tIiwiZ3JwIjoiMSIsImlhdCI6MTU0NzIyMTY4N30.UkEoqozu-dFToMoIJnzyk7olA-o5uP2vo5K8MsN_wGk",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "juganaught72@gmail.com",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "user_group_id",
+									"value": "1",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
 						"description": ""
 					},
 					"response": []
