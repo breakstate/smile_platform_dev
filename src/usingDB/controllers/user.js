@@ -295,6 +295,31 @@ const db			= config.db;
 		.finally(db.end);
 	};
 
+	function setUserStats(req, res){
+		utils.userExistsID(req.body.user_id)
+		.then(data => {
+			if (data){
+				db.none(queries.PQ_setUserStats, [req.body.user_id, req.body.exp_points])
+				.then(data => {
+					utils.resObj(res, 200, true, 'user stats updated', null);
+				})
+				.catch(error => {
+					console.log('Error:', error);
+					utils.resObj(res, 500, false, 'error: user stats not updated', error);
+				})
+				.finally(db.end);
+			}
+			else {
+				utils.resObj(res, 400, false, 'user with specified user_id does not exist', null);
+			}
+		})
+		.catch(err => {
+			console.log('ERROR:', err); // print the error
+			utils.resObj(res, 500, false, 'error: failed to update user stats', err);
+		})
+		.finally(db.end);
+	};
+
 // deleteUser =================================================================
 
 	function deleteUser(req, res){
@@ -361,6 +386,7 @@ module.exports = {
 	verifyInvite: verifyInvite,
 	updateUser: updateUser,
 	updateUserStats: updateUserStats,
+	setUserStats: setUserStats,
 	deleteUser: deleteUser,
 	safeDeleteUser: safeDeleteUser
 };

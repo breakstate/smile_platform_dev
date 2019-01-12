@@ -93,6 +93,8 @@ var router = express.Router();			// get instance of the express Router
 		.put(user.updateUser)
 	router.route('/users/update_stats')
 		.put(user.updateUserStats)
+	router.route('/users/set_stats')
+		.put(user.setUserStats)
 	router.route('/users/:user_id')
 		.get(user.getSingleUser)
 		.delete(user.deleteUser)

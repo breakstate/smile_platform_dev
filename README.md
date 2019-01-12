@@ -402,6 +402,12 @@ For requests requiring input:
 **Body:** user_id, exp_increase  
 **Note:** This is meant for updating user stats. exp_increase will add the amount specified to exp_points. Only put the amount to be added, and not the full new amount. More fields to be included shortly!  
 
+#### SET user STATS
+**HTTP request type:** PUT  
+**End point:** [url]/api/users/set_stats  
+**Body:** user_id, exp_points  
+**Note:** This is meant for updating user stats. exp_increase will be set to the amount specified to exp_points. Put the new full amount. More fields to be included shortly!  
+
 #### Delete user
 **HTTP request type:** DELETE  
 **End point:** [url]/api/users/:user_id  

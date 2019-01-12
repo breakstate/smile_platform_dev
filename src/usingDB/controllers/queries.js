@@ -27,7 +27,7 @@ const PQ_getActivityByPK = new PQ('SELECT * FROM activity WHERE user_id = $1 AND
 // user.js
 const PQ_getSingleUser = new PQ('SELECT * FROM user_info WHERE user_id=$1');
 const PQ_getAllUsers = new PQ('SELECT * FROM user_info');//.token FROM user_info INNER JOIN authentication ON user_info.user_id = authentication.user_id');
-const PQ_userLogin = new PQ('SELECT email, user_password, user_id, v_token FROM user_info WHERE email = $1 AND active = true AND verified = true'); // v_token to be replace with u_token
+const PQ_userLogin = new PQ('SELECT email, user_password, user_id, u_token FROM user_info WHERE email = $1 AND active = true AND verified = true'); // v_token to be replace with u_token
 const PQ_addNewUser = new PQ('INSERT INTO user_info(first_name, last_name, phone_number, email, user_password, verified, user_group_id) VALUES($1, $2, $3, $4, $5, $6, $7)');
 const PQ_userSignup = new PQ('UPDATE user_info SET first_name=$1, last_name=$2, phone_number=$3, user_password=$4, verified=$5, user_group_id=$6 WHERE email=$7');
 const PQ_addNewUserToken = new PQ('UPDATE user_info SET u_token = $1 WHERE email = $2'); // add token here once implemented
@@ -35,6 +35,7 @@ const PQ_getUserToken = new PQ('SELECT u_token FROM user_info WHERE email = $1')
 const PQ_getUserId = new PQ('SELECT user_id FROM user_info WHERE email = $1');
 const PQ_updateUser = new PQ('UPDATE user_info SET first_name=$1, last_name=$2, phone_number=$3 WHERE user_id=$4')
 const PQ_updateUserStats = new PQ('UPDATE user_info SET exp_points=exp_points + $2 WHERE user_id=$1')
+const PQ_setUserStats = new PQ('UPDATE user_info SET exp_points=$2 WHERE user_id=$1')
 const PQ_deleteUser = new PQ('DELETE FROM user_info WHERE user_id = $1');
 const PQ_safeDeleteUser = new PQ('UPDATE user_info SET active=false WHERE user_id = $1 AND active=true');
 
@@ -154,6 +155,7 @@ module.exports = {
 	PQ_getUserId : PQ_getUserId,
 	PQ_updateUser: PQ_updateUser,
 	PQ_updateUserStats: PQ_updateUserStats,
+	PQ_setUserStats: PQ_setUserStats,
 	PQ_deleteUser: PQ_deleteUser,
 	PQ_safeDeleteUser: PQ_safeDeleteUser,
 
