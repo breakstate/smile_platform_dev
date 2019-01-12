@@ -408,6 +408,12 @@ For requests requiring input:
 **Body:** user_id, exp_points  
 **Note:** This is meant for updating user stats. exp_increase will be set to the amount specified to exp_points. Put the new full amount. More fields to be included shortly!  
 
+#### Update user password
+**HTTP request type:** POST  
+**End point:** [url]/api/users/update_password  
+**Body:** user_id, user_password  
+**Note:** This callis meant for the last step in updating the user's password. This will be called after the Reset user password (once completed).  
+
 #### Delete user
 **HTTP request type:** DELETE  
 **End point:** [url]/api/users/:user_id  

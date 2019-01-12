@@ -104,6 +104,8 @@ var router = express.Router();			// get instance of the express Router
 		.get(user.verifyInvite)
 	router.route('/users/signup')
 		.post(user.signup)
+	router.route('/users/update_password')
+		.post(user.updateUserPassword)
 
 	// routes for /commitments
 	router.route('/commitments')

@@ -1,9 +1,11 @@
 const jwt			= require('jsonwebtoken');
+const datetime		= require('node-datetime');
 
 const login_utils	= require('./login_utils');
 const utils			= require('./utils');
 const queries		= require('./queries');
 const config		= require('../../../config.js');
+
 
 const db			= config.db;
 
@@ -166,13 +168,13 @@ const db			= config.db;
 										utils.resObj(res, 200, true, 'authorized user', data1);
 										var date_time = datetime.create();
 										date_time = date_time.format('Y/m/d H:M:S');
-										utils.logActivity(req.body.user_id, date_time, "[logged in]")
-										.then({})
-										.catch(error => {
-											console.log('ERROR:', error); // print the error
-											utils.resObj(res, 500, false, 'error: loggin not logged', error);
-										})
-										.finally(db.end);
+										utils.logActivity(data1.user_id, date_time, "[logged in]")
+											.then({})
+											.catch(error => {
+												console.log('ERROR:', error); // print the error
+												utils.resObj(res, 500, false, 'error: loggin not logged', error);
+											})
+											.finally(db.end);
 									}
 								})
 							} else {
@@ -183,6 +185,7 @@ const db			= config.db;
 							console.log('ERROR:', err); // print the error
 							utils.resObj(res, 500, false, 'error: failed to verify token', err);
 						})
+						.finally(db.end);
 					} else {
 						utils.resObj(res, 403, false, 'incorrect password', null);
 					}
@@ -320,6 +323,32 @@ const db			= config.db;
 		.finally(db.end);
 	};
 
+	function updateUserPassword(req, res){
+		utils.userExistsID(req.body.user_id)
+		.then(data => {
+			if (data){
+				hashedPassword = login_utils.hashPassword(req.body.user_password);
+				db.none(queries.PQ_updateUserPassword, [req.body.user_id, hashedPassword])
+				.then(data => {
+					utils.resObj(res, 200, true, 'user password updated', null);
+				})
+				.catch(error => {
+					console.log('Error:', error);
+					utils.resObj(res, 500, false, 'error: user password not updated', error);
+				})
+				.finally(db.end);
+			}
+			else {
+				utils.resObj(res, 400, false, 'user with specified user_id does not exist', null);
+			}
+		})
+		.catch(err => {
+			console.log('ERROR:', err); // print the error
+			utils.resObj(res, 500, false, 'error: failed to update user stats', err);
+		})
+		.finally(db.end);
+	};
+
 // deleteUser =================================================================
 
 	function deleteUser(req, res){
@@ -387,6 +416,7 @@ module.exports = {
 	updateUser: updateUser,
 	updateUserStats: updateUserStats,
 	setUserStats: setUserStats,
+	updateUserPassword: updateUserPassword,
 	deleteUser: deleteUser,
 	safeDeleteUser: safeDeleteUser
 };

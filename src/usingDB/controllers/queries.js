@@ -16,7 +16,6 @@ const PQ_logActivity = new PQ('INSERT INTO activity(user_id, date_time, descript
 // admin.js
 const PQ_inviteUser = new PQ('INSERT INTO user_info(email, v_token) VALUES($1, $2)');
 
-
 // activity.js
 const PQ_getAllActivity = new PQ('SELECT * FROM activity');
 const PQ_getActivityByUser = new PQ('SELECT * FROM activity WHERE user_id = $1');
@@ -36,6 +35,7 @@ const PQ_getUserId = new PQ('SELECT user_id FROM user_info WHERE email = $1');
 const PQ_updateUser = new PQ('UPDATE user_info SET first_name=$1, last_name=$2, phone_number=$3 WHERE user_id=$4')
 const PQ_updateUserStats = new PQ('UPDATE user_info SET exp_points=exp_points + $2 WHERE user_id=$1')
 const PQ_setUserStats = new PQ('UPDATE user_info SET exp_points=$2 WHERE user_id=$1')
+const PQ_updateUserPassword = new PQ('UPDATE user_info SET user_password = $2 WHERE user_id = $1');
 const PQ_deleteUser = new PQ('DELETE FROM user_info WHERE user_id = $1');
 const PQ_safeDeleteUser = new PQ('UPDATE user_info SET active=false WHERE user_id = $1 AND active=true');
 
@@ -156,6 +156,7 @@ module.exports = {
 	PQ_updateUser: PQ_updateUser,
 	PQ_updateUserStats: PQ_updateUserStats,
 	PQ_setUserStats: PQ_setUserStats,
+	PQ_updateUserPassword: PQ_updateUserPassword,
 	PQ_deleteUser: PQ_deleteUser,
 	PQ_safeDeleteUser: PQ_safeDeleteUser,
 
