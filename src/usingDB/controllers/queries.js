@@ -39,22 +39,22 @@ const PQ_deleteUser = new PQ('DELETE FROM user_info WHERE user_id = $1');
 const PQ_safeDeleteUser = new PQ('UPDATE user_info SET active=false WHERE user_id = $1 AND active=true');
 
 // commitments.js
-const PQ_createGoal = new PQ('INSERT INTO goals(goal_title, goal_description, start_date, end_date, start_time, end_time, is_full_day, is_recurring, user_id, created_by, created_date, difficulty) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)'); // update values
+const PQ_createGoal= new PQ('INSERT INTO goals(goal_title, goal_description, start_date, end_date, start_time, end_time, is_full_day, is_recurring, user_id, created_by, created_date, difficulty) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)'); // update values
 const PQ_createCommitment = new PQ('INSERT INTO goals(goal_title, goal_description, start_date, end_date, start_time, end_time, is_full_day, is_recurring, user_id, created_by, created_date, parent_goal_id, difficulty, recurring_type, separation_count, max_occurrence, hour_of_day, day_of_week, day_of_month, day_of_year, week_of_month, week_of_year, month_of_year) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20 , $21, $22, $23)'); // update values
 const PQ_getCommitmentsByUser = new PQ("SELECT goal_id, goal_title, goal_description, start_date, end_date, start_time, end_time, is_full_day, is_recurring, user_id, created_by, created_date, parent_goal_id, difficulty, active, complete, recurring_type, separation_count, max_occurrence, hour_of_day, day_of_week, day_of_month, day_of_year, week_of_month, week_of_year, month_of_year FROM goals WHERE user_id = $1");
 const PQ_getCommitmentByID = new PQ("SELECT goal_id, goal_title, goal_description, start_date, end_date, start_time, end_time, is_full_day, is_recurring, user_id, created_by, created_date, parent_goal_id, difficulty, active, complete, recurring_type, separation_count, max_occurrence, hour_of_day, day_of_week, day_of_month, day_of_year, week_of_month, week_of_year, month_of_year FROM goals WHERE goal_id = $1");
 const PQ_getAllCommitments = new PQ("SELECT goal_id, goal_title, goal_description, start_date, end_date, start_time, end_time, is_full_day, is_recurring, user_id, created_by, created_date, parent_goal_id, difficulty, active, complete, recurring_type, separation_count, max_occurrence, hour_of_day, day_of_week, day_of_month, day_of_year, week_of_month, week_of_year, month_of_year FROM goals");
-//const PQ_updateCommitment = new PQ('UPDATE goal SET goal_title=$1, goal_description=$2, start_date=$3, end_date=$4, start_time=$5, end_time=$6, is_full_day=$7, is_recurring=$8, goal_id=$9 WHERE goal_id=$9');
+//const PQ_updateCommitment = new PQ('UPDATE goalsSET goal_title=$1, goal_description=$2, start_date=$3, end_date=$4, start_time=$5, end_time=$6, is_full_day=$7, is_recurring=$8, goal_id=$9 WHERE goal_id=$9');
 const PQ_deleteCommitment = new PQ('DELETE FROM goals WHERE goal_id = $1');// update table to show goal_id instead of id
 const PQ_safeDeleteCommitment = new PQ('UPDATE goals SET active=false WHERE goal_id = $1 AND active=true');
 
 
 // completed commitments.js
 const PQ_createCompletedCommitment = new PQ('INSERT INTO completed_goals(goal_id, date_completed, note, satisfaction) VALUES($1, $2, $3, $4)');
-const PQ_setCommitmentComplete = new PQ('UPDATE goal SET complete=$1 WHERE goal_id=$2')
-const PQ_getCompletedCommitmentsByUser = new PQ("SELECT t1.goal_id, TO_CHAR(t1.date_completed, 'yyyy-mm-dd') as date_completed, t1.note, t1.satisfaction FROM completed_goals t1 INNER JOIN goal t2 ON t1.goal_id = t2.goal_id AND t2.user_id = $1");//SELECT goal_id, date_completed, note, satisfaction FROM completed_goals WHERE user_id = $1");//('SELECT * FROM goal WHERE user_id = $1');
+const PQ_setCommitmentComplete = new PQ('UPDATE goalsSET complete=$1 WHERE goal_id=$2')
+const PQ_getCompletedCommitmentsByUser = new PQ("SELECT t1.goal_id, TO_CHAR(t1.date_completed, 'yyyy-mm-dd') as date_completed, t1.note, t1.satisfaction FROM completed_goals t1 INNER JOIN goals t2 ON t1.goal_id = t2.goal_id AND t2.user_id = $1");//SELECT goal_id, date_completed, note, satisfaction FROM completed_goals WHERE user_id = $1");//('SELECT * FROM goalsWHERE user_id = $1');
 const PQ_getAllCompletedCommitments = new PQ("SELECT goal_id, TO_CHAR(date_completed, 'yyyy-mm-dd') as date_completed, note, satisfaction FROM completed_goals");
-//const PQ_deleteCompletedCommitment = new PQ('DELETE FROM goal WHERE goal_id = $1');// update table to show goal_id instead of id
+//const PQ_deleteCompletedCommitment = new PQ('DELETE FROM goalsWHERE goal_id = $1');// update table to show goal_id instead of id
 
 // notes.js
 const PQ_createNote = new PQ('INSERT INTO notes(user_id, note, date_created, is_edited, date_edited) VALUES($1, $2, $3, $4, $5)');
@@ -74,7 +74,7 @@ const PQ_updateNotification = new PQ('UPDATE notifications SET seen=true WHERE i
 const PQ_createCheckin = new PQ('INSERT INTO checkins(user_id, date_answered, time_answered, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20, q21, q22, q23, q24, q25, q26, q27, q28, q29, q30, q31, q32, q33, q34) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37)'); // duration instead of end time maybe
 const PQ_getCheckinsByUser = new PQ("SELECT checkin_id, user_id, TO_CHAR(date_answered, 'yyyy-mm-dd') as date_answered, time_answered, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20, q21, q22, q23, q24, q25, q26, q27, q28, q29, q30, q31, q32, q33, q34 FROM checkins WHERE user_id = $1");
 const PQ_getAllCheckins = new PQ("SELECT checkin_id, user_id, TO_CHAR(date_answered, 'yyyy-mm-dd') as date_answered, time_answered, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20, q21, q22, q23, q24, q25, q26, q27, q28, q29, q30, q31, q32, q33, q34 FROM checkins");
-//const PQ_updateCheckin = new PQ('UPDATE goal SET goal_title=$1, goal_description=$2, start_date=$3, end_date=$4, start_time=$5, end_time=$6, is_full_day=$7, is_recurring=$8, goal_id=$9 WHERE goal_id=$9');
+//const PQ_updateCheckin = new PQ('UPDATE goalsSET goal_title=$1, goal_description=$2, start_date=$3, end_date=$4, start_time=$5, end_time=$6, is_full_day=$7, is_recurring=$8, goal_id=$9 WHERE goal_id=$9');
 const PQ_deleteCheckin = new PQ('DELETE FROM checkins WHERE checkin_id = $1');
 const PQ_safeDeleteCheckin = new PQ('UPDATE checkins SET active=false WHERE checkin_id = $1 AND active=true');
 
@@ -111,14 +111,14 @@ EXAMPLES:
 TO_CHAR(start_date, 'yyyy-mm-dd') as start_date
 
 SELECT t1.completed_date, t2.goal_description, t3.first_name
-FROM completed_goals t1 INNER JOIN goal t2 ON t1.goal_id = t2.goal_id 
+FROM completed_goals t1 INNER JOIN goalst2 ON t1.goal_id = t2.goal_id 
 INNER JOIN user_info t3 ON t2.user_id = t3.user_id
 */ 
 
 //goal_id, goal_title, goal_description, start_date, end_date, start_time, end_time, is_full_day, is_recurring, user_id, created_by, created_date, parent_goal_id, difficulty, active, complete, recurring_type, separation_count, max_occurrence, hour_of_day, day_of_week, day_of_month, day_of_year, week_of_month, week_of_year, month_of_year 
 
 
-//SELECT t1.goal_id, t1.date_completed, t1.note, t1.satisfaction FROM completed_goals t1 INNER JOIN goal t2 ON t1.goal_id = t2.goal_id AND t2.user_id = $1
+//SELECT t1.goal_id, t1.date_completed, t1.note, t1.satisfaction FROM completed_goals t1 INNER JOIN goalst2 ON t1.goal_id = t2.goal_id AND t2.user_id = $1
 module.exports = {
 	// utils
 	PQ_userExists : PQ_userExists,
