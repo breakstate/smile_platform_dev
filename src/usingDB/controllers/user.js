@@ -120,7 +120,7 @@ const db			= config.db;
 							utils.resObj(res, 200, true, 'authorized user', data);
 							var date_time = datetime.create();
 							date_time = date_time.format('Y/m/d H:M:S');
-							utils.logActivity(req.body.user_id, date_time, "[logged in (token)]")
+							utils.logActivity(data.user_id, date_time, "[logged in (token)]")
 							.then({})
 							.catch(error => {
 								console.log('ERROR:', error); // print the error
