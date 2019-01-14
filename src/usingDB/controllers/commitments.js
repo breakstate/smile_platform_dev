@@ -6,46 +6,15 @@ const db			= config.db;
 
 // create
 	function createCommitment(req, res){
-		if (req.body.parent_goal_id == null){
-			db.none(queries.PQ_createGoal, [req.body.goal_title, req.body.goal_description, req.body.start_date, req.body.end_date, req.body.start_time, req.body.end_time, req.body.is_full_day, req.body.is_recurring, req.body.user_id, req.body.created_by, req.body.created_date, req.body.difficulty])
-			.then( function() {
-				utils.resObj(res, 200, true, 'created new goal', null);
-				var date_time = datetime.create();
-				date_time = date_time.format('Y/m/d H:M:S');
-				utils.logActivity(req.body.user_id, date_time, "[created goal]")
-				.then({})
-				.catch(error => {
-					console.log('ERROR:', error); // print the error
-					utils.resObj(res, 500, false, 'error: goal not logged', error);
-				})
-				.finally(db.end);
-			})
-			.catch(error => {
-				console.log('ERROR:', error); // print the error
-				utils.resObj(res, 500, false, 'error: goal not created', error);
-			})
-			.finally(db.end);
-			return;
-		} else {
-			db.none(queries.PQ_createCommitment, [req.body.goal_title, req.body.goal_description, req.body.start_date, req.body.end_date, req.body.start_time, req.body.end_time, req.body.is_full_day, req.body.is_recurring, req.body.user_id, req.body.created_by, req.body.created_date, req.body.parent_goal_id, req.body.difficulty, req.body.recurring_type, req.body.separation_count, req.body.max_occurrence, req.body.hour_of_day, req.body.day_of_week, req.body.day_of_month, req.body.day_of_year, req.body.week_of_month, req.body.week_of_year, req.body.month_of_year])
-			.then( function() {
-				utils.resObj(res, 200, true, 'created new commitment under goal: ' + req.body.parent_goal_id, null);
-				var date_time = datetime.create();
-				date_time = date_time.format('Y/m/d H:M:S');
-				utils.logActivity(req.body.user_id, date_time, "[created commitment]")
-				.then({})
-				.catch(error => {
-					console.log('ERROR:', error); // print the error
-					utils.resObj(res, 500, false, 'error: commitment not logged', error);
-				})
-				.finally(db.end);
-			})
-			.catch(error => {
-				console.log('ERROR:', error); // print the error
-				utils.resObj(res, 500, false, 'error: commitment not created for goal: ' + req.body.parent_goal_id, error);
-			})
-			.finally(db.end);
-		}
+		db.none(queries.PQ_createCommitment, [req.body.goal_title, req.body.goal_description, req.body.start_date, req.body.end_date, req.body.start_time, req.body.end_time, req.body.is_full_day, req.body.is_recurring, req.body.user_id, req.body.created_by, req.body.created_date, req.body.parent_goal_id])
+		.then( function() {
+			utils.resObj(res, 200, true, 'created new commitment', null);
+		})
+		.catch(error => {
+			console.log('ERROR:', error); // print the error
+			utils.resObj(res, 200, false, 'error: commitment not created', error);
+		})
+		.finally(db.end);
 	}
 
 // read
@@ -162,40 +131,21 @@ const db			= config.db;
 		.finally(db.end);
 	}
 
-// safeDeleteCommitment========================================================
-
-	function safeDeleteCommitment(req, res){
-		utils.commitmentExists(req.body.goal_id)
-		.then(data =>{
-			if (data){
-				db.none(queries.PQ_safeDeleteCommitment, [req.body.goal_id])
-				.then( function() {
-					utils.resObj(res, 200, true, 'commitment has been deactivated, to restore go to trash', null);
-				})
-				.catch(err => {
-					console.log('ERROR:', err); // print the error
-					utils.resObj(res, 500, false, 'error: failed to deactivate commitment', err);
-				})
-				.finally(db.end);
-			} else {
-				utils.resObj(res, 400, false, 'no active commitment with that user_id', null);
-			}
-		})
-		.catch(error => {
-			console.log('Error:', error);
-			utils.resObj(res, 500, false, 'error: failed to deactivate commitment, failed to find commitment', error);
-		})
-		.finally(db.end);
-	}
-
-
 module.exports = {
 createCommitment: createCommitment,
 getCommitmentsByUser: getCommitmentsByUser,
 getCommitmentByID: getCommitmentByID,
 getAllCommitments: getAllCommitments,
 updateCommitment: updateCommitment,
-deleteCommitment: deleteCommitment,
-safeDeleteCommitment: safeDeleteCommitment
+deleteCommitment: deleteCommitment
 };
-//req.body.goal_title, req.body.goal_description, req.body.start_date, req.body.end_date, req.body.start_time, req.body.end_time, req.body.is_full_day, req.body.is_recurring, req.body.user_id, req.body.created_by, req.body.created_date, req.body.parent_goal_id, req.body.difficulty, req.body.recurring_type, req.body.separation_count, req.body.max_occurrence, req.body.hour_of_day, req.body.day_of_week, req.body.day_of_month, req.body.day_of_year, req.body.week_of_month, req.body.week_of_year, req.body.month_of_yeal 
+
+/*
+EXAMPLES:
+
+TO_CHAR(start_date, 'yyyy-mm-dd') as start_date
+
+SELECT t1.completed_date, t2.goal_description, t3.first_name
+FROM completed_goals t1 INNER JOIN goal t2 ON t1.goal_id = t2.goal_id 
+INNER JOIN user_info t3 ON t2.user_id = t3.user_id
+*/ 

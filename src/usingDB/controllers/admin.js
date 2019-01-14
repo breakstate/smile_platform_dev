@@ -22,7 +22,7 @@ const db			= config.db;
 						"From": "bmoodley@student.wethinkcode.co.za",
 						"To": req.body.email,
 						"Subject": "Invite test",
-						"TextBody": "https://smile-coaching-platform-dev.herokuapp.com/api/users/verify/" + v_token
+						"TextBody": "https://smile-front-end.herokuapp.com/signup?token=" + v_token
 					});
 					utils.resObj(res, 200, true, 'user invite sent to: ' + req.body.email, null);
 				})
