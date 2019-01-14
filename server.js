@@ -118,8 +118,8 @@ var router = express.Router();			// get instance of the express Router
 		.delete(commitments.deleteCommitment)
 	router.route('/commitment_id/:goal_id')
 		.get(commitments.getCommitmentByID)
-	router.route('/commitments/safe_delete')
-		.post(commitments.safeDeleteCommitment)
+	//router.route('/commitments/safe_delete')
+	//	.post(commitments.safeDeleteCommitment)
 
 	// routes for /completed_commitments
 	router.route('/completed_commitments')
