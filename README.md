@@ -1,6 +1,11 @@
 # SMILE API DOC
 
 ## Index
+- [basic_overview](#basic_overview)
+- [features](#Features)
+  - [implemented_features](#implemeted_features)
+  - [future_features](#future_features)
+- [technical_overview](#technical_overview)
 - [setup](#setup)
 - [usage](#usage)
 - [endpoints](#endpoints)
@@ -17,6 +22,51 @@
   - [notifications](#notifications)
   - [users](#users)
 - [links](#links)
+  
+## Basic_overview
+API stands for Application Programming Interface. It is responsible for taking requests for information (from our Angular front end, in our case), retreiving that information from our databse, and then returning that information to our Angular front end to be displayed in a meaningful way. Our API is an ExpressJS application and interacts with our Angular front end and PostgreSQL database.  
+
+## Features
+### Implemented_features
+The features will be listed in the following format: Feature name, feature description.
+Terminology:
+- CRUD (Create, Read, Update and Delete)
+
+The API has the following features implemented:
+- add new user
+  - This is used to force verify a user for testing purposes. The email does not have to exist but still needs to be in the correct format.
+- CRUD for users.
+  - Create, Read Update, and Delete of all users in the system. This includes achievements, information and stats.
+- Secure signup and login.
+  - Hashed passwords and JSON Web Token authentication on login (routes are not protected int the API at this time, only in the front end)
+- Admin ability to invite new users by email
+  - Invites user to create an account, also token verified.
+- Admin ability to generate u_token manually
+  - This can be used to update or change a u_toke for testing purposes.
+- Password reset for users
+  - Resets the password via confirmation email.
+- Notifications
+  - CRUD for notifications (notifications have a seen/unseen attribute)
+- Notes
+  - CRUD for User-created notes
+- Motivations quotes
+  - CRUD for motivational quotes 
+- Media 
+  - CRUD for media (online storage solution is needed)
+- Commitments
+  - CRUD for commitments as well as for completed commitments for commitment tracking
+- Checkin system
+  - CRUD for checkin system
+- Analytics and data tracking
+  - CRUD for analytics. The API tracks when users login, create commitments, create notes, create checkins or complete commitments.  
+
+## Technical_overview
+There is no separate dev or prod environment implemented at this time. In its current form it can be hosted on heroku (tested).  
+- All CRUD functions can be found in src/usingDB/controllers.
+- server.js is the entry point of our Express API.
+- package.json contains all of the depencies of the project.
+- Included is a "collection file" which can be imported into postman. It includes all of the functional endpoints of the API. These are named "SocialTechLocal.postman_collection.json" and "SocialTechLive.postman_collection.json" for when locally hosting and live hosting, respectively. The SocialTechLive url will need to be updated depending on your hosting choices (just open the .json and change all occurances of the url and you'll be fine).
+- All functions that were not directly pertinent to endpoints were saved in folders containing the world "utils"
   
 
 <hr>  
