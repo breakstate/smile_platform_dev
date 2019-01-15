@@ -3,7 +3,7 @@
 ## Index
 - [basic_overview](#basic_overview)
 - [features](#Features)
-  - [implemented_features](#Implemeted_features)
+  - [implemented_features](#Implemented_features)
   - [future_features](#future_features)
 - [technical_overview](#technical_overview)
 - [setup](#setup)
@@ -29,10 +29,10 @@ API stands for Application Programming Interface. It is responsible for taking r
 ## Features
 ### Implemented_features
 The features will be listed in the following format: Feature name, feature description.
-Terminology:
+**Terminology:**
 - CRUD (Create, Read, Update and Delete)
 
-The API has the following features implemented:
+**The API has the following features implemented:**
 - add new user
   - This is used to force verify a user for testing purposes. The email does not have to exist but still needs to be in the correct format.
 - CRUD for users.
@@ -58,7 +58,9 @@ The API has the following features implemented:
 - Checkin system
   - CRUD for checkin system
 - Analytics and data tracking
-  - CRUD for analytics. The API tracks when users login, create commitments, create notes, create checkins or complete commitments.  
+  - CRUD for analytics. The API tracks when users login, create commitments, create notes, create checkins or complete commitments. 
+- Achievements and exp
+  - CRUD for achievements and ability to keep track of user "experience points" based on actions they perform
 
 ## Technical_overview
 There is no separate dev or prod environment implemented at this time. In its current form it can be hosted on heroku (tested).  
