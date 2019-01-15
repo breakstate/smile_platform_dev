@@ -3,7 +3,7 @@
 ## Index
 - [basic_overview](#basic_overview)
 - [features](#Features)
-  - [implemented_features](#implemeted_features)
+  - [implemented_features](#Implemeted_features)
   - [future_features](#future_features)
 - [technical_overview](#technical_overview)
 - [setup](#setup)
