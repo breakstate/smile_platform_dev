@@ -224,7 +224,7 @@ const db			= config.db;
 		}
 		utils.userExists(req.body.email)
 		.then(data => {
-			if (data){/*
+			if (data){
 				const hashedPassword = login_utils.hashPassword(req.body.user_password);
 				db.none(queries.PQ_userSignup, [req.body.first_name, req.body.last_name, req.body.phone_number, hashedPassword, true, req.body.user_group_id, req.body.email])
 					.then( function() {
@@ -242,7 +242,7 @@ const db			= config.db;
 						console.log('ERROR:', error); // print the error
 						utils.resObj(res, 500, false, 'error: failed to create token for user', error);
 					})
-					.finally(db.end);*/
+					.finally(db.end);
 				utils.resObj(res, 200, true, 'completed signup!', null);
 			} else {
 				utils.resObj(res, 400, false, "user with that email doesn't exist", null);
