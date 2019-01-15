@@ -207,7 +207,10 @@ const db			= config.db;
 			if (err) {
 				utils.resObj(res, 403, false, 'invalid verification link', null);
 			} else {
-				utils.resObj(res, 200, true, 'Welcome, ' + decoded.usr + '!\nPlease fill in the following form to complete signup...', null);
+				var data;
+				data['email'] = decoded.usr;
+				data['user_group_id'] = decoded.grp;
+				utils.resObj(res, 200, true, 'Welcome, ' + decoded.usr + '!\nPlease fill in the following form to complete signup...', data);
 				// if success = true here, Angular needs to open/redirect to the signup form
 			}
 		})
