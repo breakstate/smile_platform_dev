@@ -52,7 +52,7 @@ const PQ_safeDeleteCommitment = new PQ('UPDATE goals SET active=false WHERE goal
 
 // completed commitments.js
 const PQ_createCompletedCommitment = new PQ('INSERT INTO completed_goals(goal_id, date_completed, note, satisfaction) VALUES($1, $2, $3, $4)');
-const PQ_setCommitmentComplete = new PQ('UPDATE goalsSET complete=$1 WHERE goal_id=$2')
+const PQ_setCommitmentComplete = new PQ('UPDATE goals SET complete=$1 WHERE goal_id=$2')
 const PQ_getCompletedCommitmentsByUser = new PQ("SELECT t1.goal_id, TO_CHAR(t1.date_completed, 'yyyy-mm-dd') as date_completed, t1.note, t1.satisfaction FROM completed_goals t1 INNER JOIN goals t2 ON t1.goal_id = t2.goal_id AND t2.user_id = $1");//SELECT goal_id, date_completed, note, satisfaction FROM completed_goals WHERE user_id = $1");//('SELECT * FROM goalsWHERE user_id = $1');
 const PQ_getAllCompletedCommitments = new PQ("SELECT goal_id, TO_CHAR(date_completed, 'yyyy-mm-dd') as date_completed, note, satisfaction FROM completed_goals");
 //const PQ_deleteCompletedCommitment = new PQ('DELETE FROM goalsWHERE goal_id = $1');// update table to show goal_id instead of id

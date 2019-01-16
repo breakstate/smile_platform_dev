@@ -228,7 +228,8 @@ const db			= config.db;
 				const hashedPassword = login_utils.hashPassword(req.body.user_password);
 				db.none(queries.PQ_userSignup, [req.body.first_name, req.body.last_name, req.body.phone_number, hashedPassword, true, req.body.user_group_id, req.body.email])
 					.then( function() {
-						const u_token = jwt.sign({usr: req.body.email, grp: req.body.user_group_id}, config.u_secret);
+						console.log("test!");
+						utils.resObj(res, 200, true, 'completed signup!', null);
 						db.none(queries.PQ_addNewUserToken, [u_token, req.bodyemail])
 						.then( function (){
 							console.log(u_token.usr);
@@ -245,14 +246,34 @@ const db			= config.db;
 						utils.resObj(res, 500, false, 'error: failed to complete signup', error);
 					})
 					.finally(db.end);
+				const u_token = jwt.sign({usr: req.body.email, grp: req.body.user_group_id}, config.u_secret);
 
-				utils.resObj(res, 200, true, 'completed signup!', null);
 			} else {
 				utils.resObj(res, 400, false, "user with that email doesn't exist", null);
 			}	
 		})
 	}
+/*
+	const hashedPassword = login_utils.hashPassword(req.body.user_password);
+	db.none(queries.PQ_addNewUser, [req.body.first_name, req.body.last_name, req.body.phone_number, req.body.email, hashedPassword, true, req.body.user_group_id])
+		.then( function() {
+			utils.resObj(res, 200, true, 'created new user', null);
+		})
+		.catch(error => {
+			console.log('ERROR:', error); // print the error
+			utils.resObj(res, 500, false, 'error: failed to create new user', error);
+		})
+		.finally(db.end);
 
+	const token = jwt.sign({usr: req.body.email, grp: req.body.user_group_id}, config.u_secret);
+	db.none(queries.PQ_addNewUserToken, [token, req.body.email])
+		.then()
+		.catch(error => {
+			console.log('ERROR:', error); // print the error
+			utils.resObj(res, 500, false, 'error: failed to create token for user', error);
+		})
+		.finally(db.end);
+*/
 // update user ================================================================
 
 	function updateUser(req, res){ // separate update for password, email
