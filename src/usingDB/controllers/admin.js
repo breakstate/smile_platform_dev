@@ -21,7 +21,7 @@ const db			= config.db;
 					config.postmarkClient.sendEmail({
 						"From": "bmoodley@student.wethinkcode.co.za",
 						"To": req.body.email,
-						"Subject": "Invite test",
+						"Subject": "You've been invited to Grow, with a Smile :)",
 						"TextBody": "https://smile-front-end.herokuapp.com/signup?token=" + v_token
 					});
 					utils.resObj(res, 200, true, 'user invite sent to: ' + req.body.email, null);
