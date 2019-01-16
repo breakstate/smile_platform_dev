@@ -225,14 +225,16 @@ const db			= config.db;
 		utils.userExists(req.body.email)
 		.then(data => {
 			if (data){
+				const u_token = jwt.sign({usr: req.body.email, grp: req.body.user_group_id}, config.u_secret);
+				//console.log(u_token);
 				const hashedPassword = login_utils.hashPassword(req.body.user_password);
 				db.none(queries.PQ_userSignup, [req.body.first_name, req.body.last_name, req.body.phone_number, hashedPassword, true, req.body.user_group_id, req.body.email])
 					.then( function() {
 						console.log("test!");
-						utils.resObj(res, 200, true, 'completed signup!', null);
-						db.none(queries.PQ_addNewUserToken, [u_token, req.bodyemail])
+						//utils.resObj(res, 200, true, 'completed signup!', null);
+						db.none(queries.PQ_addNewUserToken, [u_token, req.body.email])
 						.then( function (){
-							console.log(u_token.usr);
+							//console.log(u_token);
 						})
 						.catch(error => {
 							console.log('ERROR:', error); // print the error
@@ -246,12 +248,16 @@ const db			= config.db;
 						utils.resObj(res, 500, false, 'error: failed to complete signup', error);
 					})
 					.finally(db.end);
-				const u_token = jwt.sign({usr: req.body.email, grp: req.body.user_group_id}, config.u_secret);
 
 			} else {
 				utils.resObj(res, 400, false, "user with that email doesn't exist", null);
 			}	
 		})
+		.catch(error => {
+			console.log('ERROR:', error); // print the error
+			utils.resObj(res, 500, false, 'error: failed to complete signup', error);
+		})
+		.finally(db.end);
 	}
 /*
 	const hashedPassword = login_utils.hashPassword(req.body.user_password);
