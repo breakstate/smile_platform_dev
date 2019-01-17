@@ -1,4 +1,4 @@
-# SMILE API DOC
+# SMILE API DOCUMENTATION
 
 ## Index
 - [basic_overview](#basic_overview)
@@ -64,6 +64,7 @@ The features will be listed in the following format: Feature name, feature descr
 ## Technical_overview
 There is no separate dev or prod environment implemented at this time. In its current form it can be hosted on heroku (tested).  
 - All CRUD functions can be found in src/usingDB/controllers.
+- The configuration file for connection the the database (heroku free tier) can be found in config.js and will have to be replace with your own config in the same format.
 - server.js is the entry point of our Express API.
 - package.json contains all of the depencies of the project.
 - Included is a "collection file" which can be imported into postman. It includes all of the functional endpoints of the API. These are named "SocialTechLocal.postman_collection.json" and "SocialTechLive.postman_collection.json" for when locally hosting and live hosting, respectively. The SocialTechLive url will need to be updated depending on your hosting choices (just open the .json and change all occurances of the url and you'll be fine).
@@ -72,20 +73,30 @@ There is no separate dev or prod environment implemented at this time. In its cu
 
 <hr>  
 
-## Setup
+## Setup (locally)
 ###### Linux
 The following process will take you through installation of nodejs v 10.x (Latest release, not LTS)  
 ```sudo apt-get update```  
-```sudo apt install curl```  
-```curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -```  
-```sudo apt-get install nodejs```  
-```sudo apt-get install npm```  
+```sudo apt install curl``` - to install curl
+```curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -```
+```sudo apt-get install nodejs``` - to install v10.x of node (newest release at time of writing)
+```sudo apt-get install npm``` - to install npm
+
+In this cloned repository:
 ```npm install```
+
+###### Unix
+The following process will take you through installation of nodejs v 10.x (Latest release, not LTS)  
+```/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"``` - to install brew
+```brew install node``` - to install node and npm
+
+In this cloned repository:
+```npm install``` - to install the dependencies of this project
 
 <hr>  
 
 ## Usage
-Install postman from https://www.getpostman.com/ or install the Chrome app  
+Install postman from https://www.getpostman.com/ or install the Chrome app of the same name. 
   
 For requests requiring input:
 - key: value pairs go in the **Body** section
@@ -96,6 +107,7 @@ For requests requiring input:
 
 ## Endpoints
 
+Example formatting 
 **HTTP request type:**
 **End point:**
 **Body:**
@@ -106,8 +118,9 @@ For requests requiring input:
 ### Admin
 #### Invite new user
 **HTTP request type:** POST  
-**End point:** REDACTED DUE TO LIMITED EMAILS  
-**Note:** This will send an email containing a singup link and verification token to the specified email.  
+**End point:** [url]/api/admin/invite
+**Body:** email, user_group_id
+**Note:** This will send an email containing a singup link and verification token to the specified email. User_group_id: 0 for individual, 1 for business, 2 for administrator. 
 
 #### Generate u_token manually
 **HTTP request type:** POST  
@@ -122,7 +135,7 @@ For requests requiring input:
 **HTTP request type:** POST  
 **End point:** [url]/api/achievements  
 **Body:** id, user_id, percent_complete, last_entry, next_entry, time  
-**Note:** This creates new user achievement associated with the specified user_id, and of achievementtype: id.  
+**Note:** This creates a new user achievement associated with the specified user_id, and of achievement type: id.  
 
 #### Get all achievements
 **HTTP request type:** GET  
@@ -222,7 +235,7 @@ For requests requiring input:
 **HTTP request type:** POST  
 **End point:** [url]/api/commitments  
 **Body:** goal_title, goal_description, start_date, end_date, start_time, end_time, is_full_day, is_recurring, user_id, created_by, created_date, parent_goal_id, difficulty, recurring_type, separation_count, max_occurrence, hour_of_day, day_of_week, day_of_month, day_of_year, week_of_month, week_of_year, month_of_year  
-**Note:**  eg of date format: ```Jan, 01, 2019 or 2019-01-01```, eg of timestamp format: ```2018-12-12 17:00:00``` (May need to change these). Refer to db spreadsheet for more info. Commitments will need their recurring_pattern information when being created.
+**Note:**  eg of date format: ```Jan, 01, 2019 or 2019-01-01```, eg of timestamp format: ```2018-12-12 17:00:00```. Refer to db spreadsheet for more info. Commitments will need their recurring_pattern information when being created, however, this is not the case for goals (see above).
 
 #### Get commitment by user
 **HTTP request type:** GET  
@@ -285,7 +298,7 @@ For requests requiring input:
 #### Delete commitment
 **HTTP request type:** DELETE  
 **End point:**   
-**Note:** Don't delete yet, may not be necessary  
+**Note:** Not necessary  
 **WARNING: this action cannot be undone.**  
 
 <hr>  
@@ -342,7 +355,7 @@ For requests requiring input:
 **HTTP request type:** PUT  
 **End point:** [url]/api/motivational  
 **Body:** description, tags  
-**Note:** tags will be comma delimited and the string needs to be built on the front end. Tags are not high priority, only important for stretch goals.  
+**Note:** tags will be comma delimited and the string needs to be built on the front end. Tags are not high priority, only important for stretch goals. No logic to support tags currently.
 
 #### Delete motivational entry
 **HTTP request type:** DELETE  
@@ -475,11 +488,12 @@ For requests requiring input:
 **HTTP request type:** GET  
 **End point:** [url]/api/users/verify/:v_token  
 **Note:** This endpoint peprforms a check to see if the v_token provided is valid. The user will have received this token in an automated email upon being invited by an admin.  
+
 #### Signup
 **HTTP request type:** POST  
-**End point:** [url]/api/users/users/signup  
+**End point:** [url]/api/users/signup  
 **Body:** first_name, last_name, user_password, phone_number, v_token, email, user_group_id  
-**Note:** Some values in Body may be redundant. It's hard to guage without the frontend endpoints right now but this is currently functional. This endpoint updates an invited user with all the appropriate information to allow to user to login and use the app.  
+**Note:** This endpoint updates an invited user with all the appropriate information to allow to user to login and use the app.  
 
 <hr>  
 
